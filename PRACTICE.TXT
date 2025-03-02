@@ -1,0 +1,138 @@
+SQL> SELECT * FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+DEPT                 TABLE                                                                                                                                                                              
+EMPLOYEES            TABLE                                                                                                                                                                              
+CUSTOMER             TABLE                                                                                                                                                                              
+ORDERS               TABLE                                                                                                                                                                              
+SUB                  TABLE                                                                                                                                                                              
+O_BILL               TABLE                                                                                                                                                                              
+COURSE               TABLE                                                                                                                                                                              
+
+10 rows selected.
+
+SQL> SELECT * FROM COURSE;
+
+        ID NAME       COURSE                                                                                                                                                                            
+---------- ---------- ----------                                                                                                                                                                        
+         1 RAHIM      ORACLE DBA                                                                                                                                                                        
+         2 KADAR      PYTHON                                                                                                                                                                            
+         3 SAKINA     JAVA                                                                                                                                                                              
+         4 SALIM      SQL/PLSQL                                                                                                                                                                         
+         5 AYESHA     .NET                                                                                                                                                                              
+         6 JAYRA      JAVA                                                                                                                                                                              
+         7 SALIM      JAVA                                                                                                                                                                              
+         8 SALMAN     DEVOPS                                                                                                                                                                            
+         9 NAZIM      PYTHON                                                                                                                                                                            
+
+9 rows selected.
+
+SQL> SELECT * FROM EMPLOYEES;
+
+     EMPNO ENAME                DOB       HIREDATE  PHONE               DID                                                                                                                             
+---------- -------------------- --------- --------- ------------ ----------                                                                                                                             
+         1 SURESH               01-JAN-00 31-DEC-24                      20                                                                                                                             
+         2 RAKESH               12-JAN-01 31-JAN-25 88879000             30                                                                                                                             
+         3 RAJUU                21-FEB-03 12-MAR-24 824842084            40                                                                                                                             
+         5 MONIKA               23-APR-03 22-SEP-00 831123131            50                                                                                                                             
+         4 SANJU                12-MAR-02 28-FEB-23 83274837             20                                                                                                                             
+
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME                LOCATION                                           PHONE                                                                                                                
+---------- -------------------- -------------------------------------------------- ---------------                                                                                                      
+        10 ACCOUNTS             HYDERABAD                                          555555555                                                                                                            
+        20 HR                   NEW DELHI                                          666666666666                                                                                                         
+        30 SALES                MUMBAI                                             777777777                                                                                                            
+        40 MARKETING            CHENNAI                                            4444444444444                                                                                                        
+        50 MANUFACTURING        NANDED                                             3333333333                                                                                                           
+
+SQL> SELECT ENMAE,DOB,LOCATION,PHONE
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID = D.DID
+  4  ORDER BY ENAME;
+SELECT ENMAE,DOB,LOCATION,PHONE
+                          *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENMAE,DOB,LOCATION,E.PHONE
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID = D.DID
+  4* ORDER BY ENAME
+SQL> 
+SQL> /
+SELECT ENMAE,DOB,LOCATION,E.PHONE
+       *
+ERROR at line 1:
+ORA-00904: "ENMAE": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME,DOB,LOCATION,E.PHONE
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID = D.DID
+  4* ORDER BY ENAME
+SQL> /
+
+ENAME                DOB       LOCATION                                           PHONE                                                                                                                 
+-------------------- --------- -------------------------------------------------- ------------                                                                                                          
+MONIKA               23-APR-03 NANDED                                             831123131                                                                                                             
+RAJUU                21-FEB-03 CHENNAI                                            824842084                                                                                                             
+RAKESH               12-JAN-01 MUMBAI                                             88879000                                                                                                              
+SANJU                12-MAR-02 NEW DELHI                                          83274837                                                                                                              
+SURESH               01-JAN-00 NEW DELHI                                                                                                                                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME,DOB,LOCATION,E.PHONE CK_EMPLOYEES CHECK(LOCATION = NEW DELHI) 
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID = D.DID 
+  4* ORDER BY ENAME
+SQL> /
+SELECT ENAME,DOB,LOCATION,E.PHONE CK_EMPLOYEES CHECK(LOCATION = NEW DELHI) 
+                                               *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME,DOB,LOCATION,E.PHONE  
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID = D.DID ,(LOCATION = NEW DELHI)
+  4* ORDER BY ENAME
+SQL> /
+WHERE E.DID = D.DID ,(LOCATION = NEW DELHI)
+                    *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME,DOB,LOCATION,E.PHONE  
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID = D.DID (LOCATION = NEW DELHI)
+  4* ORDER BY ENAME
+SQL> /
+WHERE E.DID = D.DID (LOCATION = NEW DELHI)
+                              *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> EXIT

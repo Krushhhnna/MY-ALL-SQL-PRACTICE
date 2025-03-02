@@ -1,0 +1,850 @@
+
+SQL> SELECT * FROM STUDENT;
+
+    STU_ID NAME                 SEX     DOB       PHONE      EMAIL                      B_ID
+---------- -------------------- ------- --------- ---------- -------------------- ----------
+         1 RAJEEV KADAM         MALE    12-FEB-00 9545346787 rajeev123@gmail.com           3
+         2 KRUSHNA SONALKAR     MALE    06-APR-03 8806766413 krushna88@gmail.com           4
+         3 SAKSHI KAKDE         FEMALE  13-OCT-03 9876564533 sakshii@gmail.com             4
+         4 YASH                 MALE    09-DEC-02 9889877856 yashdeore@gmail.com           2
+         5 YOGIRAJ SWAMI        MALE    07-APR-03 8512345676 yogi99@gmail.com              6
+         6 SAKSHI LANGOTE       FEMALE  23-NOV-04 8845689867 langotes@gmail.com            5
+         7 OM LAHAMGE           MALE    17-JAN-01 9846789034 om17@gmail.com                2
+         8 OM LAKARE            MALE    02-JUN-01 9632785466 lakareom@gmail.com            1
+         9 DHANSHREE BUJBAL     FEMALE  24-JAN-03 9523676666 dhanu0604@gmail.com           4
+        10 SIDHII PATIL         FEMALE  12-OCT-04 9635679856 patilsidhi@gmail.com          6
+        11 SURYAJI GAVHANE      MALE    27-DEC-02 9534786798 surya@gmail.com               2
+        12 TANYA AGHAV          FEMALE  29-DEC-03 9843256798 tanuu12@gmail.com             1
+        13 SHRUTI DESHMUKH      FEMALE  30-MAY-04 9837675422 shruuti123@gamil.com          3
+        14 RATIKSHA JADHAV      FEMALE  06-SEP-02 9834121212 pratuu@gmail.com              5
+        15 RUSHIKESH DURGE      MALE    09-JUL-00 8080710082 rushid@gmail.com              4
+        16 CHITANY GAVHANE      MALE    15-JAN-06 8809676767 chitany@gmail.com             5
+        17 YASH GADBIL          MALE    22-OCT-04 9987132536 yash@gmail.com                3
+        18 GAYTRI PARATE        FEMALE  06-MAR-08 9512123434 gayatri@gmail.com             1
+        19 SAKSHI BHUJANG       FEMALE  26-NOV-04 8809565612 sakshibhu@gami.com            6
+        20 SIDDHESH NANAWARE    MALE    19-JUN-01 9524141414 sidd96@gmail.com              1
+
+20 rows selected.
+
+SQL> SELECT * FROM PLACEMENT;
+
+       PID       STID COMPANY                     CTC CITY
+---------- ---------- -------------------- ---------- --------------------
+         1          2 ORACLE                  1200000 HYDERABAD
+         2          9 WIPRO                    700000 PUNE
+         3         12 TCS                      800000 BANGALORE
+         4         20 IBM                      900000 KOLKATA
+         5         11 WIPRO                    800000 CHENNAI
+
+SQL> SELECT STU_ID, NAME, SEX, COMPANY, CTC, LOCATION
+  2  FROM STUDENT, PLACMENT
+  3  WHERE STU_ID = STID
+  4  ORDER BY STU_ID;
+FROM STUDENT, PLACMENT
+              *
+ERROR at line 2:
+ORA-00942: table or view does not exist
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, COMPANY, CTC, LOCATION
+  2  FROM STUDENT, PLACEMENT
+  3  WHERE STU_ID = STID
+  4* ORDER BY STU_ID
+SQL> /
+SELECT STU_ID, NAME, SEX, COMPANY, CTC, LOCATION
+                                        *
+ERROR at line 1:
+ORA-00904: "LOCATION": invalid identifier
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, COMPANY, CTC SALARY, CITY
+  2  FROM STUDENT, PLACEMENT
+  3  WHERE STU_ID = STID
+  4* ORDER BY STU_ID
+SQL> /
+
+    STU_ID NAME                 SEX     COMPANY                  SALARY CITY
+---------- -------------------- ------- -------------------- ---------- --------------------
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000 HYDERABAD
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000 PUNE
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000 CHENNAI
+        12 TANYA AGHAV          FEMALE  TCS                      800000 BANGALORE
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000 KOLKATA
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, COMPANY, CTC SALARY, CITY
+  2  FROM STUDENT, PLACEMENT
+  3* ORDER BY STU_ID
+SQL> /
+
+    STU_ID NAME                 SEX     COMPANY                  SALARY CITY
+---------- -------------------- ------- -------------------- ---------- --------------------
+         1 RAJEEV KADAM         MALE    IBM                      900000 KOLKATA
+         1 RAJEEV KADAM         MALE    WIPRO                    800000 CHENNAI
+         1 RAJEEV KADAM         MALE    TCS                      800000 BANGALORE
+         1 RAJEEV KADAM         MALE    WIPRO                    700000 PUNE
+         1 RAJEEV KADAM         MALE    ORACLE                  1200000 HYDERABAD
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000 HYDERABAD
+         2 KRUSHNA SONALKAR     MALE    IBM                      900000 KOLKATA
+         2 KRUSHNA SONALKAR     MALE    TCS                      800000 BANGALORE
+         2 KRUSHNA SONALKAR     MALE    WIPRO                    800000 CHENNAI
+         2 KRUSHNA SONALKAR     MALE    WIPRO                    700000 PUNE
+         3 SAKSHI KAKDE         FEMALE  IBM                      900000 KOLKATA
+         3 SAKSHI KAKDE         FEMALE  ORACLE                  1200000 HYDERABAD
+         3 SAKSHI KAKDE         FEMALE  WIPRO                    700000 PUNE
+         3 SAKSHI KAKDE         FEMALE  TCS                      800000 BANGALORE
+         3 SAKSHI KAKDE         FEMALE  WIPRO                    800000 CHENNAI
+         4 YASH                 MALE    TCS                      800000 BANGALORE
+         4 YASH                 MALE    WIPRO                    700000 PUNE
+         4 YASH                 MALE    WIPRO                    800000 CHENNAI
+         4 YASH                 MALE    ORACLE                  1200000 HYDERABAD
+         4 YASH                 MALE    IBM                      900000 KOLKATA
+         5 YOGIRAJ SWAMI        MALE    WIPRO                    700000 PUNE
+         5 YOGIRAJ SWAMI        MALE    ORACLE                  1200000 HYDERABAD
+         5 YOGIRAJ SWAMI        MALE    TCS                      800000 BANGALORE
+         5 YOGIRAJ SWAMI        MALE    WIPRO                    800000 CHENNAI
+         5 YOGIRAJ SWAMI        MALE    IBM                      900000 KOLKATA
+         6 SAKSHI LANGOTE       FEMALE  WIPRO                    800000 CHENNAI
+         6 SAKSHI LANGOTE       FEMALE  ORACLE                  1200000 HYDERABAD
+
+    STU_ID NAME                 SEX     COMPANY                  SALARY CITY
+---------- -------------------- ------- -------------------- ---------- --------------------
+         6 SAKSHI LANGOTE       FEMALE  WIPRO                    700000 PUNE
+         6 SAKSHI LANGOTE       FEMALE  TCS                      800000 BANGALORE
+         6 SAKSHI LANGOTE       FEMALE  IBM                      900000 KOLKATA
+         7 OM LAHAMGE           MALE    WIPRO                    700000 PUNE
+         7 OM LAHAMGE           MALE    WIPRO                    800000 CHENNAI
+         7 OM LAHAMGE           MALE    TCS                      800000 BANGALORE
+         7 OM LAHAMGE           MALE    IBM                      900000 KOLKATA
+         7 OM LAHAMGE           MALE    ORACLE                  1200000 HYDERABAD
+         8 OM LAKARE            MALE    WIPRO                    800000 CHENNAI
+         8 OM LAKARE            MALE    WIPRO                    700000 PUNE
+         8 OM LAKARE            MALE    TCS                      800000 BANGALORE
+         8 OM LAKARE            MALE    IBM                      900000 KOLKATA
+         8 OM LAKARE            MALE    ORACLE                  1200000 HYDERABAD
+         9 DHANSHREE BUJBAL     FEMALE  ORACLE                  1200000 HYDERABAD
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000 PUNE
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    800000 CHENNAI
+         9 DHANSHREE BUJBAL     FEMALE  TCS                      800000 BANGALORE
+         9 DHANSHREE BUJBAL     FEMALE  IBM                      900000 KOLKATA
+        10 SIDHII PATIL         FEMALE  TCS                      800000 BANGALORE
+        10 SIDHII PATIL         FEMALE  IBM                      900000 KOLKATA
+        10 SIDHII PATIL         FEMALE  WIPRO                    800000 CHENNAI
+        10 SIDHII PATIL         FEMALE  ORACLE                  1200000 HYDERABAD
+        10 SIDHII PATIL         FEMALE  WIPRO                    700000 PUNE
+        11 SURYAJI GAVHANE      MALE    ORACLE                  1200000 HYDERABAD
+        11 SURYAJI GAVHANE      MALE    WIPRO                    700000 PUNE
+        11 SURYAJI GAVHANE      MALE    TCS                      800000 BANGALORE
+        11 SURYAJI GAVHANE      MALE    IBM                      900000 KOLKATA
+
+    STU_ID NAME                 SEX     COMPANY                  SALARY CITY
+---------- -------------------- ------- -------------------- ---------- --------------------
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000 CHENNAI
+        12 TANYA AGHAV          FEMALE  WIPRO                    700000 PUNE
+        12 TANYA AGHAV          FEMALE  TCS                      800000 BANGALORE
+        12 TANYA AGHAV          FEMALE  IBM                      900000 KOLKATA
+        12 TANYA AGHAV          FEMALE  WIPRO                    800000 CHENNAI
+        12 TANYA AGHAV          FEMALE  ORACLE                  1200000 HYDERABAD
+        13 SHRUTI DESHMUKH      FEMALE  ORACLE                  1200000 HYDERABAD
+        13 SHRUTI DESHMUKH      FEMALE  WIPRO                    700000 PUNE
+        13 SHRUTI DESHMUKH      FEMALE  WIPRO                    800000 CHENNAI
+        13 SHRUTI DESHMUKH      FEMALE  IBM                      900000 KOLKATA
+        13 SHRUTI DESHMUKH      FEMALE  TCS                      800000 BANGALORE
+        14 RATIKSHA JADHAV      FEMALE  WIPRO                    800000 CHENNAI
+        14 RATIKSHA JADHAV      FEMALE  TCS                      800000 BANGALORE
+        14 RATIKSHA JADHAV      FEMALE  ORACLE                  1200000 HYDERABAD
+        14 RATIKSHA JADHAV      FEMALE  IBM                      900000 KOLKATA
+        14 RATIKSHA JADHAV      FEMALE  WIPRO                    700000 PUNE
+        15 RUSHIKESH DURGE      MALE    IBM                      900000 KOLKATA
+        15 RUSHIKESH DURGE      MALE    WIPRO                    800000 CHENNAI
+        15 RUSHIKESH DURGE      MALE    WIPRO                    700000 PUNE
+        15 RUSHIKESH DURGE      MALE    ORACLE                  1200000 HYDERABAD
+        15 RUSHIKESH DURGE      MALE    TCS                      800000 BANGALORE
+        16 CHITANY GAVHANE      MALE    WIPRO                    700000 PUNE
+        16 CHITANY GAVHANE      MALE    ORACLE                  1200000 HYDERABAD
+        16 CHITANY GAVHANE      MALE    TCS                      800000 BANGALORE
+        16 CHITANY GAVHANE      MALE    WIPRO                    800000 CHENNAI
+        16 CHITANY GAVHANE      MALE    IBM                      900000 KOLKATA
+        17 YASH GADBIL          MALE    TCS                      800000 BANGALORE
+
+    STU_ID NAME                 SEX     COMPANY                  SALARY CITY
+---------- -------------------- ------- -------------------- ---------- --------------------
+        17 YASH GADBIL          MALE    IBM                      900000 KOLKATA
+        17 YASH GADBIL          MALE    ORACLE                  1200000 HYDERABAD
+        17 YASH GADBIL          MALE    WIPRO                    700000 PUNE
+        17 YASH GADBIL          MALE    WIPRO                    800000 CHENNAI
+        18 GAYTRI PARATE        FEMALE  IBM                      900000 KOLKATA
+        18 GAYTRI PARATE        FEMALE  WIPRO                    800000 CHENNAI
+        18 GAYTRI PARATE        FEMALE  ORACLE                  1200000 HYDERABAD
+        18 GAYTRI PARATE        FEMALE  TCS                      800000 BANGALORE
+        18 GAYTRI PARATE        FEMALE  WIPRO                    700000 PUNE
+        19 SAKSHI BHUJANG       FEMALE  ORACLE                  1200000 HYDERABAD
+        19 SAKSHI BHUJANG       FEMALE  WIPRO                    700000 PUNE
+        19 SAKSHI BHUJANG       FEMALE  TCS                      800000 BANGALORE
+        19 SAKSHI BHUJANG       FEMALE  IBM                      900000 KOLKATA
+        19 SAKSHI BHUJANG       FEMALE  WIPRO                    800000 CHENNAI
+        20 SIDDHESH NANAWARE    MALE    TCS                      800000 BANGALORE
+        20 SIDDHESH NANAWARE    MALE    WIPRO                    800000 CHENNAI
+        20 SIDDHESH NANAWARE    MALE    WIPRO                    700000 PUNE
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000 KOLKATA
+        20 SIDDHESH NANAWARE    MALE    ORACLE                  1200000 HYDERABAD
+
+100 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, COMPANY, CTC SALARY, CITY
+  2  FROM STUDENT, PLACEMENT
+  3  WHERE STU_ID = STID
+  4* ORDER BY STU_ID
+SQL> /
+
+    STU_ID NAME                 SEX     COMPANY                  SALARY CITY
+---------- -------------------- ------- -------------------- ---------- --------------------
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000 HYDERABAD
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000 PUNE
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000 CHENNAI
+        12 TANYA AGHAV          FEMALE  TCS                      800000 BANGALORE
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000 KOLKATA
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, COMPANY, CTC SALARY, CITY
+  2  FROM STUDENT, PLACEMENT
+  3  WHERE STU_ID(+) = STID
+  4* ORDER BY STU_ID
+SQL> /
+
+    STU_ID NAME                 SEX     COMPANY                  SALARY CITY
+---------- -------------------- ------- -------------------- ---------- --------------------
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000 HYDERABAD
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000 PUNE
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000 CHENNAI
+        12 TANYA AGHAV          FEMALE  TCS                      800000 BANGALORE
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000 KOLKATA
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, NAME, SEX, COMPANY, CTC SALARY, CITY
+  2  FROM STUDENT, PLACEMENT
+  3  WHERE STU_ID(+) = STID
+  4* ORDER BY STID
+SQL> /
+
+      STID NAME                 SEX     COMPANY                  SALARY CITY
+---------- -------------------- ------- -------------------- ---------- --------------------
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000 HYDERABAD
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000 PUNE
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000 CHENNAI
+        12 TANYA AGHAV          FEMALE  TCS                      800000 BANGALORE
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000 KOLKATA
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, NAME, SEX, COMPANY, CTC SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID(+) = STID
+  4* ORDER BY STID
+SQL> /
+
+      STID NAME                 SEX     COMPANY                  SALARY
+---------- -------------------- ------- -------------------- ----------
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000
+        12 TANYA AGHAV          FEMALE  TCS                      800000
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, NAME, SEX, COMPANY, CTC SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STID DESC
+SQL> /
+
+      STID NAME                 SEX     COMPANY                  SALARY
+---------- -------------------- ------- -------------------- ----------
+           RUSHIKESH DURGE      MALE
+           SAKSHI BHUJANG       FEMALE
+           SHRUTI DESHMUKH      FEMALE
+           SAKSHI KAKDE         FEMALE
+           GAYTRI PARATE        FEMALE
+           SAKSHI LANGOTE       FEMALE
+           RATIKSHA JADHAV      FEMALE
+           RAJEEV KADAM         MALE
+           OM LAHAMGE           MALE
+           CHITANY GAVHANE      MALE
+           OM LAKARE            MALE
+           YASH GADBIL          MALE
+           YASH                 MALE
+           YOGIRAJ SWAMI        MALE
+           SIDHII PATIL         FEMALE
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000
+        12 TANYA AGHAV          FEMALE  TCS                      800000
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, COMPANY, CTC SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STID DESC
+SQL> /
+
+    STU_ID NAME                 SEX     COMPANY                  SALARY
+---------- -------------------- ------- -------------------- ----------
+        15 RUSHIKESH DURGE      MALE
+        19 SAKSHI BHUJANG       FEMALE
+        13 SHRUTI DESHMUKH      FEMALE
+         3 SAKSHI KAKDE         FEMALE
+        18 GAYTRI PARATE        FEMALE
+         6 SAKSHI LANGOTE       FEMALE
+        14 RATIKSHA JADHAV      FEMALE
+         1 RAJEEV KADAM         MALE
+         7 OM LAHAMGE           MALE
+        16 CHITANY GAVHANE      MALE
+         8 OM LAKARE            MALE
+        17 YASH GADBIL          MALE
+         4 YASH                 MALE
+         5 YOGIRAJ SWAMI        MALE
+        10 SIDHII PATIL         FEMALE
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000
+        12 TANYA AGHAV          FEMALE  TCS                      800000
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, COMPANY, CTC SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STU_ID
+SQL> /
+
+    STU_ID NAME                 SEX     COMPANY                  SALARY
+---------- -------------------- ------- -------------------- ----------
+         1 RAJEEV KADAM         MALE
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000
+         3 SAKSHI KAKDE         FEMALE
+         4 YASH                 MALE
+         5 YOGIRAJ SWAMI        MALE
+         6 SAKSHI LANGOTE       FEMALE
+         7 OM LAHAMGE           MALE
+         8 OM LAKARE            MALE
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000
+        10 SIDHII PATIL         FEMALE
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000
+        12 TANYA AGHAV          FEMALE  TCS                      800000
+        13 SHRUTI DESHMUKH      FEMALE
+        14 RATIKSHA JADHAV      FEMALE
+        15 RUSHIKESH DURGE      MALE
+        16 CHITANY GAVHANE      MALE
+        17 YASH GADBIL          MALE
+        18 GAYTRI PARATE        FEMALE
+        19 SAKSHI BHUJANG       FEMALE
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, NVL(COMPANY,'NA') CTC SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STU_ID
+SQL> /
+SELECT STU_ID, NAME, SEX, NVL(COMPANY,'NA') CTC SALARY
+                                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, NVL(COMPANY,'NA'), CTC SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STU_ID
+SQL> /
+
+    STU_ID NAME                 SEX     NVL(COMPANY,'NA')        SALARY
+---------- -------------------- ------- -------------------- ----------
+         1 RAJEEV KADAM         MALE    NA
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000
+         3 SAKSHI KAKDE         FEMALE  NA
+         4 YASH                 MALE    NA
+         5 YOGIRAJ SWAMI        MALE    NA
+         6 SAKSHI LANGOTE       FEMALE  NA
+         7 OM LAHAMGE           MALE    NA
+         8 OM LAKARE            MALE    NA
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000
+        10 SIDHII PATIL         FEMALE  NA
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000
+        12 TANYA AGHAV          FEMALE  TCS                      800000
+        13 SHRUTI DESHMUKH      FEMALE  NA
+        14 RATIKSHA JADHAV      FEMALE  NA
+        15 RUSHIKESH DURGE      MALE    NA
+        16 CHITANY GAVHANE      MALE    NA
+        17 YASH GADBIL          MALE    NA
+        18 GAYTRI PARATE        FEMALE  NA
+        19 SAKSHI BHUJANG       FEMALE  NA
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, NVL(COMPANY,'NA'), NVL(TO_CHAR(CTC,'--') SALARY)
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STU_ID
+SQL> /
+SELECT STU_ID, NAME, SEX, NVL(COMPANY,'NA'), NVL(TO_CHAR(CTC,'--') SALARY)
+                                             *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, NVL(COMPANY,'NA'), NVL(TO_CHAR(CTC),'--') SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STU_ID
+SQL> SELECT STID, NAME, SEX, COMPANY, CTC SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4  ORDER BY STID DESC
+  5  /
+
+      STID NAME                 SEX     COMPANY                  SALARY
+---------- -------------------- ------- -------------------- ----------
+           RUSHIKESH DURGE      MALE
+           SAKSHI BHUJANG       FEMALE
+           SHRUTI DESHMUKH      FEMALE
+           SAKSHI KAKDE         FEMALE
+           GAYTRI PARATE        FEMALE
+           SAKSHI LANGOTE       FEMALE
+           RATIKSHA JADHAV      FEMALE
+           RAJEEV KADAM         MALE
+           OM LAHAMGE           MALE
+           CHITANY GAVHANE      MALE
+           OM LAKARE            MALE
+           YASH GADBIL          MALE
+           YASH                 MALE
+           YOGIRAJ SWAMI        MALE
+           SIDHII PATIL         FEMALE
+        20 SIDDHESH NANAWARE    MALE    IBM                      900000
+        12 TANYA AGHAV          FEMALE  TCS                      800000
+        11 SURYAJI GAVHANE      MALE    WIPRO                    800000
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                    700000
+         2 KRUSHNA SONALKAR     MALE    ORACLE                  1200000
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, NAME, SEX, NVL(COMPANY,'NA'), NVL(TO_CHAR(CTC),'--') SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STID DESC
+SQL> /
+
+      STID NAME                 SEX     NVL(COMPANY,'NA')    SALARY
+---------- -------------------- ------- -------------------- ----------------------------------------
+           RUSHIKESH DURGE      MALE    NA                   --
+           SAKSHI BHUJANG       FEMALE  NA                   --
+           SHRUTI DESHMUKH      FEMALE  NA                   --
+           SAKSHI KAKDE         FEMALE  NA                   --
+           GAYTRI PARATE        FEMALE  NA                   --
+           SAKSHI LANGOTE       FEMALE  NA                   --
+           RATIKSHA JADHAV      FEMALE  NA                   --
+           RAJEEV KADAM         MALE    NA                   --
+           OM LAHAMGE           MALE    NA                   --
+           CHITANY GAVHANE      MALE    NA                   --
+           OM LAKARE            MALE    NA                   --
+           YASH GADBIL          MALE    NA                   --
+           YASH                 MALE    NA                   --
+           YOGIRAJ SWAMI        MALE    NA                   --
+           SIDHII PATIL         FEMALE  NA                   --
+        20 SIDDHESH NANAWARE    MALE    IBM                  900000
+        12 TANYA AGHAV          FEMALE  TCS                  800000
+        11 SURYAJI GAVHANE      MALE    WIPRO                800000
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                700000
+         2 KRUSHNA SONALKAR     MALE    ORACLE               1200000
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, NAME, SEX, NVL(COMPANY,'NA') COMPANY, NVL(TO_CHAR(CTC),'--') SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STID DESC
+SQL> /
+
+      STID NAME                 SEX     COMPANY              SALARY
+---------- -------------------- ------- -------------------- ----------------------------------------
+           RUSHIKESH DURGE      MALE    NA                   --
+           SAKSHI BHUJANG       FEMALE  NA                   --
+           SHRUTI DESHMUKH      FEMALE  NA                   --
+           SAKSHI KAKDE         FEMALE  NA                   --
+           GAYTRI PARATE        FEMALE  NA                   --
+           SAKSHI LANGOTE       FEMALE  NA                   --
+           RATIKSHA JADHAV      FEMALE  NA                   --
+           RAJEEV KADAM         MALE    NA                   --
+           OM LAHAMGE           MALE    NA                   --
+           CHITANY GAVHANE      MALE    NA                   --
+           OM LAKARE            MALE    NA                   --
+           YASH GADBIL          MALE    NA                   --
+           YASH                 MALE    NA                   --
+           YOGIRAJ SWAMI        MALE    NA                   --
+           SIDHII PATIL         FEMALE  NA                   --
+        20 SIDDHESH NANAWARE    MALE    IBM                  900000
+        12 TANYA AGHAV          FEMALE  TCS                  800000
+        11 SURYAJI GAVHANE      MALE    WIPRO                800000
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                700000
+         2 KRUSHNA SONALKAR     MALE    ORACLE               1200000
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID, NAME, SEX, NVL(COMPANY,'NA') COMPANY, NVL(TO_CHAR(CTC),'--') SALARY
+  2  FROM PLACEMENT , STUDENT
+  3  WHERE STU_ID = STID(+)
+  4* ORDER BY STU_ID
+SQL> /
+
+    STU_ID NAME                 SEX     COMPANY              SALARY
+---------- -------------------- ------- -------------------- ----------------------------------------
+         1 RAJEEV KADAM         MALE    NA                   --
+         2 KRUSHNA SONALKAR     MALE    ORACLE               1200000
+         3 SAKSHI KAKDE         FEMALE  NA                   --
+         4 YASH                 MALE    NA                   --
+         5 YOGIRAJ SWAMI        MALE    NA                   --
+         6 SAKSHI LANGOTE       FEMALE  NA                   --
+         7 OM LAHAMGE           MALE    NA                   --
+         8 OM LAKARE            MALE    NA                   --
+         9 DHANSHREE BUJBAL     FEMALE  WIPRO                700000
+        10 SIDHII PATIL         FEMALE  NA                   --
+        11 SURYAJI GAVHANE      MALE    WIPRO                800000
+        12 TANYA AGHAV          FEMALE  TCS                  800000
+        13 SHRUTI DESHMUKH      FEMALE  NA                   --
+        14 RATIKSHA JADHAV      FEMALE  NA                   --
+        15 RUSHIKESH DURGE      MALE    NA                   --
+        16 CHITANY GAVHANE      MALE    NA                   --
+        17 YASH GADBIL          MALE    NA                   --
+        18 GAYTRI PARATE        FEMALE  NA                   --
+        19 SAKSHI BHUJANG       FEMALE  NA                   --
+        20 SIDDHESH NANAWARE    MALE    IBM                  900000
+
+20 rows selected.
+
+SQL> SELECT * FROM STUDENT;
+
+    STU_ID NAME                 SEX     DOB       PHONE      EMAIL                      B_ID
+---------- -------------------- ------- --------- ---------- -------------------- ----------
+         1 RAJEEV KADAM         MALE    12-FEB-00 9545346787 rajeev123@gmail.com           3
+         2 KRUSHNA SONALKAR     MALE    06-APR-03 8806766413 krushna88@gmail.com           4
+         3 SAKSHI KAKDE         FEMALE  13-OCT-03 9876564533 sakshii@gmail.com             4
+         4 YASH                 MALE    09-DEC-02 9889877856 yashdeore@gmail.com           2
+         5 YOGIRAJ SWAMI        MALE    07-APR-03 8512345676 yogi99@gmail.com              6
+         6 SAKSHI LANGOTE       FEMALE  23-NOV-04 8845689867 langotes@gmail.com            5
+         7 OM LAHAMGE           MALE    17-JAN-01 9846789034 om17@gmail.com                2
+         8 OM LAKARE            MALE    02-JUN-01 9632785466 lakareom@gmail.com            1
+         9 DHANSHREE BUJBAL     FEMALE  24-JAN-03 9523676666 dhanu0604@gmail.com           4
+        10 SIDHII PATIL         FEMALE  12-OCT-04 9635679856 patilsidhi@gmail.com          6
+        11 SURYAJI GAVHANE      MALE    27-DEC-02 9534786798 surya@gmail.com               2
+        12 TANYA AGHAV          FEMALE  29-DEC-03 9843256798 tanuu12@gmail.com             1
+        13 SHRUTI DESHMUKH      FEMALE  30-MAY-04 9837675422 shruuti123@gamil.com          3
+        14 RATIKSHA JADHAV      FEMALE  06-SEP-02 9834121212 pratuu@gmail.com              5
+        15 RUSHIKESH DURGE      MALE    09-JUL-00 8080710082 rushid@gmail.com              4
+        16 CHITANY GAVHANE      MALE    15-JAN-06 8809676767 chitany@gmail.com             5
+        17 YASH GADBIL          MALE    22-OCT-04 9987132536 yash@gmail.com                3
+        18 GAYTRI PARATE        FEMALE  06-MAR-08 9512123434 gayatri@gmail.com             1
+        19 SAKSHI BHUJANG       FEMALE  26-NOV-04 8809565612 sakshibhu@gami.com            6
+        20 SIDDHESH NANAWARE    MALE    19-JUN-01 9524141414 sidd96@gmail.com              1
+
+20 rows selected.
+
+SQL> SELECT B_ID,COUNT(*)FROM STUDENT;
+SELECT B_ID,COUNT(*)FROM STUDENT
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> SELECT STU_ID, B_ID,COUNT(*) FROM STUDENT;
+SELECT STU_ID, B_ID,COUNT(*) FROM STUDENT
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> SELECT STU_ID, B_ID,COUNT(*) FROM STUDENT
+  2  GROUP BY STU_ID, B_ID;
+
+    STU_ID       B_ID   COUNT(*)
+---------- ---------- ----------
+         1          3          1
+         2          4          1
+         3          4          1
+         4          2          1
+         5          6          1
+         6          5          1
+         7          2          1
+         8          1          1
+         9          4          1
+        10          6          1
+        11          2          1
+        12          1          1
+        13          3          1
+        14          5          1
+        15          4          1
+        16          5          1
+        17          3          1
+        18          1          1
+        19          6          1
+        20          1          1
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT  B_ID,COUNT(*) FROM STUDENT
+  2* GROUP BY  B_ID
+SQL> /
+
+      B_ID   COUNT(*)
+---------- ----------
+         6          3
+         1          4
+         2          3
+         4          4
+         5          3
+         3          3
+
+6 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT  B_ID,COUNT(*) FROM STUDENT
+  2  GROUP BY  B_ID
+  3* ORDER BY B_ID
+SQL> /
+
+      B_ID   COUNT(*)
+---------- ----------
+         1          4
+         2          3
+         3          3
+         4          4
+         5          3
+         6          3
+
+6 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT  B_ID,COUNT(*) NUOFSTUDENT  FROM STUDENT
+  2  GROUP BY  B_ID
+  3* ORDER BY B_ID
+SQL> /
+
+      B_ID NUOFSTUDENT
+---------- -----------
+         1           4
+         2           3
+         3           3
+         4           4
+         5           3
+         6           3
+
+6 rows selected.
+
+SQL> SELECT * FROM STUDENT;
+
+    STU_ID NAME                 SEX     DOB       PHONE      EMAIL                      B_ID
+---------- -------------------- ------- --------- ---------- -------------------- ----------
+         1 RAJEEV KADAM         MALE    12-FEB-00 9545346787 rajeev123@gmail.com           3
+         2 KRUSHNA SONALKAR     MALE    06-APR-03 8806766413 krushna88@gmail.com           4
+         3 SAKSHI KAKDE         FEMALE  13-OCT-03 9876564533 sakshii@gmail.com             4
+         4 YASH                 MALE    09-DEC-02 9889877856 yashdeore@gmail.com           2
+         5 YOGIRAJ SWAMI        MALE    07-APR-03 8512345676 yogi99@gmail.com              6
+         6 SAKSHI LANGOTE       FEMALE  23-NOV-04 8845689867 langotes@gmail.com            5
+         7 OM LAHAMGE           MALE    17-JAN-01 9846789034 om17@gmail.com                2
+         8 OM LAKARE            MALE    02-JUN-01 9632785466 lakareom@gmail.com            1
+         9 DHANSHREE BUJBAL     FEMALE  24-JAN-03 9523676666 dhanu0604@gmail.com           4
+        10 SIDHII PATIL         FEMALE  12-OCT-04 9635679856 patilsidhi@gmail.com          6
+        11 SURYAJI GAVHANE      MALE    27-DEC-02 9534786798 surya@gmail.com               2
+        12 TANYA AGHAV          FEMALE  29-DEC-03 9843256798 tanuu12@gmail.com             1
+        13 SHRUTI DESHMUKH      FEMALE  30-MAY-04 9837675422 shruuti123@gamil.com          3
+        14 RATIKSHA JADHAV      FEMALE  06-SEP-02 9834121212 pratuu@gmail.com              5
+        15 RUSHIKESH DURGE      MALE    09-JUL-00 8080710082 rushid@gmail.com              4
+        16 CHITANY GAVHANE      MALE    15-JAN-06 8809676767 chitany@gmail.com             5
+        17 YASH GADBIL          MALE    22-OCT-04 9987132536 yash@gmail.com                3
+        18 GAYTRI PARATE        FEMALE  06-MAR-08 9512123434 gayatri@gmail.com             1
+        19 SAKSHI BHUJANG       FEMALE  26-NOV-04 8809565612 sakshibhu@gami.com            6
+        20 SIDDHESH NANAWARE    MALE    19-JUN-01 9524141414 sidd96@gmail.com              1
+
+20 rows selected.
+
+SQL> SELECT * FROM  PLACEMENT;
+
+       PID       STID COMPANY                     CTC CITY
+---------- ---------- -------------------- ---------- --------------------
+         1          2 ORACLE                  1200000 HYDERABAD
+         2          9 WIPRO                    700000 PUNE
+         3         12 TCS                      800000 BANGALORE
+         4         20 IBM                      900000 KOLKATA
+         5         11 WIPRO                    800000 CHENNAI
+
+SQL> SELECT ,STID, STU_ID, NAME, SEX, PHONE, CITY,COMPANY, CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE CITY = 'PUNE';
+SELECT ,STID, STU_ID, NAME, SEX, PHONE, CITY,COMPANY, CTC SALARY
+       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ,STID, STU_ID, NAME, SEX, PHONE, CITY,COMPANY, CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3* WHERE STU_ID = STID ,CITY = 'PUNE'
+SQL> /
+SELECT ,STID, STU_ID, NAME, SEX, PHONE, CITY,COMPANY, CTC SALARY
+       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, STU_ID, NAME, SEX, PHONE, CITY,COMPANY, CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3* WHERE STU_ID = STID ,CITY = 'PUNE'
+SQL> /
+WHERE STU_ID = STID ,CITY = 'PUNE'
+                    *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, STU_ID, NAME, SEX, PHONE, CITY,COMPANY, CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3* WHERE CITY = 'PUNE'
+SQL>
+SQL> /
+
+      STID     STU_ID NAME                 SEX     PHONE      CITY                 COMPANY                  SALARY
+---------- ---------- -------------------- ------- ---------- -------------------- -------------------- ----------
+         9          1 RAJEEV KADAM         MALE    9545346787 PUNE                 WIPRO                    700000
+         9          2 KRUSHNA SONALKAR     MALE    8806766413 PUNE                 WIPRO                    700000
+         9          3 SAKSHI KAKDE         FEMALE  9876564533 PUNE                 WIPRO                    700000
+         9          4 YASH                 MALE    9889877856 PUNE                 WIPRO                    700000
+         9          5 YOGIRAJ SWAMI        MALE    8512345676 PUNE                 WIPRO                    700000
+         9          6 SAKSHI LANGOTE       FEMALE  8845689867 PUNE                 WIPRO                    700000
+         9          7 OM LAHAMGE           MALE    9846789034 PUNE                 WIPRO                    700000
+         9          8 OM LAKARE            MALE    9632785466 PUNE                 WIPRO                    700000
+         9          9 DHANSHREE BUJBAL     FEMALE  9523676666 PUNE                 WIPRO                    700000
+         9         10 SIDHII PATIL         FEMALE  9635679856 PUNE                 WIPRO                    700000
+         9         11 SURYAJI GAVHANE      MALE    9534786798 PUNE                 WIPRO                    700000
+         9         12 TANYA AGHAV          FEMALE  9843256798 PUNE                 WIPRO                    700000
+         9         13 SHRUTI DESHMUKH      FEMALE  9837675422 PUNE                 WIPRO                    700000
+         9         14 RATIKSHA JADHAV      FEMALE  9834121212 PUNE                 WIPRO                    700000
+         9         15 RUSHIKESH DURGE      MALE    8080710082 PUNE                 WIPRO                    700000
+         9         16 CHITANY GAVHANE      MALE    8809676767 PUNE                 WIPRO                    700000
+         9         17 YASH GADBIL          MALE    9987132536 PUNE                 WIPRO                    700000
+         9         18 GAYTRI PARATE        FEMALE  9512123434 PUNE                 WIPRO                    700000
+         9         19 SAKSHI BHUJANG       FEMALE  8809565612 PUNE                 WIPRO                    700000
+         9         20 SIDDHESH NANAWARE    MALE    9524141414 PUNE                 WIPRO                    700000
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, STU_ID, NAME, SEX, PHONE, CITY,COUNT(CITY = PUNE), COMPANY, CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3* WHERE STU_ID = STID
+SQL> /
+SELECT STID, STU_ID, NAME, SEX, PHONE, CITY,COUNT(CITY = PUNE), COMPANY, CTC SALARY
+                                                       *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, STU_ID, NAME, SEX, PHONE, CITY, COMPANY, CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STU_ID = STID
+  4* HAVING CITY = 'PUNE'
+SQL> /
+HAVING CITY = 'PUNE'
+       *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID, STU_ID, NAME, SEX, PHONE, CITY, COMPANY, CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3* WHERE STU_ID = STID AND CITY = 'PUNE'
+  4  /
+
+      STID     STU_ID NAME                 SEX     PHONE      CITY                 COMPANY                  SALARY
+---------- ---------- -------------------- ------- ---------- -------------------- -------------------- ----------
+         9          9 DHANSHREE BUJBAL     FEMALE  9523676666 PUNE                 WIPRO                    700000
+
+SQL> HOST
+Microsoft Windows [Version 10.0.19045.5371]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\oracle\scripts>NOTEPAD SQL_PRACTICE.TXT
+
+C:\oracle\scripts>

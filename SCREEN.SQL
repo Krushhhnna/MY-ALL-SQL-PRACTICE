@@ -1,0 +1,5 @@
+SET LINESIZE 200
+SET PAGESIZE 40
+COLUMN TNAME FORMAT A20
+column username format a20
+

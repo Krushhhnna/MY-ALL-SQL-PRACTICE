@@ -1,0 +1,430 @@
+SQL> SHO USER
+USER is "KRUSHNA"
+SQL> @SCREEN
+SQL> SELECT *FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SUBJECT              TABLE                                                                                                                                                                              
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+DEPT                 TABLE                                                                                                                                                                              
+EMPLOYEES            TABLE                                                                                                                                                                              
+COUSTOMER            TABLE                                                                                                                                                                              
+RDER                 TABLE                                                                                                                                                                              
+
+8 rows selected.
+
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME                LOCATION                                           PHONE                                                                                                                
+---------- -------------------- -------------------------------------------------- ---------------                                                                                                      
+        10 ACCOUNTS             HYDERABAD                                          555555555                                                                                                            
+        20 HR                   NEW DELHI                                          666666666666                                                                                                         
+        30 SALES                MUMBAI                                             777777777                                                                                                            
+        40 MARKETING            CHENNAI                                            4444444444444                                                                                                        
+        50 MANUFACTURING        NANDED                                             3333333333                                                                                                           
+
+SQL> SELECT *FROM EMPLOYEES;
+
+     EMPNO ENAME                DOB       HIREDATE  PHONE               DID                                                                                                                             
+---------- -------------------- --------- --------- ------------ ----------                                                                                                                             
+         1 SURESH               01-JAN-00 31-DEC-24                      20                                                                                                                             
+ 
+
+
+SQL> SELECT * FROM COUSTOMER;
+
+        ID FIRST_NAME LAST_NAME         AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+        11 JOHN       DISUZA             22                                                                                                                                                             
+        22 KALVIN     KELIN              34                                                                                                                                                             
+        33 JORDEN     SHO                22                                                                                                                                                             
+        44 MOHITO     SHFLI              67                                                                                                                                                             
+        55 REMO       DISUZA             55                                                                                                                                                             
+
+SQL> SELECT * FROM RDER
+  2  ;
+
+      O_ID PRODUCT    TOTAL_ORDER CUSTOMER_ID                                                                                                                                                           
+---------- ---------- ----------- -----------                                                                                                                                                           
+        11 NOTBOOK            556          22                                                                                                                                                           
+        12 PEN                999          33                                                                                                                                                           
+        13 PENCILE            356          55                                                                                                                                                           
+        14 ERESOR             465          44                                                                                                                                                           
+        15 PETI BOX           100          22                                                                                                                                                           
+        16 BAG                676          55                                                                                                                                                           
+        17 202                202          33                                                                                                                                                           
+
+7 rows selected.
+
+SQL> SELECT ID,FIRST_NAME,LAST_NAME ,PRODCT,TOTAL_ORDER
+  2  FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4  AND ID=22 ;
+SELECT ID,FIRST_NAME,LAST_NAME ,PRODCT,TOTAL_ORDER
+                                *
+ERROR at line 1:
+ORA-00904: "PRODCT": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME,LAST_NAME ,PRODUCT,TOTAL_ORDER
+  2  FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4* AND ID=22 
+SQL> /
+
+        ID FIRST_NAME LAST_NAME  PRODUCT    TOTAL_ORDER                                                                                                                                                 
+---------- ---------- ---------- ---------- -----------                                                                                                                                                 
+        22 KALVIN     KELIN      NOTBOOK            556                                                                                                                                                 
+        22 KALVIN     KELIN      PETI BOX           100                                                                                                                                                 
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME,LAST_NAME ,PRODUCT,TOTAL_ORDER
+  2  FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4* AND ID=44
+SQL> /
+
+        ID FIRST_NAME LAST_NAME  PRODUCT    TOTAL_ORDER                                                                                                                                                 
+---------- ---------- ---------- ---------- -----------                                                                                                                                                 
+        44 MOHITO     SHFLI      ERESOR             465                                                                                                                                                 
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||','||LAST_NAME  ,PRODUCT,TOTAL_ORDER
+  2  FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4* AND ID=44
+SQL> /
+
+        ID FIRST_NAME||','||LAST PRODUCT    TOTAL_ORDER                                                                                                                                                 
+---------- --------------------- ---------- -----------                                                                                                                                                 
+        44 MOHITO,SHFLI          ERESOR             465                                                                                                                                                 
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,PRODUCT,TOTAL_ORDER
+  2  FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4* AND ID=44
+SQL> /
+
+        ID FULL_NAME             PRODUCT    TOTAL_ORDER                                                                                                                                                 
+---------- --------------------- ---------- -----------                                                                                                                                                 
+        44 MOHITO SHFLI          ERESOR             465                                                                                                                                                 
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,PRODUCT,TOTAL_ORDER
+  2  FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4* -- AND ID=44
+SQL> /
+
+        ID FULL_NAME             PRODUCT    TOTAL_ORDER                                                                                                                                                 
+---------- --------------------- ---------- -----------                                                                                                                                                 
+        22 KALVIN KELIN          NOTBOOK            556                                                                                                                                                 
+        33 JORDEN SHO            PEN                999                                                                                                                                                 
+        55 REMO DISUZA           PENCILE            356                                                                                                                                                 
+        44 MOHITO SHFLI          ERESOR             465                                                                                                                                                 
+        22 KALVIN KELIN          PETI BOX           100                                                                                                                                                 
+        55 REMO DISUZA           BAG                676                                                                                                                                                 
+        33 JORDEN SHO            202                202                                                                                                                                                 
+
+7 rows selected.
+
+SQL> ---- CONCATINATION OF COLUMNS
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT)
+  2  FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4  GROUP BY ID, FULL_NAME
+  5* ORDER BY ID 
+SQL> /
+GROUP BY ID, FULL_NAME
+             *
+ERROR at line 4:
+ORA-00904: "FULL_NAME": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT)
+  2  FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4  GROUP BY ID, FIRST_NAME,LAST_NAME
+  5* ORDER BY ID 
+SQL> /
+
+        ID FULL_NAME             COUNT(PRODUCT)                                                                                                                                                         
+---------- --------------------- --------------                                                                                                                                                         
+        22 KALVIN KELIN                       2                                                                                                                                                         
+        33 JORDEN SHO                         2                                                                                                                                                         
+        44 MOHITO SHFLI                       1                                                                                                                                                         
+        55 REMO DISUZA                        2                                                                                                                                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER)
+  2  FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4  GROUP BY ID, FIRST_NAME,LAST_NAME
+  5* ORDER BY ID 
+SQL> /
+
+        ID FULL_NAME             COUNT(PRODUCT) SUM(TOTAL_ORDER)                                                                                                                                        
+---------- --------------------- -------------- ----------------                                                                                                                                        
+        22 KALVIN KELIN                       2              656                                                                                                                                        
+        33 JORDEN SHO                         2             1201                                                                                                                                        
+        44 MOHITO SHFLI                       1              465                                                                                                                                        
+        55 REMO DISUZA                        2             1032                                                                                                                                        
+
+SQL> SELECT * FROM RDER;
+
+      O_ID PRODUCT    TOTAL_ORDER CUSTOMER_ID                                                                                                                                                           
+---------- ---------- ----------- -----------                                                                                                                                                           
+        11 NOTBOOK            556          22                                                                                                                                                           
+        12 PEN                999          33                                                                                                                                                           
+        13 PENCILE            356          55                                                                                                                                                           
+        14 ERESOR             465          44                                                                                                                                                           
+        15 PETI BOX           100          22                                                                                                                                                           
+        16 BAG                676          55                                                                                                                                                           
+        17 202                202          33                                                                                                                                                           
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM RDER
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),AVG(TOTAL_ORDER) 
+  2      FROM RDER R, COUSTOMER C
+  3      WHERE CUSTOMER_ID=ID
+  4      GROUP BY ID, FIRST_NAME,LAST_NAME
+  5*    ORDER BY ID
+SQL> /
+
+        ID FULL_NAME             COUNT(PRODUCT) SUM(TOTAL_ORDER) AVG(TOTAL_ORDER)                                                                                                                       
+---------- --------------------- -------------- ---------------- ----------------                                                                                                                       
+        22 KALVIN KELIN                       2              656              328                                                                                                                       
+        33 JORDEN SHO                         2             1201            600.5                                                                                                                       
+        44 MOHITO SHFLI                       1              465              465                                                                                                                       
+        55 REMO DISUZA                        2             1032              516                                                                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),ROUND(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3      WHERE CUSTOMER_ID=ID
+  4      GROUP BY ID, FIRST_NAME,LAST_NAME
+  5*    ORDER BY ID
+SQL> /
+
+        ID FULL_NAME             COUNT(PRODUCT) SUM(TOTAL_ORDER) ROUND(AVG(TOTAL_ORDER))                                                                                                                
+---------- --------------------- -------------- ---------------- -----------------------                                                                                                                
+        22 KALVIN KELIN                       2              656                     328                                                                                                                
+        33 JORDEN SHO                         2             1201                     601                                                                                                                
+        44 MOHITO SHFLI                       1              465                     465                                                                                                                
+        55 REMO DISUZA                        2             1032                     516                                                                                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3      WHERE CUSTOMER_ID=ID
+  4      GROUP BY ID, FIRST_NAME,LAST_NAME
+  5*    ORDER BY ID
+SQL> /
+
+        ID FULL_NAME             COUNT(PRODUCT) SUM(TOTAL_ORDER) TRUNC(AVG(TOTAL_ORDER))                                                                                                                
+---------- --------------------- -------------- ---------------- -----------------------                                                                                                                
+        22 KALVIN KELIN                       2              656                     328                                                                                                                
+        33 JORDEN SHO                         2             1201                     600                                                                                                                
+        44 MOHITO SHFLI                       1              465                     465                                                                                                                
+        55 REMO DISUZA                        2             1032                     516                                                                                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3      WHERE CUSTOMER_ID=ID
+  4      GROUP BY ID, FIRST_NAME
+  5*    ORDER BY ID
+SQL> /
+SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+                           *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3      GROUP BY ID, FIRST_NAME
+  4   WHERE CUSTOMER_ID=ID
+  5*    ORDER BY ID
+SQL> /
+ WHERE CUSTOMER_ID=ID
+ *
+ERROR at line 4:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3      GROUP BY ID, FIRST_NAME
+  4   HAVING CUSTOMER_ID=ID
+  5*    ORDER BY ID
+SQL> /
+ HAVING CUSTOMER_ID=ID
+        *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4      GROUP BY ID, FIRST_NAME
+  5   HAVNG ID=22
+  6*    ORDER BY ID
+SQL> /
+ HAVNG ID=22
+ *
+ERROR at line 5:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4      GROUP BY ID, FIRST_NAME,LAST_NAME
+  5   HAVNG ID=22
+  6*    ORDER BY ID
+SQL> /
+ HAVNG ID=22
+ *
+ERROR at line 5:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID
+  4      GROUP BY ID, FIRST_NAME,LAST_NAME
+  5   HAVING ID=22
+  6*    ORDER BY ID
+SQL> /
+
+        ID FULL_NAME             COUNT(PRODUCT) SUM(TOTAL_ORDER) TRUNC(AVG(TOTAL_ORDER))                                                                                                                
+---------- --------------------- -------------- ---------------- -----------------------                                                                                                                
+        22 KALVIN KELIN                       2              656                     328                                                                                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3      GROUP BY ID, FIRST_NAME,LAST_NAME
+  4   HAVING CUSTOMER_ID=ID AND ID=22
+  5*    ORDER BY ID
+SQL> /
+ HAVING CUSTOMER_ID=ID AND ID=22
+        *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> @SCREEN
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,CUSTOMER_ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3      GROUP BY ID,CUSTOMER_ID, FIRST_NAME,LAST_NAME
+  4   HAVING CUSTOMER_ID=ID AND ID=22
+  5*    ORDER BY ID
+SQL> /
+
+        ID CUSTOMER_ID FULL_NAME             COUNT(PRODUCT) SUM(TOTAL_ORDER) TRUNC(AVG(TOTAL_ORDER))                                                                                                    
+---------- ----------- --------------------- -------------- ---------------- -----------------------                                                                                                    
+        22          22 KALVIN KELIN                       2              656                     328                                                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID AND ID=22
+  4      GROUP BY ID, FIRST_NAME,LAST_NAME
+  5*    ORDER BY ID
+SQL> /
+
+        ID FULL_NAME             COUNT(PRODUCT) SUM(TOTAL_ORDER) TRUNC(AVG(TOTAL_ORDER))                                                                                                                
+---------- --------------------- -------------- ---------------- -----------------------                                                                                                                
+        22 KALVIN KELIN                       2              656                     328                                                                                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+  2      FROM RDER R, COUSTOMER C
+  3  WHERE CUSTOMER_ID=ID AND ID IN (11,22,55)
+  4      GROUP BY ID, FIRST_NAME,LAST_NAME
+  5*    ORDER BY ID
+SQL> /
+
+        ID FULL_NAME             COUNT(PRODUCT) SUM(TOTAL_ORDER) TRUNC(AVG(TOTAL_ORDER))                                                                                                                
+---------- --------------------- -------------- ---------------- -----------------------                                                                                                                
+        22 KALVIN KELIN                       2              656                     328                                                                                                                
+        55 REMO DISUZA                        2             1032                     516                                                                                                                
+
+SQL> SELECT * FROM RDER;
+
+      O_ID PRODUCT    TOTAL_ORDER CUSTOMER_ID                                                                                                                                                           
+---------- ---------- ----------- -----------                                                                                                                                                           
+        11 NOTBOOK            556          22                                                                                                                                                           
+        12 PEN                999          33                                                                                                                                                           
+        13 PENCILE            356          55                                                                                                                                                           
+        14 ERESOR             465          44                                                                                                                                                           
+        15 PETI BOX           100          22                                                                                                                                                           
+        16 BAG                676          55                                                                                                                                                           
+        17 202                202          33                                                                                                                                                           
+
+7 rows selected.
+
+SQL> SPOOL OFF

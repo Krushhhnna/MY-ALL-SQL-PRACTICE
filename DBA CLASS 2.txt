@@ -1,0 +1,90 @@
+Microsoft Windows [Version 10.0.19045.5371]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Krushna>cd\
+
+C:\>cd scripts
+The system cannot find the path specified.
+
+C:\>sqlplus
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Tue Jan 28 15:32:46 2025
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Enter user-name: krushna
+Enter password:
+Last Successful login time: Tue Jan 28 2025 14:09:37 +05:30
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> select * from student;
+
+   ROLL_NO NAME                 CITY       STATE_CODE     PHO_NO CLASS
+---------- -------------------- ---------- ---------- ---------- -----
+EMAIL
+--------------------
+       101 RAJIV                HYDRABAD   AP         1234567896 12TH
+
+
+       102 SURYAJI              PUNE       MH         5345342315 12TH
+
+
+       103 DHIRAJ               NANDED     MH         8080710082 12TH
+
+
+
+SQL> select * from subject;
+
+    SUB_ID SUB_CODE   SUB_TAECHER
+---------- ---------- --------------------
+       101 cs66601    prof.dheshpande
+       102 st66601    prof.londhe
+       103 El66621    prof.joti
+
+SQL> setlinesize 150
+SP2-0734: unknown command beginning "setlinesiz..." - rest of line ignored.
+SQL> set linesize 150
+SQL> /
+
+    SUB_ID SUB_CODE   SUB_TAECHER
+---------- ---------- --------------------
+       101 cs66601    prof.dheshpande
+       102 st66601    prof.londhe
+       103 El66621    prof.joti
+
+SQL> //
+
+    SUB_ID SUB_CODE   SUB_TAECHER
+---------- ---------- --------------------
+       101 cs66601    prof.dheshpande
+       102 st66601    prof.londhe
+       103 El66621    prof.joti
+
+SQL> set linesize 200
+SQL> /
+
+    SUB_ID SUB_CODE   SUB_TAECHER
+---------- ---------- --------------------
+       101 cs66601    prof.dheshpande
+       102 st66601    prof.londhe
+       103 El66621    prof.joti
+
+SQL> select * from student;
+
+   ROLL_NO NAME                 CITY       STATE_CODE     PHO_NO CLASS EMAIL
+---------- -------------------- ---------- ---------- ---------- ----- --------------------
+       101 RAJIV                HYDRABAD   AP         1234567896 12TH
+       102 SURYAJI              PUNE       MH         5345342315 12TH
+       103 DHIRAJ               NANDED     MH         8080710082 12TH
+
+SQL> host
+Microsoft Windows [Version 10.0.19045.5371]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\>notepad sql_28012025.txt
+
+C:\>

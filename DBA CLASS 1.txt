@@ -1,0 +1,704 @@
+SQL> show user
+USER is "SYSTEM"
+SQL> select name,open_mode, log_mode from v$database;
+
+NAME      OPEN_MODE            LOG_MODE                                         
+--------- -------------------- ------------                                     
+DB1       READ WRITE           NOARCHIVELOG                                     
+
+SQL> select name,open_mode, log_mode from gv$database;
+
+NAME      OPEN_MODE            LOG_MODE                                         
+--------- -------------------- ------------                                     
+DB1       READ WRITE           NOARCHIVELOG                                     
+
+SQL> sho parameter db_name
+
+NAME                                 TYPE        VALUE                          
+------------------------------------ ----------- ------------------------------ 
+db_name                              string      db1                            
+SQL> sho parameter db_unique_name
+
+NAME                                 TYPE        VALUE                          
+------------------------------------ ----------- ------------------------------ 
+db_unique_name                       string      db1                            
+SQL> sho parameter instance_name
+
+NAME                                 TYPE        VALUE                          
+------------------------------------ ----------- ------------------------------ 
+instance_name                        string      db1                            
+SQL> select name, cdb from v$database
+  2  select name, cdb from v$database;
+select name, cdb from v$database
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select name, cdb from v$database;
+
+NAME      CDB                                                                   
+--------- ---                                                                   
+DB1       NO                                                                    
+
+SQL> select username,create from dba_users orderd by created;
+select username,create from dba_users orderd by created
+                *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> select username,created from dba_users orderd by created;
+select username,created from dba_users orderd by created
+                                              *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select username,created from dba_users order by created;
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+SYS                                                                             
+30-MAY-19                                                                       
+                                                                                
+SYSTEM                                                                          
+30-MAY-19                                                                       
+                                                                                
+SYSDG                                                                           
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+SYSKM                                                                           
+30-MAY-19                                                                       
+                                                                                
+AUDSYS                                                                          
+30-MAY-19                                                                       
+                                                                                
+SYSBACKUP                                                                       
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+SYSRAC                                                                          
+30-MAY-19                                                                       
+                                                                                
+OUTLN                                                                           
+30-MAY-19                                                                       
+                                                                                
+GSMADMIN_INTERNAL                                                               
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+GSMROOTUSER                                                                     
+30-MAY-19                                                                       
+                                                                                
+GSMUSER                                                                         
+30-MAY-19                                                                       
+                                                                                
+DIP                                                                             
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+XS$NULL                                                                         
+30-MAY-19                                                                       
+                                                                                
+REMOTE_SCHEDULER_AGENT                                                          
+30-MAY-19                                                                       
+                                                                                
+DBSFWUSER                                                                       
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+ORACLE_OCM                                                                      
+30-MAY-19                                                                       
+                                                                                
+SYS$UMF                                                                         
+30-MAY-19                                                                       
+                                                                                
+DBSNMP                                                                          
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+APPQOSSYS                                                                       
+30-MAY-19                                                                       
+                                                                                
+GSMCATUSER                                                                      
+30-MAY-19                                                                       
+                                                                                
+GGSYS                                                                           
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+XDB                                                                             
+30-MAY-19                                                                       
+                                                                                
+ANONYMOUS                                                                       
+30-MAY-19                                                                       
+                                                                                
+WMSYS                                                                           
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+OJVMSYS                                                                         
+30-MAY-19                                                                       
+                                                                                
+CTXSYS                                                                          
+30-MAY-19                                                                       
+                                                                                
+ORDDATA                                                                         
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+ORDSYS                                                                          
+30-MAY-19                                                                       
+                                                                                
+ORDPLUGINS                                                                      
+30-MAY-19                                                                       
+                                                                                
+MDSYS                                                                           
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+SI_INFORMTN_SCHEMA                                                              
+30-MAY-19                                                                       
+                                                                                
+OLAPSYS                                                                         
+30-MAY-19                                                                       
+                                                                                
+MDDATA                                                                          
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+LBACSYS                                                                         
+30-MAY-19                                                                       
+                                                                                
+DVF                                                                             
+30-MAY-19                                                                       
+                                                                                
+DVSYS                                                                           
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+HR                                                                              
+27-JAN-25                                                                       
+                                                                                
+
+37 rows selected.
+
+SQL> select name from v$controlfile;
+
+NAME                                                                            
+--------------------------------------------------------------------------------
+C:\ORACLE\ORADATA\DB1\CONTROL01.CTL                                             
+C:\ORACLE\ORADATA\DB1\CONTROL02.CTL                                             
+
+SQL> select member from v$logfile;
+
+MEMBER                                                                          
+--------------------------------------------------------------------------------
+C:\ORACLE\ORADATA\DB1\REDO03.LOG                                                
+C:\ORACLE\ORADATA\DB1\REDO02.LOG                                                
+C:\ORACLE\ORADATA\DB1\REDO01.LOG                                                
+
+SQL> select name from v$datafile;
+
+NAME                                                                            
+--------------------------------------------------------------------------------
+C:\ORACLE\ORADATA\DB1\SYSTEM01.DBF                                              
+C:\ORACLE\ORADATA\DB1\SYSAUX01.DBF                                              
+C:\ORACLE\ORADATA\DB1\UNDOTBS01.DBF                                             
+C:\ORACLE\ORADATA\DB1\USERS01.DBF                                               
+
+SQL> select name from v$tablespace;
+
+NAME                                                                            
+------------------------------                                                  
+SYSAUX                                                                          
+SYSTEM                                                                          
+UNDOTBS1                                                                        
+USERS                                                                           
+TEMP                                                                            
+
+SQL> select name from v$tempfile;
+
+NAME                                                                            
+--------------------------------------------------------------------------------
+C:\ORACLE\ORADATA\DB1\TEMP01.DBF                                                
+
+SQL> sho parameter spfile;
+
+NAME                                 TYPE        VALUE                          
+------------------------------------ ----------- ------------------------------ 
+spfile                               string      C:\ORACLE\ORA19C\WINDOWS.X64_1 
+                                                 93000_DB_HOME\DATABASE\SPFILED 
+                                                 B1.ORA                         
+SQL> create pfile from spfile;
+create pfile from spfile
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges 
+
+
+SQL> disc
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+SQL> sho user
+USER is ""
+SQL> conn sys as sysdba
+Connected.
+SQL> sho user
+USER is "SYS"
+SQL> create pfile from spfile;
+
+File created.
+
+SQL> archive log list
+Database log mode              No Archive Mode
+Automatic archival             Disabled
+Archive destination            C:\oracle\ora19c\WINDOWS.X64_193000_db_home\RDBMS
+Oldest online log sequence     1
+Current log sequence           1
+SQL> shutdown immedate
+SP2-0717: illegal SHUTDOWN option
+SQL> shutdown immediate
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+SQL> sho user
+USER is "SYS"
+SQL> conn system/dbadmin123
+ERROR:
+ORA-01034: ORACLE not available 
+ORA-27101: shared memory realm does not exist 
+Process ID: 0 
+Session ID: 0 Serial number: 0 
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> conn sys as sysdba
+Connected to an idle instance.
+SQL> sho user
+USER is "SYS"
+SQL> startup
+ORACLE instance started.
+
+Total System Global Area 2550136752 bytes                                       
+Fixed Size                  9031600 bytes                                       
+Variable Size             553648128 bytes                                       
+Database Buffers         1979711488 bytes                                       
+Redo Buffers                7745536 bytes                                       
+Database mounted.
+Database opened.
+SQL> create user krushna identified by Krushna123;
+
+User created.
+
+SQL> select username,created from dba_users order by created;
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+SYS                                                                             
+30-MAY-19                                                                       
+                                                                                
+SYSTEM                                                                          
+30-MAY-19                                                                       
+                                                                                
+SYSDG                                                                           
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+SYSKM                                                                           
+30-MAY-19                                                                       
+                                                                                
+AUDSYS                                                                          
+30-MAY-19                                                                       
+                                                                                
+SYSBACKUP                                                                       
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+SYSRAC                                                                          
+30-MAY-19                                                                       
+                                                                                
+OUTLN                                                                           
+30-MAY-19                                                                       
+                                                                                
+GSMADMIN_INTERNAL                                                               
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+GSMROOTUSER                                                                     
+30-MAY-19                                                                       
+                                                                                
+GSMUSER                                                                         
+30-MAY-19                                                                       
+                                                                                
+DIP                                                                             
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+XS$NULL                                                                         
+30-MAY-19                                                                       
+                                                                                
+REMOTE_SCHEDULER_AGENT                                                          
+30-MAY-19                                                                       
+                                                                                
+DBSFWUSER                                                                       
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+ORACLE_OCM                                                                      
+30-MAY-19                                                                       
+                                                                                
+SYS$UMF                                                                         
+30-MAY-19                                                                       
+                                                                                
+DBSNMP                                                                          
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+APPQOSSYS                                                                       
+30-MAY-19                                                                       
+                                                                                
+GSMCATUSER                                                                      
+30-MAY-19                                                                       
+                                                                                
+GGSYS                                                                           
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+ANONYMOUS                                                                       
+30-MAY-19                                                                       
+                                                                                
+XDB                                                                             
+30-MAY-19                                                                       
+                                                                                
+WMSYS                                                                           
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+OJVMSYS                                                                         
+30-MAY-19                                                                       
+                                                                                
+CTXSYS                                                                          
+30-MAY-19                                                                       
+                                                                                
+ORDSYS                                                                          
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+ORDDATA                                                                         
+30-MAY-19                                                                       
+                                                                                
+ORDPLUGINS                                                                      
+30-MAY-19                                                                       
+                                                                                
+SI_INFORMTN_SCHEMA                                                              
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+MDSYS                                                                           
+30-MAY-19                                                                       
+                                                                                
+OLAPSYS                                                                         
+30-MAY-19                                                                       
+                                                                                
+MDDATA                                                                          
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+LBACSYS                                                                         
+30-MAY-19                                                                       
+                                                                                
+DVF                                                                             
+30-MAY-19                                                                       
+                                                                                
+DVSYS                                                                           
+30-MAY-19                                                                       
+                                                                                
+
+USERNAME                                                                        
+--------------------------------------------------------------------------------
+CREATED                                                                         
+---------                                                                       
+HR                                                                              
+27-JAN-25                                                                       
+                                                                                
+KRUSHNA                                                                         
+27-JAN-25                                                                       
+                                                                                
+
+38 rows selected.
+
+SQL> grant connect to krushna;
+
+Grant succeeded.
+
+SQL> grant resourse to krushna;
+grant resourse to krushna
+      *
+ERROR at line 1:
+ORA-01919: role 'RESOURSE' does not exist 
+
+
+SQL> grant resource to krushna;
+
+Grant succeeded.
+
+SQL> alter user krushna quota 10m on users;
+
+User altered.
+
+SQL> spool off
+
+
+
+===============================================================================
+Microsoft Windows [Version 10.0.19045.5371]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Krushna>cd\
+
+C:\>cd scripts
+The system cannot find the path specified.
+
+C:\>cd oracle/scripts
+
+C:\oracle\scripts>sqlplus krushna/Krushna123
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Mon Jan 27 14:23:51 2025
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+ERROR:
+ORA-01045: user KRUSHNA lacks CREATE SESSION privilege; logon denied
+
+
+Enter user-name: krushna
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name: krushna
+Enter password:
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> sho user
+USER is "KRUSHNA"
+SQL> create table t1(id number(5),name char(10), dob date) ;
+create table t1(id number(5),name char(10), dob date)
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> disc
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+SQL> conn krushna/Krushna123
+Connected.
+SQL> create table t1(id number(5),name char(10), dob date) ;
+
+Table created.
+
+SQL> desc t1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(5)
+ NAME                                               CHAR(10)
+ DOB                                                DATE
+
+SQL> select * from;
+select * from
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> select * from t1;
+
+no rows selected
+
+SQL> insert into t1 values(101, 'rajkumar', '01-jan-2000');
+insert into t1 values(101, 'rajkumar', '01-jan-2000')
+            *
+ERROR at line 1:
+ORA-01950: no privileges on tablespace 'USERS'
+
+
+SQL> insert into t1 values(101, 'rajkumar', '01-jan-2000');
+
+1 row created.
+
+SQL> select * from t1;
+
+        ID NAME       DOB
+---------- ---------- ---------
+       101 rajkumar   01-JAN-00
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from t1;
+
+no rows selected
+
+SQL> insert into t1 values(101, 'rajkumar', '01-jan-2000');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from t1;
+
+        ID NAME       DOB
+---------- ---------- ---------
+       101 rajkumar   01-JAN-00
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from t1;
+
+        ID NAME       DOB
+---------- ---------- ---------
+       101 rajkumar   01-JAN-00
+
+SQL> delete t1 where id=101;
+
+1 row deleted.
+
+SQL> select * from t1;
+
+no rows selected
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from t1;
+
+        ID NAME       DOB
+---------- ---------- ---------
+       101 rajkumar   01-JAN-00
+
+SQL> update t1 set dob='02-jan-2003';
+
+1 row updated.
+
+SQL> select * from t1;
+
+        ID NAME       DOB
+---------- ---------- ---------
+       101 rajkumar   02-JAN-03
+
+SQL> commit;
+
+Commit complete.
+
+SQL>

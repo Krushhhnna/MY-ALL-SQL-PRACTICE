@@ -1,0 +1,243 @@
+SQL> SHO USER
+USER is "KRUSHNA"
+SQL> @SCREEN
+SQL> SELECT *FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+DEPT                 TABLE                                                                                                                                                                              
+EMPLOYEES            TABLE                                                                                                                                                                              
+CUSTOMER             TABLE                                                                                                                                                                              
+ORDERS               TABLE                                                                                                                                                                              
+SUB                  TABLE                                                                                                                                                                              
+O_BILL               TABLE                                                                                                                                                                              
+COURSE               TABLE                                                                                                                                                                              
+
+10 rows selected.
+
+SQL> sho user
+USER is "KRUSHNA"
+SQL> select *from employees;
+
+     EMPNO ENAME                DOB       HIREDATE  PHONE               DID                                                                                                                             
+---------- -------------------- --------- --------- ------------ ----------                                                                                                                             
+         1 SURESH               01-JAN-00 31-DEC-24                      20                                                                                                                             
+         2 RAKESH               12-JAN-01 31-JAN-25 88879000             30                                                                                                                             
+         3 RAJUU                21-FEB-03 12-MAR-24 824842084            40                                                                                                                             
+         5 MONIKA               12-JAN-20 22-SEP-00 831123131            50                                                                                                                             
+         4 SANJU                12-MAR-02 28-FEB-23 83274837             20                                                                                                                             
+
+SQL> alter table employees add constraint ck_dob check(dob between '01-jan-2005' and '01-jan-1975')_;
+alter table employees add constraint ck_dob check(dob between '01-jan-2005' and '01-jan-1975')_
+                                                                                              *
+ERROR at line 1:
+ORA-00911: invalid character 
+
+
+SQL> alter table employees add constraint ck_dob check(dob between '01-jan-2005' and '01-jan-1975');
+alter table employees add constraint ck_dob check(dob between '01-jan-2005' and '01-jan-1975')
+                                     *
+ERROR at line 1:
+ORA-02293: cannot validate (KRUSHNA.CK_DOB) - check constraint violated 
+
+
+SQL> update employees set dob='23-apr-2003' where empno=5;
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> alter table employees add constraint ck_dob check(dob between '01-jan-2005' and '01-jan-1975');
+alter table employees add constraint ck_dob check(dob between '01-jan-2005' and '01-jan-1975')
+                                     *
+ERROR at line 1:
+ORA-02293: cannot validate (KRUSHNA.CK_DOB) - check constraint violated 
+
+
+SQL> select * from employees;
+
+     EMPNO ENAME                DOB       HIREDATE  PHONE               DID                                                                                                                             
+---------- -------------------- --------- --------- ------------ ----------                                                                                                                             
+         1 SURESH               01-JAN-00 31-DEC-24                      20                                                                                                                             
+         2 RAKESH               12-JAN-01 31-JAN-25 88879000             30                                                                                                                             
+         3 RAJUU                21-FEB-03 12-MAR-24 824842084            40                                                                                                                             
+         5 MONIKA               23-APR-03 22-SEP-00 831123131            50                                                                                                                             
+         4 SANJU                12-MAR-02 28-FEB-23 83274837             20                                                                                                                             
+
+SQL> alter table employees add constraint ck_dob check(dob between '01-jan-1975' and '01-jan-2005');
+
+Table altered.
+
+SQL> desc employees
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ EMPNO                                                                                                             NOT NULL NUMBER(5)
+ ENAME                                                                                                                      VARCHAR2(20)
+ DOB                                                                                                                        DATE
+ HIREDATE                                                                                                                   DATE
+ PHONE                                                                                                             NOT NULL VARCHAR2(12)
+ DID                                                                                                                        NUMBER(2)
+
+SQL> set linesize 150
+SQL> desc employees
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ EMPNO                                                                               NOT NULL NUMBER(5)
+ ENAME                                                                                        VARCHAR2(20)
+ DOB                                                                                          DATE
+ HIREDATE                                                                                     DATE
+ PHONE                                                                               NOT NULL VARCHAR2(12)
+ DID                                                                                          NUMBER(2)
+
+SQL> select *from employees;
+
+     EMPNO ENAME                DOB       HIREDATE  PHONE               DID                                                                           
+---------- -------------------- --------- --------- ------------ ----------                                                                           
+         1 SURESH               01-JAN-00 31-DEC-24                      20                                                                           
+         2 RAKESH               12-JAN-01 31-JAN-25 88879000             30                                                                           
+         3 RAJUU                21-FEB-03 12-MAR-24 824842084            40                                                                           
+         5 MONIKA               23-APR-03 22-SEP-00 831123131            50                                                                           
+         4 SANJU                12-MAR-02 28-FEB-23 83274837             20                                                                           
+
+SQL> select * from dept;
+
+       DID DNAME                LOCATION                                           PHONE                                                              
+---------- -------------------- -------------------------------------------------- ---------------                                                    
+        10 ACCOUNTS             HYDERABAD                                          555555555                                                          
+        20 HR                   NEW DELHI                                          666666666666                                                       
+        30 SALES                MUMBAI                                             777777777                                                          
+        40 MARKETING            CHENNAI                                            4444444444444                                                      
+        50 MANUFACTURING        NANDED                                             3333333333                                                         
+
+SQL> SELECT ENAME, PHONE, LOCATION, SYSDATE-DOB/365 AGE_YRS, SYSDATE-HIREDATE/365 EXP_YRS
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID=D.DID
+  4  ORDER BY ENAME ;
+SELECT ENAME, PHONE, LOCATION, SYSDATE-DOB/365 AGE_YRS, SYSDATE-HIREDATE/365 EXP_YRS
+              *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME, E.PHONE, LOCATION, SYSDATE-DOB/365 AGE_YRS, SYSDATE-HIREDATE/365 EXP_YRS
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID=D.DID
+  4* ORDER BY ENAME 
+SQL> /
+SELECT ENAME, E.PHONE, LOCATION, SYSDATE-DOB/365 AGE_YRS, SYSDATE-HIREDATE/365 EXP_YRS
+                                                                  *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected NUMBER got DATE 
+
+
+SQL> DESC EMPLOYEES
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ EMPNO                                                                               NOT NULL NUMBER(5)
+ ENAME                                                                                        VARCHAR2(20)
+ DOB                                                                                          DATE
+ HIREDATE                                                                                     DATE
+ PHONE                                                                               NOT NULL VARCHAR2(12)
+ DID                                                                                          NUMBER(2)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME, E.PHONE, LOCATION, SYSDATE-DOB/365 AGE_YRS, TO_NUMBER(SYSDATE-HIREDATE/365) EXP_YRS
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID=D.DID
+  4* ORDER BY ENAME 
+SQL> /
+SELECT ENAME, E.PHONE, LOCATION, SYSDATE-DOB/365 AGE_YRS, TO_NUMBER(SYSDATE-HIREDATE/365) EXP_YRS
+                                                                            *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected NUMBER got DATE 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME, E.PHONE, LOCATION, SYSDATE-DOB/365 AGE_YRS, TO_NUMBER(SYSDATE-HIREDATE)/365 EXP_YRS
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID=D.DID
+  4* ORDER BY ENAME 
+SQL> /
+SELECT ENAME, E.PHONE, LOCATION, SYSDATE-DOB/365 AGE_YRS, TO_NUMBER(SYSDATE-HIREDATE)/365 EXP_YRS
+                                         *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected NUMBER got DATE 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME, E.PHONE, LOCATION, TO_NUMBER(SYSDATE-DOB)/365 AGE_YRS, TO_NUMBER(SYSDATE-HIREDATE)/365 EXP_YRS
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID=D.DID
+  4* ORDER BY ENAME 
+SQL> /
+
+ENAME                PHONE        LOCATION                                              AGE_YRS    EXP_YRS                                            
+-------------------- ------------ -------------------------------------------------- ---------- ----------                                            
+MONIKA               831123131    NANDED                                             21.8018138 24.3853754                                            
+RAJUU                824842084    CHENNAI                                            21.9689371 .900443937                                            
+RAKESH               88879000     MUMBAI                                             24.0785261 .010032978                                            
+SANJU                83274837     NEW DELHI                                          22.9168823 1.93606038                                            
+SURESH                            NEW DELHI                                          25.1114028 .094964485                                            
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME, E.PHONE, LOCATION, TRUNC(TO_NUMBER(SYSDATE-DOB)/365,0) AGE_YRS, ROUND(TO_NUMBER(SYSDATE-HIREDATE)/365,0) EXP_YRS
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID=D.DID
+  4* ORDER BY ENAME 
+SQL> /
+
+ENAME                PHONE        LOCATION                                              AGE_YRS    EXP_YRS                                            
+-------------------- ------------ -------------------------------------------------- ---------- ----------                                            
+MONIKA               831123131    NANDED                                                     21         24                                            
+RAJUU                824842084    CHENNAI                                                    21          1                                            
+RAKESH               88879000     MUMBAI                                                     24          0                                            
+SANJU                83274837     NEW DELHI                                                  22          2                                            
+SURESH                            NEW DELHI                                                  25          0                                            
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME, E.PHONE, LOCATION, TRUNC(TO_NUMBER(SYSDATE-DOB)/365,2) AGE_YRS, ROUND(TO_NUMBER(SYSDATE-HIREDATE)/365,2) EXP_YRS
+  2  FROM EMPLOYEES E, DEPT D
+  3  WHERE E.DID=D.DID
+  4* ORDER BY ENAME 
+SQL> /
+
+ENAME                PHONE        LOCATION                                              AGE_YRS    EXP_YRS                                            
+-------------------- ------------ -------------------------------------------------- ---------- ----------                                            
+MONIKA               831123131    NANDED                                                   21.8      24.39                                            
+RAJUU                824842084    CHENNAI                                                 21.96         .9                                            
+RAKESH               88879000     MUMBAI                                                  24.07        .01                                            
+SANJU                83274837     NEW DELHI                                               22.91       1.94                                            
+SURESH                            NEW DELHI                                               25.11        .09                                            
+
+SQL> SELECT TRUC(19.9999,-1), ROUND(19.9999,-1)  FROM DUAL;
+SELECT TRUC(19.9999,-1), ROUND(19.9999,-1)  FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: "TRUC": invalid identifier 
+
+
+SQL> SELECT TRUNC(19.9999,-1), ROUND(19.9999,-1)  FROM DUAL;
+
+TRUNC(19.9999,-1) ROUND(19.9999,-1)                                                                                                                   
+----------------- -----------------                                                                                                                   
+               10                20                                                                                                                   
+
+SQL> SPOOL OFF

@@ -1,0 +1,58 @@
+#DATABASE CONNECTION:
+
+C:\Users\Krushna>cd\
+
+C:\>cd script
+The system cannot find the path specified.
+
+C:\>cd scripts
+The system cannot find the path specified.
+
+C:\>cd oracle/scripts
+
+C:\oracle\scripts>sqlplus system/Dbadmin123
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Tue Jan 28 08:41:38 2025
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Last Successful login time: Mon Jan 27 2025 13:38:34 +05:30
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> sho user
+USER is "SYSTEM"
+SQL> select name,open_mode, log_mode from v$database
+  2
+SQL> select name,open_mode, log_mode from v$database;
+
+NAME      OPEN_MODE            LOG_MODE
+--------- -------------------- ------------
+DB1       READ WRITE           NOARCHIVELOG
+
+SQL> GRANT CONNECT TO KRUSHNA;
+
+Grant succeeded.
+
+SQL> GRANT RESOURCE TO KRUSHNA;
+
+Grant succeeded.
+
+SQL> alter user krushna quota 10m on users;
+
+User altered.
+
+SQL> DISC
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> SPOOL OFF
+not spooling currently
+SQL> EXIT
+
+
+
+

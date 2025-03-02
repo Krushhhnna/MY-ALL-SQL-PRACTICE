@@ -1,0 +1,82 @@
+SQL> SHO USER
+USER is "SYSTEM"
+SQL> 
+SQL> CREATE USER krish identified by Krish@2003;
+CREATE USER krish identified by Krish@2003
+                                     *
+ERROR at line 1:
+ORA-00922: missing or invalid option 
+
+
+SQL> CREATE USER krish identified by Krish123;
+
+User created.
+
+SQL> SELECT USERNAME CREATED FROM DBA_USERS ORDER BY CREATED;
+
+CREATED                                                                         
+--------------------------------------------------------------------------------
+ANONYMOUS                                                                       
+APPQOSSYS                                                                       
+AUDSYS                                                                          
+CTXSYS                                                                          
+DBSFWUSER                                                                       
+DBSNMP                                                                          
+DIP                                                                             
+DVF                                                                             
+DVSYS                                                                           
+GGSYS                                                                           
+GSMADMIN_INTERNAL                                                               
+
+CREATED                                                                         
+--------------------------------------------------------------------------------
+GSMCATUSER                                                                      
+GSMROOTUSER                                                                     
+GSMUSER                                                                         
+HR                                                                              
+KRISH                                                                           
+KRUSHNA                                                                         
+LBACSYS                                                                         
+MDDATA                                                                          
+MDSYS                                                                           
+OJVMSYS                                                                         
+OLAPSYS                                                                         
+
+CREATED                                                                         
+--------------------------------------------------------------------------------
+ORACLE_OCM                                                                      
+ORDDATA                                                                         
+ORDPLUGINS                                                                      
+ORDSYS                                                                          
+OUTLN                                                                           
+REMOTE_SCHEDULER_AGENT                                                          
+SI_INFORMTN_SCHEMA                                                              
+SYS                                                                             
+SYS$UMF                                                                         
+SYSBACKUP                                                                       
+SYSDG                                                                           
+
+CREATED                                                                         
+--------------------------------------------------------------------------------
+SYSKM                                                                           
+SYSRAC                                                                          
+SYSTEM                                                                          
+WMSYS                                                                           
+XDB                                                                             
+XS$NULL                                                                         
+
+39 rows selected.
+
+SQL> GRANT CONNECT TO KRISH;
+
+Grant succeeded.
+
+SQL> GRANT RESOURCE TO KRISH;
+
+Grant succeeded.
+
+SQL> ALTER USER KRISH QUOTA 10M ON USERS;
+
+User altered.
+
+SQL> SPOOL OFF

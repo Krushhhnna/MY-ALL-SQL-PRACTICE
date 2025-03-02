@@ -1,0 +1,459 @@
+SQL> SHO USER
+USER is "KRUSHNA"
+SQL> SELECT *FROM TAB;          #USE TO SEE ALL TABLES IN DATABASE.
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+SUBJECT                                                                         
+TABLE                                                                           
+                                                                                
+BIN$OVfM58RhSB+afteGB5WNZQ==$0                                                  
+TABLE                                                                           
+                                                                                
+BIN$URIvCYQcQ968Xz4NJi03aQ==$0                                                  
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+SINGER                                                                          
+TABLE                                                                           
+                                                                                
+BIN$hJFDQbKjRXucqcsLwlCeNw==$0                                                  
+TABLE                                                                           
+                                                                                
+BIN$1u0ysgaeQPeb+xmj4vddLQ==$0                                                  
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+BIN$mSTOYqnOTGenjwahQhOaFQ==$0                                                  
+TABLE                                                                           
+                                                                                
+BIN$yc+Ro2UdTAK0bNRgkGUUcw==$0                                                  
+TABLE                                                                           
+                                                                                
+EMP                                                                             
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+BICKS                                                                           
+TABLE                                                                           
+                                                                                
+BIN$u9UyrMDiRLKbi03Mblx5FA==$0                                                  
+TABLE                                                                           
+                                                                                
+
+11 rows selected.
+
+SQL> HOST
+
+SQL> HOST
+
+SQL> SPOOL 300125_TABLES_JOIN.TXT APPEND            #SPOOL FILE_NAME NEW ALL ACTIVITY STORE THATS USE.
+SQL> SELECT * FROM TAB;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+SUBJECT                                                                         
+TABLE                                                                           
+                                                                                
+BIN$OVfM58RhSB+afteGB5WNZQ==$0                                                  
+TABLE                                                                           
+                                                                                
+BIN$URIvCYQcQ968Xz4NJi03aQ==$0                                                  
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+SINGER                                                                          
+TABLE                                                                           
+                                                                                
+BIN$hJFDQbKjRXucqcsLwlCeNw==$0                                                  
+TABLE                                                                           
+                                                                                
+BIN$1u0ysgaeQPeb+xmj4vddLQ==$0                                                  
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+BIN$mSTOYqnOTGenjwahQhOaFQ==$0                                                  
+TABLE                                                                           
+                                                                                
+BIN$yc+Ro2UdTAK0bNRgkGUUcw==$0                                                  
+TABLE                                                                           
+                                                                                
+EMP                                                                             
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+BICKS                                                                           
+TABLE                                                                           
+                                                                                
+BIN$u9UyrMDiRLKbi03Mblx5FA==$0                                                  
+TABLE                                                                           
+                                                                                
+
+11 rows selected.
+
+SQL> @SCREEN
+
+SQL> /                                 #USE TO ONE STEP BACK.
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SUBJECT              TABLE                                                                                                                                                                              
+BIN$OVfM58RhSB+afteG TABLE                                                                                                                                                                              
+B5WNZQ==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+BIN$URIvCYQcQ968Xz4N TABLE                                                                                                                                                                              
+Ji03aQ==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+SINGER               TABLE                                                                                                                                                                              
+BIN$hJFDQbKjRXucqcsL TABLE                                                                                                                                                                              
+wlCeNw==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+BIN$1u0ysgaeQPeb+xmj TABLE                                                                                                                                                                              
+4vddLQ==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+BIN$mSTOYqnOTGenjwah TABLE                                                                                                                                                                              
+QhOaFQ==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+BIN$yc+Ro2UdTAK0bNRg TABLE                                                                                                                                                                              
+kGUUcw==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+BIN$u9UyrMDiRLKbi03M TABLE                                                                                                                                                                              
+blx5FA==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+
+11 rows selected.
+
+SQL> 
+SQL> 
+SQL> HOST NOTEPAD SCREEN.SQL      #DIRECT COMM TO CREATE SQL FILE.
+
+SQL> @SCREEN
+SQL> /
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SUBJECT              TABLE                                                                                                                                                                              
+BIN$OVfM58RhSB+afteG TABLE                                                                                                                                                                              
+B5WNZQ==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+BIN$URIvCYQcQ968Xz4N TABLE                                                                                                                                                                              
+Ji03aQ==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+SINGER               TABLE                                                                                                                                                                              
+BIN$hJFDQbKjRXucqcsL TABLE                                                                                                                                                                              
+wlCeNw==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+BIN$1u0ysgaeQPeb+xmj TABLE                                                                                                                                                                              
+4vddLQ==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+BIN$mSTOYqnOTGenjwah TABLE                                                                                                                                                                              
+QhOaFQ==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+BIN$yc+Ro2UdTAK0bNRg TABLE                                                                                                                                                                              
+kGUUcw==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+BIN$u9UyrMDiRLKbi03M TABLE                                                                                                                                                                              
+blx5FA==$0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+
+11 rows selected.
+
+SQL> PURGE RECYCLEBIN;                   #DROP TABLES STORED IN DB SO CLEAN ALL DROPED TABLE USE COMM.
+
+Recyclebin purged.
+
+SQL> /
+
+Recyclebin purged.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SUBJECT              TABLE                                                                                                                                                                              
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+
+SQL> SELECT * FROM EMP;
+
+       EID NAME                 LAST_M_SALARY                                                                                                                                                           
+---------- -------------------- -------------                                                                                                                                                           
+         1 RAKESH                       12000                                                                                                                                                           
+
+SQL> CREATE TABLE DEPT (DID NUMBER(2), DNAME VARCHAR2(20),LOCATION VARCHAR2(50),PHONE VARCHAR2(15) ,
+  2  CONSTRAINT PK_DEPT PRIMARY KEY(DID), CONSTRAINT U_DNAME UNIQUE(DNAME) ) ;   
+                                                                                #HOW TO ADD CONSTRAINT SEE THIS
+                                                                                 1)PRIMARY KEY 
+                                                                                 2)FOREIGN KEY
+                                                                                 3) CHECK 
+                                                                                 4) UNIQUE
+                                                                                 5) NOT NULL. 
+
+
+Table created.
+
+SQL> DESC DEPT
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DID                                                                                                               NOT NULL NUMBER(2)
+ DNAME                                                                                                                      VARCHAR2(20)
+ LOCATION                                                                                                                   VARCHAR2(50)
+ PHONE                                                                                                                      VARCHAR2(15)
+
+SQL> SET LINESIZE 150
+SQL> DESC DEPT
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ DID                                                                                 NOT NULL NUMBER(2)
+ DNAME                                                                                        VARCHAR2(20)
+ LOCATION                                                                                     VARCHAR2(50)
+ PHONE                                                                                        VARCHAR2(15)
+
+SQL> INSERT INTO DEPT VALUES(10,'ACCOUNTS','HYDERABAD','555555555');
+
+1 row created.
+
+SQL> INSERT INTO DEPT VALUES(20,'HR','NEW DELHI','666666666666');
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO DEPT VALUES(&DNO,  '&DEPTNAME','&CITY','&CELL) ;     #2ND WAY TO INSERT VALUES.
+
+
+SQL> /
+Enter value for dno: 30
+Enter value for deptname: SALES
+Enter value for city: MUMBAI
+Enter value for cell: 777777777'
+old   1: INSERT INTO DEPT VALUES(&DNO,  '&DEPTNAME','&CITY','&CELL) 
+new   1: INSERT INTO DEPT VALUES(30,  'SALES','MUMBAI','777777777') 
+
+1 row created.
+
+SQL> /
+Enter value for dno: 40
+Enter value for deptname: MARKETING
+Enter value for city: CHENNAI
+Enter value for cell: 4444444444444'
+old   1: INSERT INTO DEPT VALUES(&DNO,  '&DEPTNAME','&CITY','&CELL) 
+new   1: INSERT INTO DEPT VALUES(40,  'MARKETING','CHENNAI','4444444444444') 
+
+1 row created.
+
+SQL> /
+Enter value for dno: 50
+Enter value for deptname: MANUFACTURING
+Enter value for city: NANDED
+Enter value for cell: ''
+old   1: INSERT INTO DEPT VALUES(&DNO,  '&DEPTNAME','&CITY','&CELL) 
+new   1: INSERT INTO DEPT VALUES(50,  'MANUFACTURING','NANDED',''') 
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> /
+Enter value for dno: 50
+Enter value for deptname: MANUFACTURING
+Enter value for city: NANDED
+Enter value for cell: NULL'
+old   1: INSERT INTO DEPT VALUES(&DNO,  '&DEPTNAME','&CITY','&CELL) 
+new   1: INSERT INTO DEPT VALUES(50,  'MANUFACTURING','NANDED','NULL') 
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;\
+  2  ;
+SELECT * FROM DEPT;\
+                  *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME                LOCATION                                           PHONE                                                              
+---------- -------------------- -------------------------------------------------- ---------------                                                    
+        10 ACCOUNTS             HYDERABAD                                          555555555                                                          
+        20 HR                   NEW DELHI                                          666666666666                                                       
+        30 SALES                MUMBAI                                             777777777                                                          
+        40 MARKETING            CHENNAI                                            4444444444444                                                      
+        50 MANUFACTURING        NANDED                                             NULL                                                               
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM DEPT
+SQL> INSERT INTO DEPT VALUES(&DNO,  '&DEPTNAME','&CITY',&CELL) ;
+Enter value for dno: 50
+Enter value for deptname: 
+Enter value for city: 
+Enter value for cell: 
+old   1: INSERT INTO DEPT VALUES(&DNO,  '&DEPTNAME','&CITY',&CELL) 
+new   1: INSERT INTO DEPT VALUES(50,  '','',) 
+INSERT INTO DEPT VALUES(50,  '','',) 
+                                   *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> 
+SQL> UPDATE DEPT SET PHONE=NULL WHERE DID=50
+  2  ;
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME                LOCATION                                           PHONE                                                              
+---------- -------------------- -------------------------------------------------- ---------------                                                    
+        10 ACCOUNTS             HYDERABAD                                          555555555                                                          
+        20 HR                   NEW DELHI                                          666666666666                                                       
+        30 SALES                MUMBAI                                             777777777                                                          
+        40 MARKETING            CHENNAI                                            4444444444444                                                      
+        50 MANUFACTURING        NANDED                                                                                                                
+
+SQL> ALTER TABLE DEPT MODIFY COLUMN PHONE VARCHAR2(12) NOT NULL ;
+ALTER TABLE DEPT MODIFY COLUMN PHONE VARCHAR2(12) NOT NULL 
+                                     *
+ERROR at line 1:
+ORA-00905: missing keyword 
+
+
+SQL> ALTER TABLE DEPT MODIFY  PHONE VARCHAR2(12) NOT NULL ;
+ALTER TABLE DEPT MODIFY  PHONE VARCHAR2(12) NOT NULL 
+*
+ERROR at line 1:
+ORA-02296: cannot enable (KRUSHNA.) - null values found 
+
+
+SQL> UPDATE DEPT SET PHONE='3333333333');
+UPDATE DEPT SET PHONE='3333333333')
+                                  *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> UPDATE DEPT SET PHONE='3333333333' WHERE DID=50;
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME                LOCATION                                           PHONE                                                              
+---------- -------------------- -------------------------------------------------- ---------------                                                    
+        10 ACCOUNTS             HYDERABAD                                          555555555                                                          
+        20 HR                   NEW DELHI                                          666666666666                                                       
+        30 SALES                MUMBAI                                             777777777                                                          
+        40 MARKETING            CHENNAI                                            4444444444444                                                      
+        50 MANUFACTURING        NANDED                                             3333333333                                                         
+
+SQL> CREATE TABLE EMPLOYEES (EMPNO NUMBER(5),ENAME VARCHAR2(20),DOB DATE,HIREDATE DATE,PHONE VARCHAR2(12) NOT NULL, DID NUMBER(2), CONSTRAINT PK_EMPLOYEES PRIMARY KEY(EMPNO), CONSTRAINT FK_DID FOREIGN KEY(DID) REFERENCES DEPT(DID) );
+
+                                ###FORIGN KEY CRATION IN TWO TABLES.
+
+Table created.
+
+SQL> DESC EMPLOYEES
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ EMPNO                                                                               NOT NULL NUMBER(5)
+ ENAME                                                                                        VARCHAR2(20)
+ DOB                                                                                          DATE
+ HIREDATE                                                                                     DATE
+ PHONE                                                                               NOT NULL VARCHAR2(12)
+ DID                                                                                          NUMBER(2)
+
+SQL> INSERT INTO EMPLOYEES VALUES(1,'SURESH','01-JAN-00','31-DEC-2024',' ',60);
+INSERT INTO EMPLOYEES VALUES(1,'SURESH','01-JAN-00','31-DEC-2024',' ',60)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (KRUSHNA.FK_DID) violated - parent key not found 
+
+
+SQL> INSERT INTO EMPLOYEES VALUES(1,'SURESH','01-JAN-00','31-DEC-2024',' ',20);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT EMPNO,ENAME,HIREDATE,DNAME,LOCATION FROM EMPLOYEES,DEPT ;       #FK_ JION.
+
+     EMPNO ENAME                HIREDATE  DNAME                LOCATION                                                                               
+---------- -------------------- --------- -------------------- --------------------------------------------------                                     
+         1 SURESH               31-DEC-24 ACCOUNTS             HYDERABAD                                                                              
+         1 SURESH               31-DEC-24 HR                   NEW DELHI                                                                              
+         1 SURESH               31-DEC-24 SALES                MUMBAI                                                                                 
+         1 SURESH               31-DEC-24 MARKETING            CHENNAI                                                                                
+         1 SURESH               31-DEC-24 MANUFACTURING        NANDED                                                                                 
+
+SQL> SELECT EMPNO,ENAME,HIREDATE,DNAME,LOCATION FROM EMPLOYEES E, DEPT D E.DID=D.DID ;
+SELECT EMPNO,ENAME,HIREDATE,DNAME,LOCATION FROM EMPLOYEES E, DEPT D E.DID=D.DID 
+                                                                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+                                                                             
+
+SQL> SELECT EMPNO,ENAME,HIREDATE,DNAME,LOCATION FROM EMPLOYEES E, DEPT D WHERE E.DID=D.DID ;
+
+     EMPNO ENAME                HIREDATE  DNAME                LOCATION                                                                               
+---------- -------------------- --------- -------------------- --------------------------------------------------                                     
+         1 SURESH               31-DEC-24 HR                   NEW DELHI                                                                              
+
+SQL> SPOOL OFF                  # ALL DADA SAVE IN TXT FILE FRIST OF CRATED IN THIS.

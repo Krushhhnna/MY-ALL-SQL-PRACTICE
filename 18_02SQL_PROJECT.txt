@@ -1,0 +1,725 @@
+Microsoft Windows [Version 10.0.19045.5487]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Krushna>color 2
+
+C:\Users\Krushna>cd\oracle\scripts
+
+C:\oracle\scripts>sqlplus
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Tue Feb 18 15:55:37 2025
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Enter user-name: krish
+Enter password:
+Last Successful login time: Tue Feb 18 2025 10:26:47 +05:30
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> @screen
+SQL> spool SQL_PROJECT.TXT APPEND
+SQL> SHO USER
+USER is "KRISH"
+SQL> @SCREEN
+SQL>
+SQL> SELECT * FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID
+-------------------- ------------- ----------
+STUDENTS             TABLE
+SUBJECTS             TABLE
+COURSES              TABLE
+BATCHES              TABLE
+COURSES_KRUSHNA      TABLE
+
+SQL> SELECT * FROM KRUSHNA.PLACEMENT;
+
+       PID       STID COMPANY                     CTC CITY
+---------- ---------- -------------------- ---------- --------------------
+         1          2 ORACLE                  1200000 HYDERABAD
+         2          9 WIPRO                    700000 PUNE
+         3         12 TCS                      800000 BANGALORE
+         4         20 IBM                      900000 KOLKATA
+         5         11 WIPRO                    800000 CHENNAI
+
+SQL> CREATE TABLE PLACEMENTS AS SELECT * FROM KRUSHNA.PLACEMENT;
+
+Table created.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID
+-------------------- ------------- ----------
+PLACEMENTS           TABLE
+STUDENTS             TABLE
+SUBJECTS             TABLE
+COURSES              TABLE
+BATCHES              TABLE
+COURSES_KRUSHNA      TABLE
+
+6 rows selected.
+
+SQL> SELECT * FROM PLACEMENTS;
+
+       PID       STID COMPANY                     CTC CITY
+---------- ---------- -------------------- ---------- --------------------
+         1          2 ORACLE                  1200000 HYDERABAD
+         2          9 WIPRO                    700000 PUNE
+         3         12 TCS                      800000 BANGALORE
+         4         20 IBM                      900000 KOLKATA
+         5         11 WIPRO                    800000 CHENNAI
+
+SQL> ALTER TABLE PLACEMENTS
+  2  ADD CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STU_ID);
+ADD CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STU_ID)
+                                                             *
+ERROR at line 2:
+ORA-02270: no matching unique or primary key for this column-list
+
+
+SQL> DESC PLACEMENTS
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ PID                                                                                                                        NUMBER(2)
+ STID                                                                                                                       NUMBER(3)
+ COMPANY                                                                                                                    VARCHAR2(20)
+ CTC                                                                                                                        NUMBER(7)
+ CITY                                                                                                                       VARCHAR2(20)
+
+SQL> SET LINESIZE 150
+SQL> /
+ADD CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STU_ID)
+                                                             *
+ERROR at line 2:
+ORA-02270: no matching unique or primary key for this column-list
+
+
+SQL> DESC PLACEMENTS
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ PID                                                                                          NUMBER(2)
+ STID                                                                                         NUMBER(3)
+ COMPANY                                                                                      VARCHAR2(20)
+ CTC                                                                                          NUMBER(7)
+ CITY                                                                                         VARCHAR2(20)
+
+SQL> DESC STUDENTS;
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ STU_ID                                                                                       NUMBER(2)
+ NAME                                                                                         VARCHAR2(20)
+ GENDER                                                                                       VARCHAR2(7)
+ DOB                                                                                          DATE
+ PHONE                                                                                        VARCHAR2(10)
+ EMAIL                                                                                        VARCHAR2(20)
+ B_ID                                                                                         NUMBER(3)
+ QUELIFICATION                                                                                VARCHAR2(10)
+
+SQL> ALTER TABLE PLACEMENTS
+  2  ADD CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STU_ID);
+ADD CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STU_ID)
+                                                             *
+ERROR at line 2:
+ORA-02270: no matching unique or primary key for this column-list
+
+
+
+
+SQL> ALTER TABLE PLACEMENTS
+  2  DROP COLUMN STID;
+
+Table altered.
+
+SQL> SELECT * FROM PLACEMENTS;
+
+       PID COMPANY                     CTC CITY
+---------- -------------------- ---------- --------------------
+         1 ORACLE                  1200000 HYDERABAD
+         2 WIPRO                    700000 PUNE
+         3 TCS                      800000 BANGALORE
+         4 IBM                      900000 KOLKATA
+         5 WIPRO                    800000 CHENNAI
+
+SQL> ALTER TABLE PLACEMENTS
+  2  ADD COLUMN STID NUMBER(4);
+ADD COLUMN STID NUMBER(4)
+    *
+ERROR at line 2:
+ORA-00904: : invalid identifier
+
+
+SQL> ALTER TABLE PLACEMENTS
+  2  ADD STID NUMBER(4);
+
+Table altered.
+
+SQL> SELECT * FROM PLACEMENTS;
+
+       PID COMPANY                     CTC CITY                       STID
+---------- -------------------- ---------- -------------------- ----------
+         1 ORACLE                  1200000 HYDERABAD
+         2 WIPRO                    700000 PUNE
+         3 TCS                      800000 BANGALORE
+         4 IBM                      900000 KOLKATA
+         5 WIPRO                    800000 CHENNAI
+
+SQL> ALTER TABLE PLACEMENTS
+  2  ADD CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STU_ID);
+ADD CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STU_ID)
+                                                             *
+ERROR at line 2:
+ORA-02270: no matching unique or primary key for this column-list
+
+
+SQL> ALTER TABLE STUDENTS
+  2  ADD CONSTRAINT PK_STU_ID PRIMARY KEY(STU_ID);
+
+Table altered.
+
+SQL> ALTER TABLE PLACEMENTS
+  2  ADD CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STU_ID);
+
+Table altered.
+
+SQL> SELECT * FROM PLACEMENTS;
+
+       PID COMPANY                     CTC CITY                       STID
+---------- -------------------- ---------- -------------------- ----------
+         1 ORACLE                  1200000 HYDERABAD
+         2 WIPRO                    700000 PUNE
+         3 TCS                      800000 BANGALORE
+         4 IBM                      900000 KOLKATA
+         5 WIPRO                    800000 CHENNAI
+
+SQL> UPDATE PLACEMENTS
+  2  SET STID = 2 WHERE PID=1;
+
+1 row updated.
+
+SQL> UPDATE PLACEMENTS
+  2  SET STID = 4 WHERE PID=2;
+
+1 row updated.
+
+SQL> SET STID = 20 WHERE PID=3;
+SP2-0158: unknown SET option "STID"
+SQL> UPDATE PLACEMENTS
+  2  SET STID = 20 WHERE PID=3;
+
+1 row updated.
+
+SQL> UPDATE PLACEMENTS
+  2  SET STID = 9 WHERE PID=4;
+
+1 row updated.
+
+SQL> UPDATE PLACEMENTS
+  2  SET STID = 14 WHERE PID=5;
+
+1 row updated.
+
+SQL> SELECT * FROM PLACEMENTS;
+
+       PID COMPANY                     CTC CITY                       STID
+---------- -------------------- ---------- -------------------- ----------
+         1 ORACLE                  1200000 HYDERABAD                     2
+         2 WIPRO                    700000 PUNE                          4
+         3 TCS                      800000 BANGALORE                    20
+         4 IBM                      900000 KOLKATA                       9
+         5 WIPRO                    800000 CHENNAI                      14
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO PLACEMENTS(&ID,'&COMPNY',&CTC,'&CITY',&STID);
+Enter value for id: 6
+Enter value for compny: JHON DEERE
+Enter value for ctc: 985000
+Enter value for city: PUNE
+Enter value for stid: 6
+old   1: INSERT INTO PLACEMENTS(&ID,'&COMPNY',&CTC,'&CITY',&STID)
+new   1: INSERT INTO PLACEMENTS(6,'JHON DEERE',985000,'PUNE',6)
+INSERT INTO PLACEMENTS(6,'JHON DEERE',985000,'PUNE',6)
+                       *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> INSERT INTO PLACEMENTS(&PID,'&COMPNY',&CTC,'&CITY',&STID);
+Enter value for pid: 6.
+Enter value for compny: .
+Enter value for ctc: .
+Enter value for city: .
+Enter value for stid: .
+old   1: INSERT INTO PLACEMENTS(&PID,'&COMPNY',&CTC,'&CITY',&STID)
+new   1: INSERT INTO PLACEMENTS(6.,'.',.,'.',.)
+INSERT INTO PLACEMENTS(6.,'.',.,'.',.)
+                       *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> INSERT INTO PLACEMENTS VALUES(&PID,'&COMPNY',&CTC,'&CITY',&STID);
+Enter value for pid: 6
+Enter value for compny: JHON DEERE
+Enter value for ctc: 985000
+Enter value for city: PUNE
+Enter value for stid: 7
+old   1: INSERT INTO PLACEMENTS VALUES(&PID,'&COMPNY',&CTC,'&CITY',&STID)
+new   1: INSERT INTO PLACEMENTS VALUES(6,'JHON DEERE',985000,'PUNE',7)
+
+1 row created.
+
+SQL> /
+Enter value for pid: 7
+Enter value for compny: INFOSYS
+Enter value for ctc: 1400000
+Enter value for city: GURUGRAM
+Enter value for stid: 11
+old   1: INSERT INTO PLACEMENTS VALUES(&PID,'&COMPNY',&CTC,'&CITY',&STID)
+new   1: INSERT INTO PLACEMENTS VALUES(7,'INFOSYS',1400000,'GURUGRAM',11)
+
+1 row created.
+
+SQL> /
+Enter value for pid: 8
+Enter value for compny: HP
+Enter value for ctc: 1167000
+Enter value for city: BANGALORE
+Enter value for stid: 17
+old   1: INSERT INTO PLACEMENTS VALUES(&PID,'&COMPNY',&CTC,'&CITY',&STID)
+new   1: INSERT INTO PLACEMENTS VALUES(8,'HP',1167000,'BANGALORE',17)
+
+1 row created.
+
+SQL> /
+Enter value for pid: 9
+Enter value for compny: HCL
+Enter value for ctc: 800000
+Enter value for city: DELHI
+Enter value for stid: 4
+old   1: INSERT INTO PLACEMENTS VALUES(&PID,'&COMPNY',&CTC,'&CITY',&STID)
+new   1: INSERT INTO PLACEMENTS VALUES(9,'HCL',800000,'DELHI',4)
+
+1 row created.
+
+SQL> /
+Enter value for pid: 10
+Enter value for compny: ACCENTURE
+Enter value for ctc: 1000000
+Enter value for city: HYDERABAD
+Enter value for stid: 16
+old   1: INSERT INTO PLACEMENTS VALUES(&PID,'&COMPNY',&CTC,'&CITY',&STID)
+new   1: INSERT INTO PLACEMENTS VALUES(10,'ACCENTURE',1000000,'HYDERABAD',16)
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM PLACEMENTS;
+
+       PID COMPANY                     CTC CITY                       STID
+---------- -------------------- ---------- -------------------- ----------
+         1 ORACLE                  1200000 HYDERABAD                     2
+         2 WIPRO                    700000 PUNE                          4
+         3 TCS                      800000 BANGALORE                    20
+         4 IBM                      900000 KOLKATA                       9
+         5 WIPRO                    800000 CHENNAI                      14
+         6 JHON DEERE               985000 PUNE                          7
+         7 INFOSYS                 1400000 GURUGRAM                     11
+         8 HP                      1167000 BANGALORE                    17
+         9 HCL                      800000 DELHI                         4
+        10 ACCENTURE               1000000 HYDERABAD                    16
+
+10 rows selected.
+
+SQL> SELECT PID,COMPANY,P.CITY,S.NAME,BNAME,CNAME
+  2  FROM PLACEMENTS P,STUDENTS S, BATCHES B, COURSES C
+  3  WHERE S.STU_ID = P.STID AND S.B_ID = B.BID AND B.CID = C.CID
+  4  ORDER BY 4;
+
+       PID COMPANY              CITY                 NAME                 BNAME                CNAME
+---------- -------------------- -------------------- -------------------- -------------------- --------------------
+        10 ACCENTURE            HYDERABAD            CHITANY GAVHANE      DBA 1                DBA
+         4 IBM                  KOLKATA              DHANSHREE BUJBAL     DB_BASICS 1          DB BASICS
+         1 ORACLE               HYDERABAD            KRUSHNA SONALKAR     DB_BASICS 1          DB BASICS
+         6 JHON DEERE           PUNE                 OM LAHAMGE           DB_DEV               DB DEVLOPMENT
+         5 WIPRO                CHENNAI              RATIKSHA JADHAV      DEVOPS 2             DEVOPS
+         3 TCS                  BANGALORE            SIDDHESH NANAWARE    DB_DEV               DB DEVLOPMENT
+         7 INFOSYS              GURUGRAM             SURYAJI GAVHANE      DBA 2                DBA
+         9 HCL                  DELHI                YASH                 JAVA_FULL STACK 1    JAVA FULL STACK
+         2 WIPRO                PUNE                 YASH                 JAVA_FULL STACK 1    JAVA FULL STACK
+         8 HP                   BANGALORE            YASH GADBIL          DEVOPS 2             DEVOPS
+
+10 rows selected.
+
+SQL> A ORDER BY ;
+  4* ORDER BY 4ORDER BY
+SQL> A ORDER BY
+  4* ORDER BY 4ORDER BY ORDER BY
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,PID,COMPANY,P.CITY,S.NAME,BNAME,CNAME
+  2  FROM PLACEMENTS P,STUDENTS S, BATCHES B, COURSES C
+  3  WHERE S.STU_ID(+) = P.STID AND S.B_ID = B.BID AND B.CID = C.CID
+  4* ORDER BY 1
+SQL> /
+
+    STU_ID        PID COMPANY              CITY                 NAME                 BNAME                CNAME
+---------- ---------- -------------------- -------------------- -------------------- -------------------- --------------------
+         2          1 ORACLE               HYDERABAD            KRUSHNA SONALKAR     DB_BASICS 1          DB BASICS
+         4          9 HCL                  DELHI                YASH                 JAVA_FULL STACK 1    JAVA FULL STACK
+         4          2 WIPRO                PUNE                 YASH                 JAVA_FULL STACK 1    JAVA FULL STACK
+         7          6 JHON DEERE           PUNE                 OM LAHAMGE           DB_DEV               DB DEVLOPMENT
+         9          4 IBM                  KOLKATA              DHANSHREE BUJBAL     DB_BASICS 1          DB BASICS
+        11          7 INFOSYS              GURUGRAM             SURYAJI GAVHANE      DBA 2                DBA
+        14          5 WIPRO                CHENNAI              RATIKSHA JADHAV      DEVOPS 2             DEVOPS
+        16         10 ACCENTURE            HYDERABAD            CHITANY GAVHANE      DBA 1                DBA
+        17          8 HP                   BANGALORE            YASH GADBIL          DEVOPS 2             DEVOPS
+        20          3 TCS                  BANGALORE            SIDDHESH NANAWARE    DB_DEV               DB DEVLOPMENT
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,PID,COMPANY,P.CITY,S.NAME,BNAME,CNAME
+  2  FROM PLACEMENTS P,STUDENTS S, BATCHES B, COURSES C
+  3  WHERE S.STU_ID = P.STID(+) AND S.B_ID = B.BID AND B.CID = C.CID
+  4* ORDER BY 1
+SQL> /
+
+    STU_ID        PID COMPANY              CITY                 NAME                 BNAME                CNAME
+---------- ---------- -------------------- -------------------- -------------------- -------------------- --------------------
+         1                                                      RAJEEV KADAM         DEVOPS 1             DEVOPS
+         2          1 ORACLE               HYDERABAD            KRUSHNA SONALKAR     DB_BASICS 1          DB BASICS
+         3                                                      SAKSHI KAKDE         DBA 1                DBA
+         4          2 WIPRO                PUNE                 YASH                 JAVA_FULL STACK 1    JAVA FULL STACK
+         4          9 HCL                  DELHI                YASH                 JAVA_FULL STACK 1    JAVA FULL STACK
+         5                                                      YOGIRAJ SWAMI        DB_BASICS 2          DB BASICS
+         6                                                      SAKSHI LANGOTE       JAVA_FULL STACK 1    JAVA FULL STACK
+         7          6 JHON DEERE           PUNE                 OM LAHAMGE           DB_DEV               DB DEVLOPMENT
+         8                                                      OM LAKARE            ADV_DBA 1            ADV DBA
+         9          4 IBM                  KOLKATA              DHANSHREE BUJBAL     DB_BASICS 1          DB BASICS
+        10                                                      SIDHII PATIL         DB_DEV               DB DEVLOPMENT
+        11          7 INFOSYS              GURUGRAM             SURYAJI GAVHANE      DBA 2                DBA
+        12                                                      TANYA AGHAV          DBA 2                DBA
+        13                                                      SHRUTI DESHMUKH      DATA ANALYTICS 1     DATA ANALYTICS
+        14          5 WIPRO                CHENNAI              RATIKSHA JADHAV      DEVOPS 2             DEVOPS
+        15                                                      RUSHIKESH DURGE      DB_BASICS 2          DB BASICS
+        16         10 ACCENTURE            HYDERABAD            CHITANY GAVHANE      DBA 1                DBA
+        17          8 HP                   BANGALORE            YASH GADBIL          DEVOPS 2             DEVOPS
+        18                                                      GAYTRI PARATE        ADV_DBA 1            ADV DBA
+        19                                                      SAKSHI BHUJANG       ADV_DBA 1            ADV DBA
+        20          3 TCS                  BANGALORE            SIDDHESH NANAWARE    DB_DEV               DB DEVLOPMENT
+
+21 rows selected.
+
+SQL> COL STU_ID FORMAR 99
+SP2-0158: unknown COLUMN option "FORMAR"
+SQL> COL STU_ID FORMAT 99
+SQL> /
+
+STU_ID        PID COMPANY              CITY                 NAME                 BNAME                CNAME
+------ ---------- -------------------- -------------------- -------------------- -------------------- --------------------
+     1                                                      RAJEEV KADAM         DEVOPS 1             DEVOPS
+     2          1 ORACLE               HYDERABAD            KRUSHNA SONALKAR     DB_BASICS 1          DB BASICS
+     3                                                      SAKSHI KAKDE         DBA 1                DBA
+     4          2 WIPRO                PUNE                 YASH                 JAVA_FULL STACK 1    JAVA FULL STACK
+     4          9 HCL                  DELHI                YASH                 JAVA_FULL STACK 1    JAVA FULL STACK
+     5                                                      YOGIRAJ SWAMI        DB_BASICS 2          DB BASICS
+     6                                                      SAKSHI LANGOTE       JAVA_FULL STACK 1    JAVA FULL STACK
+     7          6 JHON DEERE           PUNE                 OM LAHAMGE           DB_DEV               DB DEVLOPMENT
+     8                                                      OM LAKARE            ADV_DBA 1            ADV DBA
+     9          4 IBM                  KOLKATA              DHANSHREE BUJBAL     DB_BASICS 1          DB BASICS
+    10                                                      SIDHII PATIL         DB_DEV               DB DEVLOPMENT
+    11          7 INFOSYS              GURUGRAM             SURYAJI GAVHANE      DBA 2                DBA
+    12                                                      TANYA AGHAV          DBA 2                DBA
+    13                                                      SHRUTI DESHMUKH      DATA ANALYTICS 1     DATA ANALYTICS
+    14          5 WIPRO                CHENNAI              RATIKSHA JADHAV      DEVOPS 2             DEVOPS
+    15                                                      RUSHIKESH DURGE      DB_BASICS 2          DB BASICS
+    16         10 ACCENTURE            HYDERABAD            CHITANY GAVHANE      DBA 1                DBA
+    17          8 HP                   BANGALORE            YASH GADBIL          DEVOPS 2             DEVOPS
+    18                                                      GAYTRI PARATE        ADV_DBA 1            ADV DBA
+    19                                                      SAKSHI BHUJANG       ADV_DBA 1            ADV DBA
+    20          3 TCS                  BANGALORE            SIDDHESH NANAWARE    DB_DEV               DB DEVLOPMENT
+
+21 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,PID,COMPANY,P.CITY,S.NAME,BNAME,CNAME, SB1.SNAME SUBJECT1,SB2.SNAME SUBJECT2,SB3.SNAME SUBJECT3
+  2  FROM PLACEMENTS P,STUDENTS S, BATCHES B, COURSES C ,SUBJECTS SB1,SUBJECTS SB2,SUBJECTS SB3
+  3  WHERE S.STU_ID = P.STID(+) AND S.B_ID = B.BID AND B.CID = C.CID AND SID1 = SB1.SID AND SID2 = SB2.SID AND SID3 = SB3.SID
+  4* ORDER BY 1
+SQL> /
+
+STU_ID        PID COMPANY              CITY                 NAME                 BNAME                CNAME                SUBJECT1
+------ ---------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+SUBJECT2             SUBJECT3
+-------------------- --------------------
+     1                                                      RAJEEV KADAM         DEVOPS 1             DEVOPS               AWS BASICS
+JENKINS              KUBERNETES/DOCKER
+
+     3                                                      SAKSHI KAKDE         DBA 1                DBA                  SQL
+LINUX                DBA
+
+     4          2 WIPRO                PUNE                 YASH                 JAVA_FULL STACK 1    JAVA FULL STACK      CORE JAVA
+ADV JAVA             UI MODULE
+
+     4          9 HCL                  DELHI                YASH                 JAVA_FULL STACK 1    JAVA FULL STACK      CORE JAVA
+ADV JAVA             UI MODULE
+
+     6                                                      SAKSHI LANGOTE       JAVA_FULL STACK 1    JAVA FULL STACK      CORE JAVA
+ADV JAVA             UI MODULE
+
+     8                                                      OM LAKARE            ADV_DBA 1            ADV DBA              RAC
+DATA GUARD           GOLDEN GATE
+
+    11          7 INFOSYS              GURUGRAM             SURYAJI GAVHANE      DBA 2                DBA                  SQL
+LINUX                DBA
+
+    12                                                      TANYA AGHAV          DBA 2                DBA                  SQL
+LINUX                DBA
+
+    13                                                      SHRUTI DESHMUKH      DATA ANALYTICS 1     DATA ANALYTICS       SQL
+
+
+SQL>
+SQL> SET LINESIZE 300
+SQL> /
+
+STU_ID        PID COMPANY              CITY                 NAME                 BNAME                CNAME                SUBJECT1               SUBJECT2             SUBJECT3
+------ ---------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+     1                                                      RAJEEV KADAM         DEVOPS 1             DEVOPS               AWS BASICS             JENKINS              KUBERNETES/DOCKER
+     3                                                      SAKSHI KAKDE         DBA 1                DBA                  SQL                    LINUX                DBA
+     4          2 WIPRO                PUNE                 YASH                 JAVA_FULL STACK 1    JAVA FULL STACK      CORE JAVA              ADV JAVA             UI MODULE
+     4          9 HCL                  DELHI                YASH                 JAVA_FULL STACK 1    JAVA FULL STACK      CORE JAVA              ADV JAVA             UI MODULE
+     6                                                      SAKSHI LANGOTE       JAVA_FULL STACK 1    JAVA FULL STACK      CORE JAVA              ADV JAVA             UI MODULE
+     8                                                      OM LAKARE            ADV_DBA 1            ADV DBA              RAC                    DATA GUARD           GOLDEN GATE
+    11          7 INFOSYS              GURUGRAM             SURYAJI GAVHANE      DBA 2                DBA                  SQL                    LINUX                DBA
+    12                                                      TANYA AGHAV          DBA 2                DBA                  SQL                    LINUX                DBA
+    13                                                      SHRUTI DESHMUKH      DATA ANALYTICS 1     DATA ANALYTICS       SQL                    PYTHON               POWER BI
+    14          5 WIPRO                CHENNAI              RATIKSHA JADHAV      DEVOPS 2             DEVOPS               AWS BASICS             JENKINS              KUBERNETES/DOCKER
+    16         10 ACCENTURE            HYDERABAD            CHITANY GAVHANE      DBA 1                DBA                  SQL                    LINUX                DBA
+    17          8 HP                   BANGALORE            YASH GADBIL          DEVOPS 2             DEVOPS               AWS BASICS             JENKINS              KUBERNETES/DOCKER
+    18                                                      GAYTRI PARATE        ADV_DBA 1            ADV DBA              RAC                    DATA GUARD           GOLDEN GATE
+    19                                                      SAKSHI BHUJANG       ADV_DBA 1            ADV DBA              RAC                    DATA GUARD           GOLDEN GATE
+
+14 rows selected.
+
+SQL> SET LINESIZE 400
+SQL> /
+
+STU_ID        PID COMPANY              CITY                 NAME                 BNAME                CNAME                SUBJECT1               SUBJECT2             SUBJECT3
+------ ---------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+     1                                                      RAJEEV KADAM         DEVOPS 1             DEVOPS               AWS BASICS             JENKINS              KUBERNETES/DOCKER
+     3                                                      SAKSHI KAKDE         DBA 1                DBA                  SQL                    LINUX                DBA
+     4          2 WIPRO                PUNE                 YASH                 JAVA_FULL STACK 1    JAVA FULL STACK      CORE JAVA              ADV JAVA             UI MODULE
+     4          9 HCL                  DELHI                YASH                 JAVA_FULL STACK 1    JAVA FULL STACK      CORE JAVA              ADV JAVA             UI MODULE
+     6                                                      SAKSHI LANGOTE       JAVA_FULL STACK 1    JAVA FULL STACK      CORE JAVA              ADV JAVA             UI MODULE
+     8                                                      OM LAKARE            ADV_DBA 1            ADV DBA              RAC                    DATA GUARD           GOLDEN GATE
+    11          7 INFOSYS              GURUGRAM             SURYAJI GAVHANE      DBA 2                DBA                  SQL                    LINUX                DBA
+    12                                                      TANYA AGHAV          DBA 2                DBA                  SQL                    LINUX                DBA
+    13                                                      SHRUTI DESHMUKH      DATA ANALYTICS 1     DATA ANALYTICS       SQL                    PYTHON               POWER BI
+    14          5 WIPRO                CHENNAI              RATIKSHA JADHAV      DEVOPS 2             DEVOPS               AWS BASICS             JENKINS              KUBERNETES/DOCKER
+    16         10 ACCENTURE            HYDERABAD            CHITANY GAVHANE      DBA 1                DBA                  SQL                    LINUX                DBA
+    17          8 HP                   BANGALORE            YASH GADBIL          DEVOPS 2             DEVOPS               AWS BASICS             JENKINS              KUBERNETES/DOCKER
+    18                                                      GAYTRI PARATE        ADV_DBA 1            ADV DBA              RAC                    DATA GUARD           GOLDEN GATE
+    19                                                      SAKSHI BHUJANG       ADV_DBA 1            ADV DBA              RAC                    DATA GUARD           GOLDEN GATE
+
+14 rows selected.
+SQL> SET LINESIZE 800
+SQL> /
+
+STU_ID PID COMPANY    CITY       NAME              BNAME                CNAME              SUBJECT1   SUBJECT2   SUBJECT3
+------ --- ---------- ---------- ----------------- -------------------- ------------------ ---------- ---------- ------------------
+     1                           RAJEEV KADAM      DEVOPS 1             DEVOPS             AWS BASICS JENKINS    KUBERNETES/DOCKER
+     3                           SAKSHI KAKDE      DBA 1                DBA                SQL        LINUX      DBA
+     4   2 WIPRO      PUNE       YASH              JAVA_FULL STACK 1    JAVA FULL STACK    CORE JAVA  ADV JAVA   UI MODULE
+     4   9 HCL        DELHI      YASH              JAVA_FULL STACK 1    JAVA FULL STACK    CORE JAVA  ADV JAVA   UI MODULE
+     6                           SAKSHI LANGOTE    JAVA_FULL STACK 1    JAVA FULL STACK    CORE JAVA  ADV JAVA   UI MODULE
+     8                           OM LAKARE         ADV_DBA 1            ADV DBA            RAC        DATA GUARD GOLDEN GATE
+    11   7 INFOSYS    GURUGRAM   SURYAJI GAVHANE   DBA 2                DBA                SQL        LINUX      DBA
+    12                           TANYA AGHAV       DBA 2                DBA                SQL        LINUX      DBA
+    13                           SHRUTI DESHMUKH   DATA ANALYTICS 1     DATA ANALYTICS     SQL        PYTHON     POWER BI
+    14   5 WIPRO      CHENNAI    RATIKSHA JADHAV   DEVOPS 2             DEVOPS             AWS BASICS JENKINS    KUBERNETES/DOCKER
+    16  10 ACCENTURE  HYDERABAD  CHITANY GAVHANE   DBA 1                DBA                SQL        LINUX      DBA
+    17   8 HP         BANGALORE  YASH GADBIL       DEVOPS 2             DEVOPS             AWS BASICS JENKINS    KUBERNETES/DOCKER
+    18                           GAYTRI PARATE     ADV_DBA 1            ADV DBA            RAC        DATA GUARD GOLDEN GATE
+    19                           SAKSHI BHUJANG    ADV_DBA 1            ADV DBA            RAC        DATA GUARD GOLDEN GATE
+
+14 rows selected.
+
+SQL> COL CNAME FORMAT A18
+SQL> /
+
+STU_ID PID COMPANY    CITY       NAME              BNAME                CNAME              SUBJECT1   SUBJECT2   SUBJECT3
+------ --- ---------- ---------- ----------------- -------------------- ------------------ ---------- ---------- ------------------
+     1                           RAJEEV KADAM      DEVOPS 1             DEVOPS             AWS BASICS JENKINS    KUBERNETES/DOCKER
+     3                           SAKSHI KAKDE      DBA 1                DBA                SQL        LINUX      DBA
+     4   2 WIPRO      PUNE       YASH              JAVA_FULL STACK 1    JAVA FULL STACK    CORE JAVA  ADV JAVA   UI MODULE
+     4   9 HCL        DELHI      YASH              JAVA_FULL STACK 1    JAVA FULL STACK    CORE JAVA  ADV JAVA   UI MODULE
+     6                           SAKSHI LANGOTE    JAVA_FULL STACK 1    JAVA FULL STACK    CORE JAVA  ADV JAVA   UI MODULE
+     8                           OM LAKARE         ADV_DBA 1            ADV DBA            RAC        DATA GUARD GOLDEN GATE
+    11   7 INFOSYS    GURUGRAM   SURYAJI GAVHANE   DBA 2                DBA                SQL        LINUX      DBA
+    12                           TANYA AGHAV       DBA 2                DBA                SQL        LINUX      DBA
+    13                           SHRUTI DESHMUKH   DATA ANALYTICS 1     DATA ANALYTICS     SQL        PYTHON     POWER BI
+    14   5 WIPRO      CHENNAI    RATIKSHA JADHAV   DEVOPS 2             DEVOPS             AWS BASICS JENKINS    KUBERNETES/DOCKER
+    16  10 ACCENTURE  HYDERABAD  CHITANY GAVHANE   DBA 1                DBA                SQL        LINUX      DBA
+    17   8 HP         BANGALORE  YASH GADBIL       DEVOPS 2             DEVOPS             AWS BASICS JENKINS    KUBERNETES/DOCKER
+    18                           GAYTRI PARATE     ADV_DBA 1            ADV DBA            RAC        DATA GUARD GOLDEN GATE
+    19                           SAKSHI BHUJANG    ADV_DBA 1            ADV DBA            RAC        DATA GUARD GOLDEN GATE
+
+14 rows selected.
+
+SQL> COL CNAME FORMAT A15
+SQL> /
+
+STU_ID PID COMPANY    CITY       NAME              BNAME                CNAME           SUBJECT1   SUBJECT2   SUBJECT3
+------ --- ---------- ---------- ----------------- -------------------- --------------- ---------- ---------- ------------------
+     1                           RAJEEV KADAM      DEVOPS 1             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+     3                           SAKSHI KAKDE      DBA 1                DBA             SQL        LINUX      DBA
+     4   2 WIPRO      PUNE       YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     4   9 HCL        DELHI      YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     6                           SAKSHI LANGOTE    JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     8                           OM LAKARE         ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    11   7 INFOSYS    GURUGRAM   SURYAJI GAVHANE   DBA 2                DBA             SQL        LINUX      DBA
+    12                           TANYA AGHAV       DBA 2                DBA             SQL        LINUX      DBA
+    13                           SHRUTI DESHMUKH   DATA ANALYTICS 1     DATA ANALYTICS  SQL        PYTHON     POWER BI
+    14   5 WIPRO      CHENNAI    RATIKSHA JADHAV   DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    16  10 ACCENTURE  HYDERABAD  CHITANY GAVHANE   DBA 1                DBA             SQL        LINUX      DBA
+    17   8 HP         BANGALORE  YASH GADBIL       DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    18                           GAYTRI PARATE     ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    19                           SAKSHI BHUJANG    ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+
+14 rows selected.
+
+SQL> COL SUBJECT3 FORMAT A25
+SQL> /
+
+STU_ID PID COMPANY    CITY       NAME              BNAME                CNAME           SUBJECT1   SUBJECT2   SUBJECT3
+------ --- ---------- ---------- ----------------- -------------------- --------------- ---------- ---------- -------------------------
+     1                           RAJEEV KADAM      DEVOPS 1             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+     3                           SAKSHI KAKDE      DBA 1                DBA             SQL        LINUX      DBA
+     4   2 WIPRO      PUNE       YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     4   9 HCL        DELHI      YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     6                           SAKSHI LANGOTE    JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     8                           OM LAKARE         ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    11   7 INFOSYS    GURUGRAM   SURYAJI GAVHANE   DBA 2                DBA             SQL        LINUX      DBA
+    12                           TANYA AGHAV       DBA 2                DBA             SQL        LINUX      DBA
+    13                           SHRUTI DESHMUKH   DATA ANALYTICS 1     DATA ANALYTICS  SQL        PYTHON     POWER BI
+    14   5 WIPRO      CHENNAI    RATIKSHA JADHAV   DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    16  10 ACCENTURE  HYDERABAD  CHITANY GAVHANE   DBA 1                DBA             SQL        LINUX      DBA
+    17   8 HP         BANGALORE  YASH GADBIL       DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    18                           GAYTRI PARATE     ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    19                           SAKSHI BHUJANG    ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+
+14 rows selected.
+
+SQL> SET LINESIZE 999
+SQL> /
+
+STU_ID PID COMPANY    CITY       NAME              BNAME                CNAME           SUBJECT1   SUBJECT2   SUBJECT3
+------ --- ---------- ---------- ----------------- -------------------- --------------- ---------- ---------- -------------------------
+     1                           RAJEEV KADAM      DEVOPS 1             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+     3                           SAKSHI KAKDE      DBA 1                DBA             SQL        LINUX      DBA
+     4   2 WIPRO      PUNE       YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     4   9 HCL        DELHI      YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     6                           SAKSHI LANGOTE    JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     8                           OM LAKARE         ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    11   7 INFOSYS    GURUGRAM   SURYAJI GAVHANE   DBA 2                DBA             SQL        LINUX      DBA
+    12                           TANYA AGHAV       DBA 2                DBA             SQL        LINUX      DBA
+    13                           SHRUTI DESHMUKH   DATA ANALYTICS 1     DATA ANALYTICS  SQL        PYTHON     POWER BI
+    14   5 WIPRO      CHENNAI    RATIKSHA JADHAV   DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    16  10 ACCENTURE  HYDERABAD  CHITANY GAVHANE   DBA 1                DBA             SQL        LINUX      DBA
+    17   8 HP         BANGALORE  YASH GADBIL       DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    18                           GAYTRI PARATE     ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    19                           SAKSHI BHUJANG    ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+
+14 rows selected.
+
+SQL> SET PAGESIZE 100
+SQL> /
+
+STU_ID PID COMPANY    CITY       NAME              BNAME                CNAME           SUBJECT1   SUBJECT2   SUBJECT3
+------ --- ---------- ---------- ----------------- -------------------- --------------- ---------- ---------- -------------------------
+     1                           RAJEEV KADAM      DEVOPS 1             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+     3                           SAKSHI KAKDE      DBA 1                DBA             SQL        LINUX      DBA
+     4   2 WIPRO      PUNE       YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     4   9 HCL        DELHI      YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     6                           SAKSHI LANGOTE    JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     8                           OM LAKARE         ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    11   7 INFOSYS    GURUGRAM   SURYAJI GAVHANE   DBA 2                DBA             SQL        LINUX      DBA
+    12                           TANYA AGHAV       DBA 2                DBA             SQL        LINUX      DBA
+    13                           SHRUTI DESHMUKH   DATA ANALYTICS 1     DATA ANALYTICS  SQL        PYTHON     POWER BI
+    14   5 WIPRO      CHENNAI    RATIKSHA JADHAV   DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    16  10 ACCENTURE  HYDERABAD  CHITANY GAVHANE   DBA 1                DBA             SQL        LINUX      DBA
+    17   8 HP         BANGALORE  YASH GADBIL       DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    18                           GAYTRI PARATE     ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    19                           SAKSHI BHUJANG    ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+
+14 rows selected.
+
+SQL> SET PAGESIZE 200
+SQL> /
+
+SQL> SET LINESIZE 15000
+SQL> /
+
+STU_ID PID COMPANY    CITY       NAME              BNAME                CNAME           SUBJECT1   SUBJECT2   SUBJECT3
+------ --- ---------- ---------- ----------------- -------------------- --------------- ---------- ---------- -------------------------
+     1                           RAJEEV KADAM      DEVOPS 1             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+     3                           SAKSHI KAKDE      DBA 1                DBA             SQL        LINUX      DBA
+     4   2 WIPRO      PUNE       YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     4   9 HCL        DELHI      YASH              JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     6                           SAKSHI LANGOTE    JAVA_FULL STACK 1    JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     8                           OM LAKARE         ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    11   7 INFOSYS    GURUGRAM   SURYAJI GAVHANE   DBA 2                DBA             SQL        LINUX      DBA
+    12                           TANYA AGHAV       DBA 2                DBA             SQL        LINUX      DBA
+    13                           SHRUTI DESHMUKH   DATA ANALYTICS 1     DATA ANALYTICS  SQL        PYTHON     POWER BI
+    14   5 WIPRO      CHENNAI    RATIKSHA JADHAV   DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    16  10 ACCENTURE  HYDERABAD  CHITANY GAVHANE   DBA 1                DBA             SQL        LINUX      DBA
+    17   8 HP         BANGALORE  YASH GADBIL       DEVOPS 2             DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    18                           GAYTRI PARATE     ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    19                           SAKSHI BHUJANG    ADV_DBA 1            ADV DBA         RAC        DATA GUARD GOLDEN GATE
+
+14 rows selected.
+
+SQL> COL BNAME FORMAT A15
+
+14 rows selected.
+
+SQL> COL SUBJECT3 FORMAT A18
+SQL> /
+
+STU_ID PID COMPANY   CITY       NAME            BNAME             CNAME           SUBJECT1   SUBJECT2   SUBJECT3
+------ --- --------- ---------- --------------- ----------------- --------------- ---------- ---------- ------------------
+     1                          RAJEEV KADAM    DEVOPS 1          DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+     3                          SAKSHI KAKDE    DBA 1             DBA             SQL        LINUX      DBA
+     4   2 WIPRO     PUNE       YASH            JAVA_FULL STACK 1 JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     4   9 HCL       DELHI      YASH            JAVA_FULL STACK 1 JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     6                          SAKSHI LANGOTE  JAVA_FULL STACK 1 JAVA FULL STACK CORE JAVA  ADV JAVA   UI MODULE
+     8                          OM LAKARE       ADV_DBA 1         ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    11   7 INFOSYS   GURUGRAM   SURYAJI GAVHANE DBA 2             DBA             SQL        LINUX      DBA
+    12                          TANYA AGHAV     DBA 2             DBA             SQL        LINUX      DBA
+    13                          SHRUTI DESHMUKH DATA ANALYTICS 1  DATA ANALYTICS  SQL        PYTHON     POWER BI
+    14   5 WIPRO     CHENNAI    RATIKSHA JADHAV DEVOPS 2          DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    16  10 ACCENTURE HYDERABAD  CHITANY GAVHANE DBA 1             DBA             SQL        LINUX      DBA
+    17   8 HP        BANGALORE  YASH GADBIL     DEVOPS 2          DEVOPS          AWS BASICS JENKINS    KUBERNETES/DOCKER
+    18                          GAYTRI PARATE   ADV_DBA 1         ADV DBA         RAC        DATA GUARD GOLDEN GATE
+    19                          SAKSHI BHUJANG  ADV_DBA 1         ADV DBA         RAC        DATA GUARD GOLDEN GATE
+
+14 rows selected.
+
+SQL> SPOOL OFF
+SQL>

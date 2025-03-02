@@ -1,0 +1,59 @@
+SQL> SHO USER
+USER is "KRUSHNA"
+SQL> @SCREEN
+SQL> SELECT *FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+DEPT                 TABLE                                                                                                                                                                              
+EMPLOYEES            TABLE                                                                                                                                                                              
+CUSTOMER             TABLE                                                                                                                                                                              
+ORDERS               TABLE                                                                                                                                                                              
+SUB                  TABLE                                                                                                                                                                              
+O_BILL               TABLE                                                                                                                                                                              
+COURSE               TABLE                                                                                                                                                                              
+STUDENT              TABLE                                                                                                                                                                              
+PLACEMENT            TABLE                                                                                                                                                                              
+
+12 rows selected.
+
+SQL> SELECT * FROM STUDENT;
+
+    STU_ID NAME                 SEX     DOB       PHONE      EMAIL                      B_ID                                                                                                            
+---------- -------------------- ------- --------- ---------- -------------------- ----------                                                                                                            
+         1 RAJEEV KADAM         MALE    12-FEB-00 9545346787 rajeev123@gmail.com           3                                                                                                            
+         2 KRUSHNA SONALKAR     MALE    06-APR-03 8806766413 krushna88@gmail.com           4                                                                                                            
+         3 SAKSHI KAKDE         FEMALE  13-OCT-03 9876564533 sakshii@gmail.com             4                                                                                                            
+         4 YASH                 MALE    09-DEC-02 9889877856 yashdeore@gmail.com           2                                                                                                            
+         5 YOGIRAJ SWAMI        MALE    07-APR-03 8512345676 yogi99@gmail.com              6                                                                                                            
+         6 SAKSHI LANGOTE       FEMALE  23-NOV-04 8845689867 langotes@gmail.com            5                                                                                                            
+         7 OM LAHAMGE           MALE    17-JAN-01 9846789034 om17@gmail.com                2                                                                                                            
+         8 OM LAKARE            MALE    02-JUN-01 9632785466 lakareom@gmail.com            1                                                                                                            
+         9 DHANSHREE BUJBAL     FEMALE  24-JAN-03 9523676666 dhanu0604@gmail.com           4                                                                                                            
+        10 SIDHII PATIL         FEMALE  12-OCT-04 9635679856 patilsidhi@gmail.com          6                                                                                                            
+        11 SURYAJI GAVHANE      MALE    27-DEC-02 9534786798 surya@gmail.com               2                                                                                                            
+        12 TANYA AGHAV          FEMALE  29-DEC-03 9843256798 tanuu12@gmail.com             1                                                                                                            
+        13 SHRUTI DESHMUKH      FEMALE  30-MAY-04 9837675422 shruuti123@gamil.com          3                                                                                                            
+        14 RATIKSHA JADHAV      FEMALE  06-SEP-02 9834121212 pratuu@gmail.com              5                                                                                                            
+        15 RUSHIKESH DURGE      MALE    09-JUL-00 8080710082 rushid@gmail.com              4                                                                                                            
+        16 CHITANY GAVHANE      MALE    15-JAN-06 8809676767 chitany@gmail.com             5                                                                                                            
+        17 YASH GADBIL          MALE    22-OCT-04 9987132536 yash@gmail.com                3                                                                                                            
+        18 GAYTRI PARATE        FEMALE  06-MAR-08 9512123434 gayatri@gmail.com             1                                                                                                            
+        19 SAKSHI BHUJANG       FEMALE  26-NOV-04 8809565612 sakshibhu@gami.com            6                                                                                                            
+        20 SIDDHESH NANAWARE    MALE    19-JUN-01 9524141414 sidd96@gmail.com              1                                                                                                            
+
+20 rows selected.
+
+SQL> CL SCR
+
+SQL> -- DDL  create, alter, drop     truncate,rename,
+SQL> -- DML (Data Manipulation Language)  insert, update, delete,merge
+SQL> -- DQL (Data Query Language)  SELECT,   subqueries..etc....
+SQL> -- DCL (Data Control Language)  grant, revoke
+SQL> -- TCL (Transaction Control Language)  commit, rollback,  savepoint
+SQL> 
+SQL> 
+SQL> spool off

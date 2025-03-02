@@ -1,0 +1,40 @@
+
+SQL> SELECT * FROM SUBJECT;
+
+    SUB_ID SUB_CODE   SUB_TAECHER
+---------- ---------- --------------------
+       101 cs66601    prof.dheshpande
+       102 st66601    prof.londhe
+       103 El66621    prof.joti
+
+SQL> DESC SUBJECT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SUB_ID                                             NUMBER(10)
+ SUB_CODE                                           VARCHAR2(10)
+ SUB_TAECHER                                        VARCHAR2(20)
+
+SQL> CREATE TABLE SUB (SUB_ID NUMBER(10), SUB_CODE VARCHAR2(10), SUB_TAECHER VARCHAR2(20));   #TABLE CREATION
+
+Table created.
+
+
+SQL> INSERT INTO SUB SELECT * FROM SUBJECT WHERE SUB_ID = 101 ;                                 #EK TABLE KA ROW DATA DUSRE TABLE MAI DALNA.
+
+1 row created.
+
+SQL> SELECT * FROM SUB;
+
+    SUB_ID SUB_CODE   SUB_TAECHER
+---------- ---------- --------------------
+       101 cs66601    prof.dheshpande
+
+SQL> CREATE TABLE SUB1 AS SELECT * FROM SUB;                                                     #EK TABLE KA ALL DATA DUSRE TABLE MAI COPY KARNA .
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> HOST NOTEPAD SQL_28012025.TXT

@@ -1,0 +1,67 @@
+SQL> host
+Microsoft Windows [Version 10.0.19045.5371]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Krushna>notepad sql_123.txt
+
+C:\Users\Krushna>exit
+
+SQL> dir
+SP2-0042: unknown command "dir" - rest of line ignored.
+SQL> exit
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+C:\Users\Krushna>dir
+ Volume in drive C has no label.
+ Volume Serial Number is CCEE-59AE
+
+ Directory of C:\Users\Krushna
+
+01/28/2025  10:07 PM    <DIR>          .
+01/28/2025  10:07 PM    <DIR>          ..
+11/09/2023  01:24 PM    <DIR>          .android
+04/20/2023  09:38 AM    <DIR>          .cache
+02/07/2024  02:20 PM    <DIR>          .eclipse
+11/04/2023  04:08 PM                16 .emulator_console_auth_token
+11/04/2023  04:39 PM    <DIR>          .gradle
+04/01/2024  08:35 PM    <DIR>          .ipynb_checkpoints
+08/05/2023  10:56 PM    <DIR>          .ipython
+08/05/2023  11:29 PM    <DIR>          .jupyter
+02/10/2024  11:31 AM    <DIR>          .m2
+12/16/2023  06:54 PM    <DIR>          .matplotlib
+01/29/2024  09:42 PM                 8 .node_repl_history
+02/10/2024  11:29 AM    <DIR>          .p2
+02/10/2024  11:32 AM    <DIR>          .sts4
+09/02/2023  08:10 PM    <DIR>          .VirtualBox
+08/05/2023  11:02 PM    <DIR>          .vscode
+02/13/2023  01:49 PM    <DIR>          3D Objects
+02/13/2023  01:49 PM    <DIR>          Contacts
+01/28/2025  11:02 AM    <DIR>          Desktop
+01/27/2025  03:06 PM    <DIR>          Documents
+01/28/2025  02:06 PM    <DIR>          Downloads
+04/21/2023  09:34 AM    <DIR>          Favorites
+04/01/2024  08:54 PM       243,020,879 krish.ipynb
+02/13/2023  01:49 PM    <DIR>          Links
+02/13/2023  01:49 PM    <DIR>          Music
+02/13/2023  01:52 PM    <DIR>          OneDrive
+01/27/2025  12:05 PM    <DIR>          Oracle
+03/18/2024  05:18 PM    <DIR>          Pictures
+04/01/2024  12:10 PM       454,430,016 practice 2.ipynb
+02/13/2023  01:49 PM    <DIR>          Saved Games
+02/13/2023  01:49 PM    <DIR>          Searches
+01/28/2025  10:07 PM             1,640 sql_123.txt
+01/28/2025  09:45 PM             1,808 SQL_28-01-2025PRACTICE.TXT
+01/28/2025  09:13 PM             2,044 SQL_28-JAN-2025PRCTICE.TXT
+04/01/2024  11:54 AM             1,419 Untitled.ipynb
+08/07/2023  11:16 PM                 0 untitled.py
+04/01/2024  08:31 PM               617 Untitled1.ipynb
+01/29/2024  10:15 PM    <DIR>          Videos
+              10 File(s)    697,458,447 bytes
+              29 Dir(s)   3,929,149,440 bytes free
+
+C:\Users\Krushna>@sql_123.txt
+
+C:\Users\Krushna>@sql_28-01-2025practice.txt
+
+C:\Users\Krushna>

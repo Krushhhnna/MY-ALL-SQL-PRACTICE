@@ -1,0 +1,63 @@
+ SELECT NVL(TO_CHAR(S1.SID),'-') SID1,NVL(S1.SNAME,'-') SUB1,NVL(TO_CHAR(S2.SID),'-') SID2,NVL(S2.SNAME,'-') SUB2,NVL(TO_CHAR(S3.SID),'-') SID3, NVL(S3.SNAME,'-') SUB3 , FID, FNAME
+ FROM SUBJECTS S1,SUBJECTS S2, FACULTY F, COURSES C, SUBJECTS S3
+ WHERE F.FSID1 = S1.SID(+) AND F.FSID2 = S2.SID(+) AND C.SID1 = S1.SID(+) AND C.SID2 = S2.SID(+) AND C.SID3 = S3.SID(+)
+ GROUP BY S1.SID, S1.SNAME, S2.SID,S2.SNAME ,FID, FNAME ,S3.SID,S3.SNAME
+/
+
+
+
+
+SID1 SUB1       SID2 SUB2       SID3 SUB3                 FID FNAME
+---- ---------- ---- ---------- ---- ------------------ ----- --------------------
+-    -          -    -          7    GOLDEN GATE         6666 PRATIK SIR
+-    -          -    -          -    -                   4444 R.K KADAM SIR
+-    -          -    -          9    POWER BI            5555 SHALAKA GUJAR MAM
+-    -          -    -          7    GOLDEN GATE         5555 SHALAKA GUJAR MAM
+-    -          -    -          15   KUBERNETES/DOCKER   5555 SHALAKA GUJAR MAM
+-    -          -    -          4    DBA                 8888 RAMAKRISHNA SIR
+-    -          -    -          7    GOLDEN GATE         8888 RAMAKRISHNA SIR
+-    -          -    -          -    -                   8888 RAMAKRISHNA SIR
+-    -          -    -          4    DBA                 5555 SHALAKA GUJAR MAM
+-    -          -    -          -    -                   2222 KULKARNI SIR
+1    SQL        -    -          4    DBA                 1111 RAMAKRISHNA SIR
+-    -          -    -          7    GOLDEN GATE         3333 M.S DESHMUKH MAM
+-    -          -    -          4    DBA                 6666 PRATIK SIR
+-    -          -    -          12   UI MODULE           7777 S.N JOSHI SIR
+-    -          -    -          -    -                   7777 S.N JOSHI SIR
+-    -          -    -          12   UI MODULE           6666 PRATIK SIR
+-    -          -    -          9    POWER BI            2222 KULKARNI SIR
+10   CORE JAVA  11   ADV JAVA   12   UI MODULE           4444 R.K KADAM SIR
+1    SQL        -    -          -    -                   1111 RAMAKRISHNA SIR
+-    -          -    -          -    -                   6666 PRATIK SIR
+-    -          -    -          12   UI MODULE           1111 RAMAKRISHNA SIR
+-    -          -    -          9    POWER BI            7777 S.N JOSHI SIR
+-    -          -    -          9    POWER BI            6666 PRATIK SIR
+-    -          -    -          12   UI MODULE           2222 KULKARNI SIR
+-    -          -    -          12   UI MODULE           3333 M.S DESHMUKH MAM
+-    -          -    -          7    GOLDEN GATE         1111 RAMAKRISHNA SIR
+-    -          -    -          12   UI MODULE           5555 SHALAKA GUJAR MAM
+-    -          -    -          -    -                   5555 SHALAKA GUJAR MAM
+-    -          -    -          9    POWER BI            4444 R.K KADAM SIR
+-    -          -    -          15   KUBERNETES/DOCKER   1111 RAMAKRISHNA SIR
+-    -          -    -          7    GOLDEN GATE         4444 R.K KADAM SIR
+-    -          -    -          4    DBA                 2222 KULKARNI SIR
+-    -          -    -          7    GOLDEN GATE         7777 S.N JOSHI SIR
+-    -          -    -          9    POWER BI            3333 M.S DESHMUKH MAM
+1    SQL        -    -          9    POWER BI            1111 RAMAKRISHNA SIR
+-    -          -    -          4    DBA                 3333 M.S DESHMUKH MAM
+-    -          -    -          15   KUBERNETES/DOCKER   6666 PRATIK SIR
+-    -          -    -          12   UI MODULE           8888 RAMAKRISHNA SIR
+-    -          -    -          15   KUBERNETES/DOCKER   8888 RAMAKRISHNA SIR
+-    -          -    -          15   KUBERNETES/DOCKER   2222 KULKARNI SIR
+-    -          -    -          -    -                   3333 M.S DESHMUKH MAM
+-    -          -    -          4    DBA                 7777 S.N JOSHI SIR
+-    -          -    -          15   KUBERNETES/DOCKER   4444 R.K KADAM SIR
+-    -          -    -          15   KUBERNETES/DOCKER   7777 S.N JOSHI SIR
+-    -          -    -          9    POWER BI            8888 RAMAKRISHNA SIR
+-    -          -    -          4    DBA                 4444 R.K KADAM SIR
+-    -          -    -          15   KUBERNETES/DOCKER   3333 M.S DESHMUKH MAM
+-    -          -    -          7    GOLDEN GATE         2222 KULKARNI SIR
+
+48 rows selected.
+
+SQL>

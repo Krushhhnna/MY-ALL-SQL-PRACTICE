@@ -1,0 +1,792 @@
+
+SQL> sho user
+USER is "KRUSHNA"
+SQL> @screen
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+DEPT                 TABLE                                                                                                                                                                              
+EMPLOYEES            TABLE                                                                                                                                                                              
+CUSTOMER             TABLE                                                                                                                                                                              
+ORDERS               TABLE                                                                                                                                                                              
+SUB                  TABLE                                                                                                                                                                              
+O_BILL               TABLE                                                                                                                                                                              
+COURSE               TABLE                                                                                                                                                                              
+STUDENT              TABLE                                                                                                                                                                              
+BATCH                TABLE                                                                                                                                                                              
+
+12 rows selected.
+
+SQL> desc student
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ STU_ID                                                                                                            NOT NULL NUMBER(2)
+ NAME                                                                                                                       VARCHAR2(20)
+ SEX                                                                                                                        VARCHAR2(7)
+ DOB                                                                                                                        DATE
+ PHONE                                                                                                                      VARCHAR2(10)
+ EMAIL                                                                                                                      VARCHAR2(20)
+ B_ID                                                                                                              NOT NULL NUMBER(2)
+
+SQL> set linesize 150
+SQL> desc student
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ STU_ID                                                                              NOT NULL NUMBER(2)
+ NAME                                                                                         VARCHAR2(20)
+ SEX                                                                                          VARCHAR2(7)
+ DOB                                                                                          DATE
+ PHONE                                                                                        VARCHAR2(10)
+ EMAIL                                                                                        VARCHAR2(20)
+ B_ID                                                                                NOT NULL NUMBER(2)
+
+SQL> select * from student;
+
+    STU_ID NAME                 SEX     DOB       PHONE      EMAIL                      B_ID                                                          
+---------- -------------------- ------- --------- ---------- -------------------- ----------                                                          
+         1 RAJEEV KADAM         MALE    12-FEB-00 9545346787 rajeev123@gmail.com           3                                                          
+         2 KRUSHNA SONALKAR     MALE    06-APR-03 8806766413 krushna88@gmail.com           4                                                          
+         3 SAKSHI KAKDE         FEMALE  13-OCT-03 9876564533 sakshii@gmail.com             4                                                          
+         4 YASH                 MALE    09-DEC-02 9889877856 yashdeore@gmail.com           2                                                          
+         5 YOGIRAJ SWAMI        MALE    07-APR-03 8512345676 yogi99@gmail.com              6                                                          
+         6 SAKSHI LANGOTE       FEMALE  23-NOV-04 8845689867 langotes@gmail.com            5                                                          
+         7 OM LAHAMGE           MALE    17-JAN-01 9846789034 om17@gmail.com                2                                                          
+         8 OM LAKARE            MALE    02-JUN-01 9632785466 lakareom@gmail.com            1                                                          
+         9 DHANSHREE BUJBAL     FEMALE  24-JAN-03 9523676666 dhanu0604@gmail.com           4                                                          
+        10 SIDHII PATIL         FEMALE  12-OCT-04 9635679856 patilsidhi@gmail.com          6                                                          
+        11 SURYAJI GAVHANE      MALE    27-DEC-02 9534786798 surya@gmail.com               2                                                          
+        12 TANYA AGHAV          FEMALE  29-DEC-03 9843256798 tanuu12@gmail.com             1                                                          
+        13 SHRUTI DESHMUKH      FEMALE  30-MAY-04 9837675422 shruuti123@gamil.com          3                                                          
+        14 RATIKSHA JADHAV      FEMALE  06-SEP-02 9834121212 pratuu@gmail.com              5                                                          
+        15 RUSHIKESH DURGE      MALE    09-JUL-00 8080710082 rushid@gmail.com              4                                                          
+        16 CHITANY GAVHANE      MALE    15-JAN-06 8809676767 chitany@gmail.com             5                                                          
+        17 YASH GADBIL          MALE    22-OCT-04 9987132536 yash@gmail.com                3                                                          
+        18 GAYTRI PARATE        FEMALE  06-MAR-08 9512123434 gayatri@gmail.com             1                                                          
+        19 SAKSHI BHUJANG       FEMALE  26-NOV-04 8809565612 sakshibhu@gami.com            6                                                          
+        20 SIDDHESH NANAWARE    MALE    19-JUN-01 9524141414 sidd96@gmail.com              1                                                          
+
+20 rows selected.
+
+SQL> select name,dob from student where sex='FEMALE';
+
+NAME                 DOB                                                                                                                              
+-------------------- ---------                                                                                                                        
+SAKSHI KAKDE         13-OCT-03                                                                                                                        
+SAKSHI LANGOTE       23-NOV-04                                                                                                                        
+DHANSHREE BUJBAL     24-JAN-03                                                                                                                        
+SIDHII PATIL         12-OCT-04                                                                                                                        
+TANYA AGHAV          29-DEC-03                                                                                                                        
+SHRUTI DESHMUKH      30-MAY-04                                                                                                                        
+RATIKSHA JADHAV      06-SEP-02                                                                                                                        
+GAYTRI PARATE        06-MAR-08                                                                                                                        
+SAKSHI BHUJANG       26-NOV-04                                                                                                                        
+
+9 rows selected.
+
+SQL> SELECT SEX,COUNT(*) FROM STUDENT GROUP BY SEX;
+
+SEX       COUNT(*)                                                                                                                                    
+------- ----------                                                                                                                                    
+MALE            11                                                                                                                                    
+FEMALE           9                                                                                                                                    
+
+SQL> select name,dob,SEX,PHONE from student where sex='FEMALE';
+
+NAME                 DOB       SEX     PHONE                                                                                                          
+-------------------- --------- ------- ----------                                                                                                     
+SAKSHI KAKDE         13-OCT-03 FEMALE  9876564533                                                                                                     
+SAKSHI LANGOTE       23-NOV-04 FEMALE  8845689867                                                                                                     
+DHANSHREE BUJBAL     24-JAN-03 FEMALE  9523676666                                                                                                     
+SIDHII PATIL         12-OCT-04 FEMALE  9635679856                                                                                                     
+TANYA AGHAV          29-DEC-03 FEMALE  9843256798                                                                                                     
+SHRUTI DESHMUKH      30-MAY-04 FEMALE  9837675422                                                                                                     
+RATIKSHA JADHAV      06-SEP-02 FEMALE  9834121212                                                                                                     
+GAYTRI PARATE        06-MAR-08 FEMALE  9512123434                                                                                                     
+SAKSHI BHUJANG       26-NOV-04 FEMALE  8809565612                                                                                                     
+
+9 rows selected.
+
+SQL> CREATE TABLE PLACEMENT  (PID NUMBER(2),STID  NUMBER(3), COMPANY VARCHAR2(20),CTC NUMBER(7),CITY VARCHAR2(20),
+  2  CONSTRAINT PK_PID PRIMARY KEY(PID), CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STID), CONSTRAINT
+  3  NN_COMPANY CHECK(COMPANY IS NOT NULL)  );
+CONSTRAINT PK_PID PRIMARY KEY(PID), CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENTS(STID), CONSTRAINT
+                                                                                    *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE PLACEMENT  (PID NUMBER(2),STID  NUMBER(3), COMPANY VARCHAR2(20),CTC NUMBER(7),CITY VARCHAR2(20),
+  2  CONSTRAINT PK_PID PRIMARY KEY(PID), CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENT(STID), CONSTRAINT
+  3* NN_COMPANY CHECK(COMPANY IS NOT NULL)  )
+SQL> /
+CONSTRAINT PK_PID PRIMARY KEY(PID), CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENT(STID), CONSTRAINT
+                                                                                            *
+ERROR at line 2:
+ORA-00904: "STID": invalid identifier 
+
+
+SQL> DESC STUDENT
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ STU_ID                                                                              NOT NULL NUMBER(2)
+ NAME                                                                                         VARCHAR2(20)
+ SEX                                                                                          VARCHAR2(7)
+ DOB                                                                                          DATE
+ PHONE                                                                                        VARCHAR2(10)
+ EMAIL                                                                                        VARCHAR2(20)
+ B_ID                                                                                NOT NULL NUMBER(2)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE PLACEMENT  (PID NUMBER(2),STID  NUMBER(3), COMPANY VARCHAR2(20),CTC NUMBER(7),CITY VARCHAR2(20),
+  2  CONSTRAINT PK_PID PRIMARY KEY(PID), CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENT(STU_ID), CONSTRAINT
+  3* NN_COMPANY CHECK(COMPANY IS NOT NULL)  )
+SQL> /
+
+Table created.
+
+SQL> SELECT * FROM STUDENT;
+
+    STU_ID NAME                 SEX     DOB       PHONE      EMAIL                      B_ID                                                          
+---------- -------------------- ------- --------- ---------- -------------------- ----------                                                          
+         1 RAJEEV KADAM         MALE    12-FEB-00 9545346787 rajeev123@gmail.com           3                                                          
+         2 KRUSHNA SONALKAR     MALE    06-APR-03 8806766413 krushna88@gmail.com           4                                                          
+         3 SAKSHI KAKDE         FEMALE  13-OCT-03 9876564533 sakshii@gmail.com             4                                                          
+         4 YASH                 MALE    09-DEC-02 9889877856 yashdeore@gmail.com           2                                                          
+         5 YOGIRAJ SWAMI        MALE    07-APR-03 8512345676 yogi99@gmail.com              6                                                          
+         6 SAKSHI LANGOTE       FEMALE  23-NOV-04 8845689867 langotes@gmail.com            5                                                          
+         7 OM LAHAMGE           MALE    17-JAN-01 9846789034 om17@gmail.com                2                                                          
+         8 OM LAKARE            MALE    02-JUN-01 9632785466 lakareom@gmail.com            1                                                          
+         9 DHANSHREE BUJBAL     FEMALE  24-JAN-03 9523676666 dhanu0604@gmail.com           4                                                          
+        10 SIDHII PATIL         FEMALE  12-OCT-04 9635679856 patilsidhi@gmail.com          6                                                          
+        11 SURYAJI GAVHANE      MALE    27-DEC-02 9534786798 surya@gmail.com               2                                                          
+        12 TANYA AGHAV          FEMALE  29-DEC-03 9843256798 tanuu12@gmail.com             1                                                          
+        13 SHRUTI DESHMUKH      FEMALE  30-MAY-04 9837675422 shruuti123@gamil.com          3                                                          
+        14 RATIKSHA JADHAV      FEMALE  06-SEP-02 9834121212 pratuu@gmail.com              5                                                          
+        15 RUSHIKESH DURGE      MALE    09-JUL-00 8080710082 rushid@gmail.com              4                                                          
+        16 CHITANY GAVHANE      MALE    15-JAN-06 8809676767 chitany@gmail.com             5                                                          
+        17 YASH GADBIL          MALE    22-OCT-04 9987132536 yash@gmail.com                3                                                          
+        18 GAYTRI PARATE        FEMALE  06-MAR-08 9512123434 gayatri@gmail.com             1                                                          
+        19 SAKSHI BHUJANG       FEMALE  26-NOV-04 8809565612 sakshibhu@gami.com            6                                                          
+        20 SIDDHESH NANAWARE    MALE    19-JUN-01 9524141414 sidd96@gmail.com              1                                                          
+
+20 rows selected.
+
+SQL> DESC PLACEMENT
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ PID                                                                                 NOT NULL NUMBER(2)
+ STID                                                                                         NUMBER(3)
+ COMPANY                                                                                      VARCHAR2(20)
+ CTC                                                                                          NUMBER(7)
+ CITY                                                                                         VARCHAR2(20)
+
+SQL> INSERT INTO PLACEMENT VALUES(&PID,&STID,'&CO',&SAL,'&CITY');
+Enter value for pid: 1
+Enter value for stid: 2
+Enter value for co: ORACLE
+Enter value for sal: 1200000
+Enter value for city: HYDERABAD
+old   1: INSERT INTO PLACEMENT VALUES(&PID,&STID,'&CO',&SAL,'&CITY')
+new   1: INSERT INTO PLACEMENT VALUES(1,2,'ORACLE',1200000,'HYDERABAD')
+
+1 row created.
+
+SQL> /
+Enter value for pid: 2
+Enter value for stid: 9
+Enter value for co: WIPRO
+Enter value for sal: 700000
+Enter value for city: PUNE
+old   1: INSERT INTO PLACEMENT VALUES(&PID,&STID,'&CO',&SAL,'&CITY')
+new   1: INSERT INTO PLACEMENT VALUES(2,9,'WIPRO',700000,'PUNE')
+
+1 row created.
+
+SQL> /
+Enter value for pid: 3
+Enter value for stid: 12
+Enter value for co: TCS
+Enter value for sal: 800000
+Enter value for city: BANGALORE
+old   1: INSERT INTO PLACEMENT VALUES(&PID,&STID,'&CO',&SAL,'&CITY')
+new   1: INSERT INTO PLACEMENT VALUES(3,12,'TCS',800000,'BANGALORE')
+
+1 row created.
+
+SQL> /
+Enter value for pid: 4
+Enter value for stid: 20
+Enter value for co: IBM
+Enter value for sal: 900000
+Enter value for city: KOLKATA
+old   1: INSERT INTO PLACEMENT VALUES(&PID,&STID,'&CO',&SAL,'&CITY')
+new   1: INSERT INTO PLACEMENT VALUES(4,20,'IBM',900000,'KOLKATA')
+
+1 row created.
+
+SQL> /
+Enter value for pid: 5
+Enter value for stid: 11
+Enter value for co: WIPRO
+Enter value for sal: 800000
+Enter value for city: CHENNAI
+old   1: INSERT INTO PLACEMENT VALUES(&PID,&STID,'&CO',&SAL,'&CITY')
+new   1: INSERT INTO PLACEMENT VALUES(5,11,'WIPRO',800000,'CHENNAI')
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM PLACEMENT;
+
+       PID       STID COMPANY                     CTC CITY                                                                                            
+---------- ---------- -------------------- ---------- --------------------                                                                            
+         1          2 ORACLE                  1200000 HYDERABAD                                                                                       
+         2          9 WIPRO                    700000 PUNE                                                                                            
+         3         12 TCS                      800000 BANGALORE                                                                                       
+         4         20 IBM                      900000 KOLKATA                                                                                         
+         5         11 WIPRO                    800000 CHENNAI                                                                                         
+
+SQL> 
+SQL> SELECT STID,NAME,PHONE,CITY,COMPANY,SEX
+  2  FROM PLACEMENT, STUDENT
+  3  ORDER BY STID DESC ;
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+        20 SAKSHI BHUJANG       8809565612 KOLKATA              IBM                  FEMALE                                                           
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE                                                             
+        20 YASH GADBIL          9987132536 KOLKATA              IBM                  MALE                                                             
+        20 CHITANY GAVHANE      8809676767 KOLKATA              IBM                  MALE                                                             
+        20 RUSHIKESH DURGE      8080710082 KOLKATA              IBM                  MALE                                                             
+        20 RATIKSHA JADHAV      9834121212 KOLKATA              IBM                  FEMALE                                                           
+        20 SHRUTI DESHMUKH      9837675422 KOLKATA              IBM                  FEMALE                                                           
+        20 TANYA AGHAV          9843256798 KOLKATA              IBM                  FEMALE                                                           
+        20 SURYAJI GAVHANE      9534786798 KOLKATA              IBM                  MALE                                                             
+        20 SIDHII PATIL         9635679856 KOLKATA              IBM                  FEMALE                                                           
+        20 DHANSHREE BUJBAL     9523676666 KOLKATA              IBM                  FEMALE                                                           
+        20 OM LAKARE            9632785466 KOLKATA              IBM                  MALE                                                             
+        20 OM LAHAMGE           9846789034 KOLKATA              IBM                  MALE                                                             
+        20 SAKSHI LANGOTE       8845689867 KOLKATA              IBM                  FEMALE                                                           
+        20 YOGIRAJ SWAMI        8512345676 KOLKATA              IBM                  MALE                                                             
+        20 YASH                 9889877856 KOLKATA              IBM                  MALE                                                             
+        20 SAKSHI KAKDE         9876564533 KOLKATA              IBM                  FEMALE                                                           
+        20 KRUSHNA SONALKAR     8806766413 KOLKATA              IBM                  MALE                                                             
+        20 RAJEEV KADAM         9545346787 KOLKATA              IBM                  MALE                                                             
+        20 GAYTRI PARATE        9512123434 KOLKATA              IBM                  FEMALE                                                           
+        12 SIDDHESH NANAWARE    9524141414 BANGALORE            TCS                  MALE                                                             
+        12 SAKSHI BHUJANG       8809565612 BANGALORE            TCS                  FEMALE                                                           
+        12 GAYTRI PARATE        9512123434 BANGALORE            TCS                  FEMALE                                                           
+        12 YASH GADBIL          9987132536 BANGALORE            TCS                  MALE                                                             
+        12 CHITANY GAVHANE      8809676767 BANGALORE            TCS                  MALE                                                             
+        12 RUSHIKESH DURGE      8080710082 BANGALORE            TCS                  MALE                                                             
+        12 RATIKSHA JADHAV      9834121212 BANGALORE            TCS                  FEMALE                                                           
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+        12 SHRUTI DESHMUKH      9837675422 BANGALORE            TCS                  FEMALE                                                           
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE                                                           
+        12 SURYAJI GAVHANE      9534786798 BANGALORE            TCS                  MALE                                                             
+        12 SIDHII PATIL         9635679856 BANGALORE            TCS                  FEMALE                                                           
+        12 DHANSHREE BUJBAL     9523676666 BANGALORE            TCS                  FEMALE                                                           
+        12 OM LAKARE            9632785466 BANGALORE            TCS                  MALE                                                             
+        12 OM LAHAMGE           9846789034 BANGALORE            TCS                  MALE                                                             
+        12 SAKSHI LANGOTE       8845689867 BANGALORE            TCS                  FEMALE                                                           
+        12 YOGIRAJ SWAMI        8512345676 BANGALORE            TCS                  MALE                                                             
+        12 YASH                 9889877856 BANGALORE            TCS                  MALE                                                             
+        12 SAKSHI KAKDE         9876564533 BANGALORE            TCS                  FEMALE                                                           
+        12 RAJEEV KADAM         9545346787 BANGALORE            TCS                  MALE                                                             
+        12 KRUSHNA SONALKAR     8806766413 BANGALORE            TCS                  MALE                                                             
+        11 RAJEEV KADAM         9545346787 CHENNAI              WIPRO                MALE                                                             
+        11 KRUSHNA SONALKAR     8806766413 CHENNAI              WIPRO                MALE                                                             
+        11 SAKSHI KAKDE         9876564533 CHENNAI              WIPRO                FEMALE                                                           
+        11 YASH                 9889877856 CHENNAI              WIPRO                MALE                                                             
+        11 YOGIRAJ SWAMI        8512345676 CHENNAI              WIPRO                MALE                                                             
+        11 SAKSHI LANGOTE       8845689867 CHENNAI              WIPRO                FEMALE                                                           
+        11 OM LAHAMGE           9846789034 CHENNAI              WIPRO                MALE                                                             
+        11 OM LAKARE            9632785466 CHENNAI              WIPRO                MALE                                                             
+        11 DHANSHREE BUJBAL     9523676666 CHENNAI              WIPRO                FEMALE                                                           
+        11 SIDHII PATIL         9635679856 CHENNAI              WIPRO                FEMALE                                                           
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE                                                             
+        11 TANYA AGHAV          9843256798 CHENNAI              WIPRO                FEMALE                                                           
+        11 SHRUTI DESHMUKH      9837675422 CHENNAI              WIPRO                FEMALE                                                           
+        11 RATIKSHA JADHAV      9834121212 CHENNAI              WIPRO                FEMALE                                                           
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+        11 RUSHIKESH DURGE      8080710082 CHENNAI              WIPRO                MALE                                                             
+        11 CHITANY GAVHANE      8809676767 CHENNAI              WIPRO                MALE                                                             
+        11 YASH GADBIL          9987132536 CHENNAI              WIPRO                MALE                                                             
+        11 GAYTRI PARATE        9512123434 CHENNAI              WIPRO                FEMALE                                                           
+        11 SAKSHI BHUJANG       8809565612 CHENNAI              WIPRO                FEMALE                                                           
+        11 SIDDHESH NANAWARE    9524141414 CHENNAI              WIPRO                MALE                                                             
+         9 SAKSHI BHUJANG       8809565612 PUNE                 WIPRO                FEMALE                                                           
+         9 SIDDHESH NANAWARE    9524141414 PUNE                 WIPRO                MALE                                                             
+         9 YASH GADBIL          9987132536 PUNE                 WIPRO                MALE                                                             
+         9 CHITANY GAVHANE      8809676767 PUNE                 WIPRO                MALE                                                             
+         9 RUSHIKESH DURGE      8080710082 PUNE                 WIPRO                MALE                                                             
+         9 RATIKSHA JADHAV      9834121212 PUNE                 WIPRO                FEMALE                                                           
+         9 SHRUTI DESHMUKH      9837675422 PUNE                 WIPRO                FEMALE                                                           
+         9 TANYA AGHAV          9843256798 PUNE                 WIPRO                FEMALE                                                           
+         9 SURYAJI GAVHANE      9534786798 PUNE                 WIPRO                MALE                                                             
+         9 SIDHII PATIL         9635679856 PUNE                 WIPRO                FEMALE                                                           
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE                                                           
+         9 OM LAKARE            9632785466 PUNE                 WIPRO                MALE                                                             
+         9 OM LAHAMGE           9846789034 PUNE                 WIPRO                MALE                                                             
+         9 SAKSHI LANGOTE       8845689867 PUNE                 WIPRO                FEMALE                                                           
+         9 YOGIRAJ SWAMI        8512345676 PUNE                 WIPRO                MALE                                                             
+         9 YASH                 9889877856 PUNE                 WIPRO                MALE                                                             
+         9 SAKSHI KAKDE         9876564533 PUNE                 WIPRO                FEMALE                                                           
+         9 KRUSHNA SONALKAR     8806766413 PUNE                 WIPRO                MALE                                                             
+         9 RAJEEV KADAM         9545346787 PUNE                 WIPRO                MALE                                                             
+         9 GAYTRI PARATE        9512123434 PUNE                 WIPRO                FEMALE                                                           
+         2 SIDDHESH NANAWARE    9524141414 HYDERABAD            ORACLE               MALE                                                             
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+         2 SAKSHI BHUJANG       8809565612 HYDERABAD            ORACLE               FEMALE                                                           
+         2 GAYTRI PARATE        9512123434 HYDERABAD            ORACLE               FEMALE                                                           
+         2 YASH GADBIL          9987132536 HYDERABAD            ORACLE               MALE                                                             
+         2 CHITANY GAVHANE      8809676767 HYDERABAD            ORACLE               MALE                                                             
+         2 RUSHIKESH DURGE      8080710082 HYDERABAD            ORACLE               MALE                                                             
+         2 RATIKSHA JADHAV      9834121212 HYDERABAD            ORACLE               FEMALE                                                           
+         2 SHRUTI DESHMUKH      9837675422 HYDERABAD            ORACLE               FEMALE                                                           
+         2 TANYA AGHAV          9843256798 HYDERABAD            ORACLE               FEMALE                                                           
+         2 SURYAJI GAVHANE      9534786798 HYDERABAD            ORACLE               MALE                                                             
+         2 SIDHII PATIL         9635679856 HYDERABAD            ORACLE               FEMALE                                                           
+         2 DHANSHREE BUJBAL     9523676666 HYDERABAD            ORACLE               FEMALE                                                           
+         2 OM LAKARE            9632785466 HYDERABAD            ORACLE               MALE                                                             
+         2 OM LAHAMGE           9846789034 HYDERABAD            ORACLE               MALE                                                             
+         2 SAKSHI LANGOTE       8845689867 HYDERABAD            ORACLE               FEMALE                                                           
+         2 YOGIRAJ SWAMI        8512345676 HYDERABAD            ORACLE               MALE                                                             
+         2 YASH                 9889877856 HYDERABAD            ORACLE               MALE                                                             
+         2 SAKSHI KAKDE         9876564533 HYDERABAD            ORACLE               FEMALE                                                           
+         2 RAJEEV KADAM         9545346787 HYDERABAD            ORACLE               MALE                                                             
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE                                                             
+
+100 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID,NAME,PHONE,CITY,COMPANY,SEX
+  2  FROM PLACEMENT, STUDENT
+  3* ORDER BY NAME DESC 
+SQL> /
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+         9 YOGIRAJ SWAMI        8512345676 PUNE                 WIPRO                MALE                                                             
+        12 YOGIRAJ SWAMI        8512345676 BANGALORE            TCS                  MALE                                                             
+         2 YOGIRAJ SWAMI        8512345676 HYDERABAD            ORACLE               MALE                                                             
+        20 YOGIRAJ SWAMI        8512345676 KOLKATA              IBM                  MALE                                                             
+        11 YOGIRAJ SWAMI        8512345676 CHENNAI              WIPRO                MALE                                                             
+         2 YASH GADBIL          9987132536 HYDERABAD            ORACLE               MALE                                                             
+        20 YASH GADBIL          9987132536 KOLKATA              IBM                  MALE                                                             
+        11 YASH GADBIL          9987132536 CHENNAI              WIPRO                MALE                                                             
+        12 YASH GADBIL          9987132536 BANGALORE            TCS                  MALE                                                             
+         9 YASH GADBIL          9987132536 PUNE                 WIPRO                MALE                                                             
+         2 YASH                 9889877856 HYDERABAD            ORACLE               MALE                                                             
+        20 YASH                 9889877856 KOLKATA              IBM                  MALE                                                             
+        11 YASH                 9889877856 CHENNAI              WIPRO                MALE                                                             
+        12 YASH                 9889877856 BANGALORE            TCS                  MALE                                                             
+         9 YASH                 9889877856 PUNE                 WIPRO                MALE                                                             
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE                                                           
+         9 TANYA AGHAV          9843256798 PUNE                 WIPRO                FEMALE                                                           
+         2 TANYA AGHAV          9843256798 HYDERABAD            ORACLE               FEMALE                                                           
+        11 TANYA AGHAV          9843256798 CHENNAI              WIPRO                FEMALE                                                           
+        20 TANYA AGHAV          9843256798 KOLKATA              IBM                  FEMALE                                                           
+         9 SURYAJI GAVHANE      9534786798 PUNE                 WIPRO                MALE                                                             
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE                                                             
+        20 SURYAJI GAVHANE      9534786798 KOLKATA              IBM                  MALE                                                             
+         2 SURYAJI GAVHANE      9534786798 HYDERABAD            ORACLE               MALE                                                             
+        12 SURYAJI GAVHANE      9534786798 BANGALORE            TCS                  MALE                                                             
+        12 SIDHII PATIL         9635679856 BANGALORE            TCS                  FEMALE                                                           
+        11 SIDHII PATIL         9635679856 CHENNAI              WIPRO                FEMALE                                                           
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+         2 SIDHII PATIL         9635679856 HYDERABAD            ORACLE               FEMALE                                                           
+        20 SIDHII PATIL         9635679856 KOLKATA              IBM                  FEMALE                                                           
+         9 SIDHII PATIL         9635679856 PUNE                 WIPRO                FEMALE                                                           
+         2 SIDDHESH NANAWARE    9524141414 HYDERABAD            ORACLE               MALE                                                             
+         9 SIDDHESH NANAWARE    9524141414 PUNE                 WIPRO                MALE                                                             
+        12 SIDDHESH NANAWARE    9524141414 BANGALORE            TCS                  MALE                                                             
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE                                                             
+        11 SIDDHESH NANAWARE    9524141414 CHENNAI              WIPRO                MALE                                                             
+        11 SHRUTI DESHMUKH      9837675422 CHENNAI              WIPRO                FEMALE                                                           
+        20 SHRUTI DESHMUKH      9837675422 KOLKATA              IBM                  FEMALE                                                           
+         2 SHRUTI DESHMUKH      9837675422 HYDERABAD            ORACLE               FEMALE                                                           
+        12 SHRUTI DESHMUKH      9837675422 BANGALORE            TCS                  FEMALE                                                           
+         9 SHRUTI DESHMUKH      9837675422 PUNE                 WIPRO                FEMALE                                                           
+         9 SAKSHI LANGOTE       8845689867 PUNE                 WIPRO                FEMALE                                                           
+         2 SAKSHI LANGOTE       8845689867 HYDERABAD            ORACLE               FEMALE                                                           
+        11 SAKSHI LANGOTE       8845689867 CHENNAI              WIPRO                FEMALE                                                           
+        20 SAKSHI LANGOTE       8845689867 KOLKATA              IBM                  FEMALE                                                           
+        12 SAKSHI LANGOTE       8845689867 BANGALORE            TCS                  FEMALE                                                           
+         2 SAKSHI KAKDE         9876564533 HYDERABAD            ORACLE               FEMALE                                                           
+        12 SAKSHI KAKDE         9876564533 BANGALORE            TCS                  FEMALE                                                           
+        11 SAKSHI KAKDE         9876564533 CHENNAI              WIPRO                FEMALE                                                           
+        20 SAKSHI KAKDE         9876564533 KOLKATA              IBM                  FEMALE                                                           
+         9 SAKSHI KAKDE         9876564533 PUNE                 WIPRO                FEMALE                                                           
+         9 SAKSHI BHUJANG       8809565612 PUNE                 WIPRO                FEMALE                                                           
+        20 SAKSHI BHUJANG       8809565612 KOLKATA              IBM                  FEMALE                                                           
+        12 SAKSHI BHUJANG       8809565612 BANGALORE            TCS                  FEMALE                                                           
+         2 SAKSHI BHUJANG       8809565612 HYDERABAD            ORACLE               FEMALE                                                           
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+        11 SAKSHI BHUJANG       8809565612 CHENNAI              WIPRO                FEMALE                                                           
+         9 RUSHIKESH DURGE      8080710082 PUNE                 WIPRO                MALE                                                             
+        11 RUSHIKESH DURGE      8080710082 CHENNAI              WIPRO                MALE                                                             
+         2 RUSHIKESH DURGE      8080710082 HYDERABAD            ORACLE               MALE                                                             
+        12 RUSHIKESH DURGE      8080710082 BANGALORE            TCS                  MALE                                                             
+        20 RUSHIKESH DURGE      8080710082 KOLKATA              IBM                  MALE                                                             
+         9 RATIKSHA JADHAV      9834121212 PUNE                 WIPRO                FEMALE                                                           
+         2 RATIKSHA JADHAV      9834121212 HYDERABAD            ORACLE               FEMALE                                                           
+        11 RATIKSHA JADHAV      9834121212 CHENNAI              WIPRO                FEMALE                                                           
+        20 RATIKSHA JADHAV      9834121212 KOLKATA              IBM                  FEMALE                                                           
+        12 RATIKSHA JADHAV      9834121212 BANGALORE            TCS                  FEMALE                                                           
+        11 RAJEEV KADAM         9545346787 CHENNAI              WIPRO                MALE                                                             
+        20 RAJEEV KADAM         9545346787 KOLKATA              IBM                  MALE                                                             
+         9 RAJEEV KADAM         9545346787 PUNE                 WIPRO                MALE                                                             
+         2 RAJEEV KADAM         9545346787 HYDERABAD            ORACLE               MALE                                                             
+        12 RAJEEV KADAM         9545346787 BANGALORE            TCS                  MALE                                                             
+         9 OM LAKARE            9632785466 PUNE                 WIPRO                MALE                                                             
+        20 OM LAKARE            9632785466 KOLKATA              IBM                  MALE                                                             
+         2 OM LAKARE            9632785466 HYDERABAD            ORACLE               MALE                                                             
+        12 OM LAKARE            9632785466 BANGALORE            TCS                  MALE                                                             
+        11 OM LAKARE            9632785466 CHENNAI              WIPRO                MALE                                                             
+        11 OM LAHAMGE           9846789034 CHENNAI              WIPRO                MALE                                                             
+        20 OM LAHAMGE           9846789034 KOLKATA              IBM                  MALE                                                             
+         9 OM LAHAMGE           9846789034 PUNE                 WIPRO                MALE                                                             
+         2 OM LAHAMGE           9846789034 HYDERABAD            ORACLE               MALE                                                             
+        12 OM LAHAMGE           9846789034 BANGALORE            TCS                  MALE                                                             
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE                                                             
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+         9 KRUSHNA SONALKAR     8806766413 PUNE                 WIPRO                MALE                                                             
+        11 KRUSHNA SONALKAR     8806766413 CHENNAI              WIPRO                MALE                                                             
+        20 KRUSHNA SONALKAR     8806766413 KOLKATA              IBM                  MALE                                                             
+        12 KRUSHNA SONALKAR     8806766413 BANGALORE            TCS                  MALE                                                             
+         2 GAYTRI PARATE        9512123434 HYDERABAD            ORACLE               FEMALE                                                           
+         9 GAYTRI PARATE        9512123434 PUNE                 WIPRO                FEMALE                                                           
+        11 GAYTRI PARATE        9512123434 CHENNAI              WIPRO                FEMALE                                                           
+        20 GAYTRI PARATE        9512123434 KOLKATA              IBM                  FEMALE                                                           
+        12 GAYTRI PARATE        9512123434 BANGALORE            TCS                  FEMALE                                                           
+         2 DHANSHREE BUJBAL     9523676666 HYDERABAD            ORACLE               FEMALE                                                           
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE                                                           
+        11 DHANSHREE BUJBAL     9523676666 CHENNAI              WIPRO                FEMALE                                                           
+        20 DHANSHREE BUJBAL     9523676666 KOLKATA              IBM                  FEMALE                                                           
+        12 DHANSHREE BUJBAL     9523676666 BANGALORE            TCS                  FEMALE                                                           
+         2 CHITANY GAVHANE      8809676767 HYDERABAD            ORACLE               MALE                                                             
+         9 CHITANY GAVHANE      8809676767 PUNE                 WIPRO                MALE                                                             
+        11 CHITANY GAVHANE      8809676767 CHENNAI              WIPRO                MALE                                                             
+        20 CHITANY GAVHANE      8809676767 KOLKATA              IBM                  MALE                                                             
+        12 CHITANY GAVHANE      8809676767 BANGALORE            TCS                  MALE                                                             
+
+100 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID,NAME,PHONE,CITY,COMPANY,SEX
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STUID=STID
+  4* ORDER BY NAME DESC 
+SQL> /
+WHERE STUID=STID
+      *
+ERROR at line 3:
+ORA-00904: "STUID": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID,NAME,PHONE,CITY,COMPANY,SEX
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STU_ID=STID
+  4* ORDER BY NAME DESC 
+SQL> CREATE TABLE PLACEMENT  (PID NUMBER(2),STID  NUMBER(3), COMPANY VARCHAR2(20),CTC NUMBER(7),CITY VARCHAR2(20),
+  2  
+SQL> SELECT STID,NAME,PHONE,CITY,COMPANY,SEX
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID=STU_ID
+  4  ORDER BY STID DESC ;
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE                                                             
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE                                                           
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE                                                             
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE                                                           
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE                                                             
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STID,NAME,PHONE,CITY,COMPANY,SEX,CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID=STU_ID
+  4* ORDER BY STID DESC 
+SQL> /
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX         SALARY                                               
+---------- -------------------- ---------- -------------------- -------------------- ------- ----------                                               
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE        900000                                               
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE      800000                                               
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE        800000                                               
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE      700000                                               
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE       1200000                                               
+
+SQL> SELECT STID,NAME,PHONE,CITY,COMPANY,SEX ,CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID=STU_ID(+)
+  4  ORDER BY STID DESC ;
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX         SALARY                                               
+---------- -------------------- ---------- -------------------- -------------------- ------- ----------                                               
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE        900000                                               
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE      800000                                               
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE        800000                                               
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE      700000                                               
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE       1200000                                               
+
+SQL> SELECT STID,NAME,PHONE,CITY,COMPANY,SEX
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID(+)=STU_ID
+  4  ORDER BY STID DESC ;
+
+      STID NAME                 PHONE      CITY                 COMPANY              SEX                                                              
+---------- -------------------- ---------- -------------------- -------------------- -------                                                          
+           RUSHIKESH DURGE      8080710082                                           MALE                                                             
+           SAKSHI BHUJANG       8809565612                                           FEMALE                                                           
+           SHRUTI DESHMUKH      9837675422                                           FEMALE                                                           
+           SAKSHI KAKDE         9876564533                                           FEMALE                                                           
+           GAYTRI PARATE        9512123434                                           FEMALE                                                           
+           SAKSHI LANGOTE       8845689867                                           FEMALE                                                           
+           RATIKSHA JADHAV      9834121212                                           FEMALE                                                           
+           RAJEEV KADAM         9545346787                                           MALE                                                             
+           OM LAHAMGE           9846789034                                           MALE                                                             
+           CHITANY GAVHANE      8809676767                                           MALE                                                             
+           OM LAKARE            9632785466                                           MALE                                                             
+           YASH GADBIL          9987132536                                           MALE                                                             
+           YASH                 9889877856                                           MALE                                                             
+           YOGIRAJ SWAMI        8512345676                                           MALE                                                             
+           SIDHII PATIL         9635679856                                           FEMALE                                                           
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE                                                             
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE                                                           
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE                                                             
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE                                                           
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE                                                             
+
+20 rows selected.
+
+SQL> SELECT STu_ID,NAME,PHONE,CITY,COMPANY,SEX ,CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID(+)=STU_ID
+  4  ORDER BY STID DESC ;
+
+    STU_ID NAME                 PHONE      CITY                 COMPANY              SEX         SALARY                                               
+---------- -------------------- ---------- -------------------- -------------------- ------- ----------                                               
+        15 RUSHIKESH DURGE      8080710082                                           MALE                                                             
+        19 SAKSHI BHUJANG       8809565612                                           FEMALE                                                           
+        13 SHRUTI DESHMUKH      9837675422                                           FEMALE                                                           
+         3 SAKSHI KAKDE         9876564533                                           FEMALE                                                           
+        18 GAYTRI PARATE        9512123434                                           FEMALE                                                           
+         6 SAKSHI LANGOTE       8845689867                                           FEMALE                                                           
+        14 RATIKSHA JADHAV      9834121212                                           FEMALE                                                           
+         1 RAJEEV KADAM         9545346787                                           MALE                                                             
+         7 OM LAHAMGE           9846789034                                           MALE                                                             
+        16 CHITANY GAVHANE      8809676767                                           MALE                                                             
+         8 OM LAKARE            9632785466                                           MALE                                                             
+        17 YASH GADBIL          9987132536                                           MALE                                                             
+         4 YASH                 9889877856                                           MALE                                                             
+         5 YOGIRAJ SWAMI        8512345676                                           MALE                                                             
+        10 SIDHII PATIL         9635679856                                           FEMALE                                                           
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE        900000                                               
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE      800000                                               
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE        800000                                               
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE      700000                                               
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE       1200000                                               
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STu_ID,NAME,PHONE,NVL(CITY,'NA') CITY ,COMPANY,SEX ,CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID(+)=STU_ID
+  4* ORDER BY STID DESC 
+SQL> /
+
+    STU_ID NAME                 PHONE      CITY                 COMPANY              SEX         SALARY                                               
+---------- -------------------- ---------- -------------------- -------------------- ------- ----------                                               
+        15 RUSHIKESH DURGE      8080710082 NA                                        MALE                                                             
+        19 SAKSHI BHUJANG       8809565612 NA                                        FEMALE                                                           
+        13 SHRUTI DESHMUKH      9837675422 NA                                        FEMALE                                                           
+         3 SAKSHI KAKDE         9876564533 NA                                        FEMALE                                                           
+        18 GAYTRI PARATE        9512123434 NA                                        FEMALE                                                           
+         6 SAKSHI LANGOTE       8845689867 NA                                        FEMALE                                                           
+        14 RATIKSHA JADHAV      9834121212 NA                                        FEMALE                                                           
+         1 RAJEEV KADAM         9545346787 NA                                        MALE                                                             
+         7 OM LAHAMGE           9846789034 NA                                        MALE                                                             
+        16 CHITANY GAVHANE      8809676767 NA                                        MALE                                                             
+         8 OM LAKARE            9632785466 NA                                        MALE                                                             
+        17 YASH GADBIL          9987132536 NA                                        MALE                                                             
+         4 YASH                 9889877856 NA                                        MALE                                                             
+         5 YOGIRAJ SWAMI        8512345676 NA                                        MALE                                                             
+        10 SIDHII PATIL         9635679856 NA                                        FEMALE                                                           
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE        900000                                               
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE      800000                                               
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE        800000                                               
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE      700000                                               
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE       1200000                                               
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STu_ID,NAME,PHONE,NVL(CITY,'NA') CITY ,NVL(COMPANY, 'NOT HIRED YET' COMPANY,SEX ,CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID(+)=STU_ID
+  4* ORDER BY STID DESC 
+SQL> /
+SELECT STu_ID,NAME,PHONE,NVL(CITY,'NA') CITY ,NVL(COMPANY, 'NOT HIRED YET' COMPANY,SEX ,CTC SALARY
+                                                                           *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STu_ID,NAME,PHONE,NVL(CITY,'NA') CITY ,NVL(COMPANY, 'NOT HIRED YET') COMPANY,SEX ,CTC SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID(+)=STU_ID
+  4* ORDER BY STID DESC 
+SQL> /
+
+    STU_ID NAME                 PHONE      CITY                 COMPANY              SEX         SALARY                                               
+---------- -------------------- ---------- -------------------- -------------------- ------- ----------                                               
+        15 RUSHIKESH DURGE      8080710082 NA                   NOT HIRED YET        MALE                                                             
+        19 SAKSHI BHUJANG       8809565612 NA                   NOT HIRED YET        FEMALE                                                           
+        13 SHRUTI DESHMUKH      9837675422 NA                   NOT HIRED YET        FEMALE                                                           
+         3 SAKSHI KAKDE         9876564533 NA                   NOT HIRED YET        FEMALE                                                           
+        18 GAYTRI PARATE        9512123434 NA                   NOT HIRED YET        FEMALE                                                           
+         6 SAKSHI LANGOTE       8845689867 NA                   NOT HIRED YET        FEMALE                                                           
+        14 RATIKSHA JADHAV      9834121212 NA                   NOT HIRED YET        FEMALE                                                           
+         1 RAJEEV KADAM         9545346787 NA                   NOT HIRED YET        MALE                                                             
+         7 OM LAHAMGE           9846789034 NA                   NOT HIRED YET        MALE                                                             
+        16 CHITANY GAVHANE      8809676767 NA                   NOT HIRED YET        MALE                                                             
+         8 OM LAKARE            9632785466 NA                   NOT HIRED YET        MALE                                                             
+        17 YASH GADBIL          9987132536 NA                   NOT HIRED YET        MALE                                                             
+         4 YASH                 9889877856 NA                   NOT HIRED YET        MALE                                                             
+         5 YOGIRAJ SWAMI        8512345676 NA                   NOT HIRED YET        MALE                                                             
+        10 SIDHII PATIL         9635679856 NA                   NOT HIRED YET        FEMALE                                                           
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE        900000                                               
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE      800000                                               
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE        800000                                               
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE      700000                                               
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE       1200000                                               
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STu_ID,NAME,PHONE,NVL(CITY,'NA') CITY ,NVL(COMPANY, 'NOT HIRED YET') COMPANY,SEX ,NVL(CTC,'--')  SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID(+)=STU_ID
+  4* ORDER BY STID DESC 
+SQL> /
+SELECT STu_ID,NAME,PHONE,NVL(CITY,'NA') CITY ,NVL(COMPANY, 'NOT HIRED YET') COMPANY,SEX ,NVL(CTC,'--')  SALARY
+                                                                                                 *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STu_ID,NAME,PHONE,NVL(CITY,'NA') CITY ,NVL(COMPANY, 'NOT HIRED YET') COMPANY,SEX ,NVL(CTC,0)  SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID(+)=STU_ID
+  4* ORDER BY STID DESC 
+SQL> /
+
+    STU_ID NAME                 PHONE      CITY                 COMPANY              SEX         SALARY                                               
+---------- -------------------- ---------- -------------------- -------------------- ------- ----------                                               
+        15 RUSHIKESH DURGE      8080710082 NA                   NOT HIRED YET        MALE             0                                               
+        19 SAKSHI BHUJANG       8809565612 NA                   NOT HIRED YET        FEMALE           0                                               
+        13 SHRUTI DESHMUKH      9837675422 NA                   NOT HIRED YET        FEMALE           0                                               
+         3 SAKSHI KAKDE         9876564533 NA                   NOT HIRED YET        FEMALE           0                                               
+        18 GAYTRI PARATE        9512123434 NA                   NOT HIRED YET        FEMALE           0                                               
+         6 SAKSHI LANGOTE       8845689867 NA                   NOT HIRED YET        FEMALE           0                                               
+        14 RATIKSHA JADHAV      9834121212 NA                   NOT HIRED YET        FEMALE           0                                               
+         1 RAJEEV KADAM         9545346787 NA                   NOT HIRED YET        MALE             0                                               
+         7 OM LAHAMGE           9846789034 NA                   NOT HIRED YET        MALE             0                                               
+        16 CHITANY GAVHANE      8809676767 NA                   NOT HIRED YET        MALE             0                                               
+         8 OM LAKARE            9632785466 NA                   NOT HIRED YET        MALE             0                                               
+        17 YASH GADBIL          9987132536 NA                   NOT HIRED YET        MALE             0                                               
+         4 YASH                 9889877856 NA                   NOT HIRED YET        MALE             0                                               
+         5 YOGIRAJ SWAMI        8512345676 NA                   NOT HIRED YET        MALE             0                                               
+        10 SIDHII PATIL         9635679856 NA                   NOT HIRED YET        FEMALE           0                                               
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE        900000                                               
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE      800000                                               
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE        800000                                               
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE      700000                                               
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE       1200000                                               
+
+20 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STu_ID,NAME,PHONE,NVL(CITY,'NA') CITY ,NVL(COMPANY, 'NOT HIRED YET') COMPANY,SEX ,NVL(TO_CHAR(CTC),'---')  SALARY
+  2  FROM PLACEMENT, STUDENT
+  3  WHERE STID(+)=STU_ID
+  4* ORDER BY STID DESC 
+SQL> /
+
+    STU_ID NAME                 PHONE      CITY                 COMPANY              SEX     SALARY                                                   
+---------- -------------------- ---------- -------------------- -------------------- ------- ----------------------------------------                 
+        15 RUSHIKESH DURGE      8080710082 NA                   NOT HIRED YET        MALE    ---                                                      
+        19 SAKSHI BHUJANG       8809565612 NA                   NOT HIRED YET        FEMALE  ---                                                      
+        13 SHRUTI DESHMUKH      9837675422 NA                   NOT HIRED YET        FEMALE  ---                                                      
+         3 SAKSHI KAKDE         9876564533 NA                   NOT HIRED YET        FEMALE  ---                                                      
+        18 GAYTRI PARATE        9512123434 NA                   NOT HIRED YET        FEMALE  ---                                                      
+         6 SAKSHI LANGOTE       8845689867 NA                   NOT HIRED YET        FEMALE  ---                                                      
+        14 RATIKSHA JADHAV      9834121212 NA                   NOT HIRED YET        FEMALE  ---                                                      
+         1 RAJEEV KADAM         9545346787 NA                   NOT HIRED YET        MALE    ---                                                      
+         7 OM LAHAMGE           9846789034 NA                   NOT HIRED YET        MALE    ---                                                      
+        16 CHITANY GAVHANE      8809676767 NA                   NOT HIRED YET        MALE    ---                                                      
+         8 OM LAKARE            9632785466 NA                   NOT HIRED YET        MALE    ---                                                      
+        17 YASH GADBIL          9987132536 NA                   NOT HIRED YET        MALE    ---                                                      
+         4 YASH                 9889877856 NA                   NOT HIRED YET        MALE    ---                                                      
+         5 YOGIRAJ SWAMI        8512345676 NA                   NOT HIRED YET        MALE    ---                                                      
+        10 SIDHII PATIL         9635679856 NA                   NOT HIRED YET        FEMALE  ---                                                      
+        20 SIDDHESH NANAWARE    9524141414 KOLKATA              IBM                  MALE    900000                                                   
+        12 TANYA AGHAV          9843256798 BANGALORE            TCS                  FEMALE  800000                                                   
+        11 SURYAJI GAVHANE      9534786798 CHENNAI              WIPRO                MALE    800000                                                   
+         9 DHANSHREE BUJBAL     9523676666 PUNE                 WIPRO                FEMALE  700000                                                   
+         2 KRUSHNA SONALKAR     8806766413 HYDERABAD            ORACLE               MALE    1200000                                                  
+
+20 rows selected.
+
+SQL> SPOOL OFF

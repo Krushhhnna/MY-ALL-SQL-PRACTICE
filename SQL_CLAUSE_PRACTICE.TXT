@@ -1,0 +1,498 @@
+SQL> @SCREEN
+SQL> SELECT * FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SUBJECT              TABLE                                                                                                                                                                              
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+DEPT                 TABLE                                                                                                                                                                              
+EMPLOYEES            TABLE                                                                                                                                                                              
+CUSTOMER             TABLE                                                                                                                                                                              
+ORDERS               TABLE                                                                                                                                                                              
+
+8 rows selected.
+
+SQL> SELECT * FROM EMP;
+
+       EID NAME                 LAST_M_SALARY                                                                                                                                                           
+---------- -------------------- -------------                                                                                                                                                           
+         1 RAKESH                       12000                                                                                                                                                           
+
+SQL> INSERT INTO EMP VALUES(2, 'MINA', 22800);
+
+1 row created.
+
+SQL> INSERT INTO EMP VALUES(3, 'RAJ', 50000);
+
+1 row created.
+
+SQL> INSERT INTO EMP VALUES(4, 'MONIKA', 53000);
+
+1 row created.
+
+SQL> INSERT INTO EMP VALUES(6, 'MONIKA', 83000);
+
+1 row created.
+
+SQL> INSERT INTO EMP VALUES(5, 'RAKESH', 83000);
+
+1 row created.
+
+SQL> INSERT INTO EMP VALUES(7, 'UMANG', 3000);
+
+1 row created.
+
+
+
+SQL> INSERT INTO EMP VALUES(8, 'UMANG', 93000);
+
+1 row created.
+
+SQL> SELECT * FROM EMP;
+
+       EID NAME                 LAST_M_SALARY                                                                                                                                                           
+---------- -------------------- -------------                                                                                                                                                           
+         1 RAKESH                       12000                                                                                                                                                           
+         2 MINA                         22800                                                                                                                                                           
+         3 RAJ                          50000                                                                                                                                                           
+         4 MONIKA                       53000                                                                                                                                                           
+         6 MONIKA                       83000                                                                                                                                                           
+         5 RAKESH                       83000                                                                                                                                                           
+         7 UMANG                         3000                                                                                                                                                           
+         8 UMANG                        93000                                                                                                                                                           
+
+8 rows selected. 
+
+
+SQL> ALTER TABLE EMP RENAME COLUMN LAST_M_SALARY TO ESAL;
+
+Table altered.
+
+SQL> SELECT * FROM EMP;
+
+       EID NAME                       ESAL                                                                                                                                                              
+---------- -------------------- ----------                                                                                                                                                              
+         1 RAKESH                    12000                                                                                                                                                              
+         2 MINA                      22800                                                                                                                                                              
+         3 RAJ                       50000                                                                                                                                                              
+         4 MONIKA                    53000                                                                                                                                                              
+         6 MONIKA                    83000                                                                                                                                                              
+         5 RAKESH                    83000                                                                                                                                                              
+         7 UMANG                      3000                                                                                                                                                              
+         8 UMANG                     93000                                                                                                                                                              
+
+8 rows selected.
+
+SQL> COMMIT;
+
+Commit complete.
+
+
+
+ 
+
+
+
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP
+  2* ADD  DEPT VARCHAR2(10)
+SQL> /
+
+Table altered.
+
+SQL> UPDATE EMP
+  2  SET DEPT = 'HR'
+  3  WHERE ID = 7 AND 8;
+WHERE ID = 7 AND 8
+                 *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+S
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE EMP
+  2  SET DEPT = 'HR'
+  3* WHERE NAME= 'MONIKA'
+SQL> /
+
+2 rows updated.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE EMP
+  2  SET DEPT = 'SALES'
+  3* WHERE NAME= 'RAJ'
+SQL> /
+
+1 row updated.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE EMP
+  2  SET DEPT = 'MNF'
+  3* WHERE NAME= 'UMANG'
+SQL> /
+
+2 rows updated.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE EMP
+  2  SET DEPT = 'ACCOUNT'
+  3* WHERE NAME= 'RAKESH'
+SQL> /
+
+2 rows updated.
+
+SQL> SELECT * FROM EMP;
+
+       EID NAME                       ESAL DEPT                                                                                                                                                         
+---------- -------------------- ---------- ----------                                                                                                                                                   
+         1 RAKESH                    12000 ACCOUNT                                                                                                                                                      
+         2 MINA                      22800                                                                                                                                                              
+         3 RAJ                       50000 SALES                                                                                                                                                        
+         4 MONIKA                    53000 HR                                                                                                                                                           
+         6 MONIKA                    83000 HR                                                                                                                                                           
+         5 RAKESH                    83000 ACCOUNT                                                                                                                                                      
+         7 UMANG                      3000 MNF                                                                                                                                                          
+         8 UMANG                     93000 MNF                                                                                                                                                          
+
+8 rows selected.
+
+SQL> SELECT DEPT FROM EMP GROUP BY DEPT;
+
+DEPT                                                                                                                                                                                                    
+----------                                                                                                                                                                                              
+ACCOUNT                                                                                                                                                                                                 
+MNF                                                                                                                                                                                                     
+SALES                                                                                                                                                                                                   
+HR                                                                                                                                                                                                      
+                                                                                                                                                                                                        
+
+SQL> SELECT DEPT , COUNT(*) FROM EMP GROUP BY DEPT;
+
+DEPT         COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+ACCOUNT             2                                                                                                                                                                                   
+MNF                 2                                                                                                                                                                                   
+SALES               1                                                                                                                                                                                   
+HR                  2                                                                                                                                                                                   
+                    1                                                                                                                                                                                   
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> UPDATE EMP SET DEPT='HR' WHERE EID=2;
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT DEPT FROM EMP GROUP BY DEPT;
+
+DEPT                                                                                                                                                                                                    
+----------                                                                                                                                                                                              
+ACCOUNT                                                                                                                                                                                                 
+MNF                                                                                                                                                                                                     
+HR                                                                                                                                                                                                      
+SALES                                                                                                                                                                                                   
+
+SQL> SELECT DEPT , COUNT(*) FROM EMP GROUP BY DEPT;
+
+DEPT         COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+ACCOUNT             2                                                                                                                                                                                   
+MNF                 2                                                                                                                                                                                   
+HR                  3                                                                                                                                                                                   
+SALES               1                                                                                                                                                                                   
+
+SQL> SELECT DEPT , COUNT(*) FROM EMP WHERE ESAL<= 20000 GROUP BY DEPT;
+
+DEPT         COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+ACCOUNT             1                                                                                                                                                                                   
+MNF                 1                                                                                                                                                                                   
+
+SQL> SELECT DEPT,NAME , COUNT(*) FROM EMP WHERE ESAL<= 20000 GROUP BY DEPT,NAME;
+
+DEPT       NAME                   COUNT(*)                                                                                                                                                              
+---------- -------------------- ----------                                                                                                                                                              
+MNF        UMANG                         1                                                                                                                                                              
+ACCOUNT    RAKESH                        1                                                                                                                                                              
+
+SQL> SELECT DEPT,NAME , MAX(ESAL) FROM EMP WHERE ESAL<= 20000 GROUP BY DEPT,NAME;
+
+DEPT       NAME                  MAX(ESAL)                                                                                                                                                              
+---------- -------------------- ----------                                                                                                                                                              
+MNF        UMANG                      3000                                                                                                                                                              
+ACCOUNT    RAKESH                    12000                                                                                                                                                              
+
+SQL> SELECT DEPT,NAME , MAX(ESAL) FROM EMP GROUP BY DEPT,NAME;
+
+DEPT       NAME                  MAX(ESAL)                                                                                                                                                              
+---------- -------------------- ----------                                                                                                                                                              
+HR         MINA                      22800                                                                                                                                                              
+SALES      RAJ                       50000                                                                                                                                                              
+MNF        UMANG                     93000                                                                                                                                                              
+ACCOUNT    RAKESH                    83000                                                                                                                                                              
+HR         MONIKA                    83000                                                                                                                                                              
+
+SQL> SELECT DEPT,NAME , SUM(ESAL),AVG(ESAL) FROM EMP GROUP BY DEPT,NAME;
+
+DEPT       NAME                  SUM(ESAL)  AVG(ESAL)                                                                                                                                                   
+---------- -------------------- ---------- ----------                                                                                                                                                   
+HR         MINA                      22800      22800                                                                                                                                                   
+SALES      RAJ                       50000      50000                                                                                                                                                   
+MNF        UMANG                     96000      48000                                                                                                                                                   
+ACCOUNT    RAKESH                    95000      47500                                                                                                                                                   
+HR         MONIKA                   136000      68000                                                                                                                                                   
+
+SQL> ---GROUP BY : SELECT STATMEANT MAI JO COLUMN NAME DALA VAHI GROUP BY MAI DALNA COMPALSARY.
+SQL> ---AGGREGATE FUNCTION USE KARU SHKTO SELECT SATMENT MADHE.
+SQL> ---COUNT(), AVG(), MAX(), MIN(),SUM()
+SQL> 
+SQL> SPOOL OFF
+
+
+****************************************************************************************
+SQL> 
+SQL> 
+SQL> ---HAVING CLAUSE
+SQL> SELECT DEPT FROM EMP GROUP BY DEPT;
+
+DEPT                                                                                                                                                                                                    
+----------                                                                                                                                                                                              
+ACCOUNT                                                                                                                                                                                                 
+MNF                                                                                                                                                                                                     
+HR                                                                                                                                                                                                      
+SALES                                                                                                                                                                                                   
+
+SQL> SELECT DEPT COUNT(*) FROM EMP GROUP BY DEPT;
+SELECT DEPT COUNT(*) FROM EMP GROUP BY DEPT
+                 *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT DEPT ,COUNT(*) FROM EMP GROUP BY DEPT;
+
+DEPT         COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+ACCOUNT             2                                                                                                                                                                                   
+MNF                 2                                                                                                                                                                                   
+HR                  3                                                                                                                                                                                   
+SALES               1                                                                                                                                                                                   
+
+SQL> SELECT DEPT ,COUNT(*) FROM EMP HAVING COUNT(*)>=3 GROUP BY DEPT;
+
+DEPT         COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+HR                  3                                                                                                                                                                                   
+
+SQL> SELECT DEPT ,ESAL, NAME FROM EMP HAVING ESAL>=30000 GROUP BY DEPT,ESAL;
+SELECT DEPT ,ESAL, NAME FROM EMP HAVING ESAL>=30000 GROUP BY DEPT,ESAL
+                   *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT DEPT ,ESAL, NAME FROM EMP HAVING ESAL>=30000 GROUP BY DEPT,ESAL,NAME;
+
+DEPT             ESAL NAME                                                                                                                                                                              
+---------- ---------- --------------------                                                                                                                                                              
+SALES           50000 RAJ                                                                                                                                                                               
+HR              83000 MONIKA                                                                                                                                                                            
+MNF             93000 UMANG                                                                                                                                                                             
+HR              53000 MONIKA                                                                                                                                                                            
+ACCOUNT         83000 RAKESH                                                                                                                                                                            
+
+SQL> SELECT DEPT ,ESAL, NAME FROM EMP HAVING ESAL<=30000 GROUP BY DEPT,ESAL,NAME;
+
+DEPT             ESAL NAME                                                                                                                                                                              
+---------- ---------- --------------------                                                                                                                                                              
+HR              22800 MINA                                                                                                                                                                              
+MNF              3000 UMANG                                                                                                                                                                             
+ACCOUNT         12000 RAKESH                                                                                                                                                                            
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT DEPT ,ESAL, NAME ,COUNT(*) FROM EMP HAVING ESAL<=30000 GROUP BY DEPT,ESAL,NAME;
+
+DEPT             ESAL NAME                   COUNT(*)                                                                                                                                                   
+---------- ---------- -------------------- ----------                                                                                                                                                   
+HR              22800 MINA                          1                                                                                                                                                   
+MNF              3000 UMANG                         1                                                                                                                                                   
+ACCOUNT         12000 RAKESH                        1                                                                                                                                                   
+
+SQL> SELECT DEPT COUNT(*) FROM EMP WHERE  HAVING ESAL>20000 GROUP BY DEPT
+  2  ;
+SELECT DEPT COUNT(*) FROM EMP WHERE  HAVING ESAL>20000 GROUP BY DEPT
+                 *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPT COUNT(*) FROM EMP
+  2  WHERE ESAL>20000 
+  3  HAVING SUM(ESAL)>= 30000
+  4  GROUP BY DEPT
+  5* ORDERD BY DEPT;
+  6  
+SQL> /
+SELECT DEPT COUNT(*) FROM EMP
+                 *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ED\
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPT ,COUNT(*) FROM EMP
+  2  WHERE ESAL>20000 
+  3  HAVING SUM(ESAL)>= 30000
+  4  GROUP BY DEPT
+  5* ORDERD BY DEPT;
+SQL> /
+ORDERD BY DEPT;
+*
+ERROR at line 5:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPT ,COUNT(*) FROM EMP
+  2  WHERE ESAL>20000 
+  3  HAVING SUM(ESAL)>= 30000
+  4  GROUP BY DEPT
+  5* ORDERD BY DEPT
+SQL> /
+ORDERD BY DEPT
+*
+ERROR at line 5:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPT ,COUNT(*) FROM EMP
+  2  WHERE ESAL>20000 
+  3  HAVING SUM(ESAL)>= 30000
+  4  GROUP BY DEPT
+  5* ORDER BY DEPT
+SQL> /
+
+DEPT         COUNT(*)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+ACCOUNT             1                                                                                                                                                                                   
+HR                  3                                                                                                                                                                                   
+MNF                 1                                                                                                                                                                                   
+SALES               1                                                                                                                                                                                   
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPT ,ESAL,COUNT(*) FROM EMP
+  2  WHERE ESAL>20000 
+  3  HAVING SUM(ESAL)>= 30000
+  4  GROUP BY DEPT,ESAL
+  5* ORDER BY DEPT
+SQL> /
+
+DEPT             ESAL   COUNT(*)                                                                                                                                                                        
+---------- ---------- ----------                                                                                                                                                                        
+ACCOUNT         83000          1                                                                                                                                                                        
+HR              53000          1                                                                                                                                                                        
+HR              83000          1                                                                                                                                                                        
+MNF             93000          1                                                                                                                                                                        
+SALES           50000          1                                                                                                                                                                        
+
+
+
+
+
+****************************************************************************************
+SQL> 
+SQL> 
+SQL> ---ORDER BY CLAUSE
+SQL> 
+SQL> ---ITS SHORTS THERECORD ASC/DESC
+SQL> ---ITS BY DEFULT ASC
+SQL> 
+SQL> SELECT * FROM EMP ORDER BY NAME;
+
+       EID NAME                       ESAL DEPT                                                                                                                                                         
+---------- -------------------- ---------- ----------                                                                                                                                                   
+         2 MINA                      22800 HR                                                                                                                                                           
+         4 MONIKA                    53000 HR                                                                                                                                                           
+         6 MONIKA                    83000 HR                                                                                                                                                           
+         3 RAJ                       50000 SALES                                                                                                                                                        
+         5 RAKESH                    83000 ACCOUNT                                                                                                                                                      
+         1 RAKESH                    12000 ACCOUNT                                                                                                                                                      
+         8 UMANG                     93000 MNF                                                                                                                                                          
+         7 UMANG                      3000 MNF                                                                                                                                                          
+
+8 rows selected.
+
+SQL> SELECT * FROM EMP ORDER BY NAME DESC;
+
+       EID NAME                       ESAL DEPT                                                                                                                                                         
+---------- -------------------- ---------- ----------                                                                                                                                                   
+         7 UMANG                      3000 MNF                                                                                                                                                          
+         8 UMANG                     93000 MNF                                                                                                                                                          
+         5 RAKESH                    83000 ACCOUNT                                                                                                                                                      
+         1 RAKESH                    12000 ACCOUNT                                                                                                                                                      
+         3 RAJ                       50000 SALES                                                                                                                                                        
+         6 MONIKA                    83000 HR                                                                                                                                                           
+         4 MONIKA                    53000 HR                                                                                                                                                           
+         2 MINA                      22800 HR                                                                                                                                                           
+
+8 rows selected.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM EMP ORDER BY ESAL ASC, NAME DESC;
+
+       EID NAME                       ESAL DEPT                                                                                                                                                         
+---------- -------------------- ---------- ----------                                                                                                                                                   
+         7 UMANG                      3000 MNF                                                                                                                                                          
+         1 RAKESH                    12000 ACCOUNT                                                                                                                                                      
+         2 MINA                      22800 HR                                                                                                                                                           
+         3 RAJ                       50000 SALES                                                                                                                                                        
+         4 MONIKA                    53000 HR                                                                                                                                                           
+         5 RAKESH                    83000 ACCOUNT                                                                                                                                                      
+         6 MONIKA                    83000 HR                                                                                                                                                           
+         8 UMANG                     93000 MNF                                                                                                                                                          
+
+8 rows selected.
+
+SQL> SPOOL OFF

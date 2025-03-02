@@ -1,0 +1,276 @@
+
+SQL> SELECT * FROM EMP;
+
+       EID ENAME                EADD             ESAL DOJ
+---------- -------------------- ---------- ---------- ---------
+        10 RAKESH               MUMBAI         120000 12-JAN-19
+        20 RAMESH               MUMBAI         890000 12-MAR-20
+        30 RUCHA                PUNE            80000 09-FEB-25
+        40 JANVHI               NANDED          15000 09-FEB-23
+        50 YASH                 HYDRABAD         8000 22-JUL-22
+        60 CHETAN               RANCHI          12000 28-JUN-17
+
+6 rows selected.
+
+SQL> --- FIEND MAX SALARY OF EMPLOYEE.
+SQL> SELECT MAX(ESAL) FROM EMP;
+
+ MAX(ESAL)
+----------
+    890000
+
+SQL> SELECT * FROM EMP WHERE ESAL =(SELECT MAX(ESAL) FROM EMP);
+
+       EID ENAME                EADD             ESAL DOJ
+---------- -------------------- ---------- ---------- ---------
+        20 RAMESH               MUMBAI         890000 12-MAR-20
+
+
+SQL> ---FIND SECOND MAX SALARY OF EMPLOYE.
+SQL> SELECT * FROM EMP WHERE ESAL= (SELECT MAX(ESAL) FROM EMP WHERE ESAL < (SELECT MAX(ESAL) FROM EMP ));
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+
+SQL> 
+SQL> --RETRIVE ALL NAMES BEGINS WITH 'R'.
+SQL> 
+SQL> SELECT * FROM EMP WHERE ENAME LIKE'R%';
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+        20 RAMESH               MUMBAI         890000 12-MAR-20                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+
+SQL> --SELECT ALL INFO OF EMPLOYEES WHOES SALARY IS 12000,80000,8000.
+SQL> SELECT * FROM EMP WHERE ESAL IN(12000,80000,8000);
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+
+SQL> --CREATE A NEW TABLE WITH THE HELP OF EXISTING TABLE DATA AND STRUCTURE.
+SQL> CREATE TABLE EMP2 AS SELECT * FROM EMP;
+
+Table created.
+
+SQL> SELECT * FROM EMP2;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+        20 RAMESH               MUMBAI         890000 12-MAR-20                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+        40 JANVHI               NANDED          15000 09-FEB-23                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+
+6 rows selected.
+
+SQL> -- FIND EMPLOYEE WHOSE SALLARY BETWEEN 1000 TO 15000.
+SQL> SELECT * FROM EMP WHERE ESAL BETWEEN 1000 AND 15000;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        40 JANVHI               NANDED          15000 09-FEB-23                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+
+SQL> 
+SQL> --WRITE  A SQL QUERY TO DELETE MORE THAN ONE RECORDS.
+SQL> 
+SQL> DELETE FROM EMP WHERE EID IN(20,40);
+
+2 rows deleted.
+
+SQL> SELECT * FROM EMP;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+
+SQL> SPOOL OFF
+SQL> 
+SQL> SELECT * FROM EMP;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+        20 RAMESH               MUMBAI         890000 12-MAR-20                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+        40 JANVHI               NANDED          15000 09-FEB-23                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+
+6 rows selected.
+
+SQL> -- INSERT DATA IN TABLE AS DIFFERNT WAY.
+
+SQL> INSER INTO EMP VALUES (&EID, '&ENAME', '&EADD', &ESAL,'&DOJ');
+SP2-0734: unknown command beginning "INSER INTO..." - rest of line ignored.
+SQL> INSERT INTO EMP VALUES (&EID, '&ENAME', '&EADD', &ESAL,'&DOJ');
+Enter value for eid: 70
+Enter value for ename: MUKESH
+Enter value for eadd: BANGLORE
+Enter value for esal: 13000
+Enter value for doj: 09-APR-23
+old   1: INSERT INTO EMP VALUES (&EID, '&ENAME', '&EADD', &ESAL,'&DOJ')
+new   1: INSERT INTO EMP VALUES (70, 'MUKESH', 'BANGLORE', 13000,'09-APR-23')
+
+1 row created.
+
+SQL> SELECT * FROM EMP;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+        20 RAMESH               MUMBAI         890000 12-MAR-20                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+        40 JANVHI               NANDED          15000 09-FEB-23                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+        70 MUKESH               BANGLORE        13000 09-APR-23                                                                                                                                         
+
+7 rows selected.
+
+SQL> --RETRIVE THE RECORDS IN ACENDING OR DESENDING ORDER .
+
+SQL> SELECT * FROM EMP
+  2  ORDERD BY EID DESC;
+ORDERD BY EID DESC
+       *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT * FROM EMP
+  2  ORDER BY EID DESC;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        70 MUKESH               BANGLORE        13000 09-APR-23                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        40 JANVHI               NANDED          15000 09-FEB-23                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+        20 RAMESH               MUMBAI         890000 12-MAR-20                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+
+7 rows selected.
+
+SQL> SELECT * FROM EMP
+  2  ORDER BY ESAL;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+        70 MUKESH               BANGLORE        13000 09-APR-23                                                                                                                                         
+        40 JANVHI               NANDED          15000 09-FEB-23                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+        20 RAMESH               MUMBAI         890000 12-MAR-20                                                                                                                                         
+
+7 rows selected.
+
+SQL> INSERT INTO EMP VALUES (&EID, '&ENAME', '&EADD', &ESAL,'&DOJ');
+Enter value for eid: 50
+Enter value for ename: YASH
+Enter value for eadd: HYDRABAD
+Enter value for esal: 8000
+Enter value for doj: 22-JUL-22
+old   1: INSERT INTO EMP VALUES (&EID, '&ENAME', '&EADD', &ESAL,'&DOJ')
+new   1: INSERT INTO EMP VALUES (50, 'YASH', 'HYDRABAD', 8000,'22-JUL-22')
+
+1 row created.
+
+SQL> SELECT * FROM EMP;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+        20 RAMESH               MUMBAI         890000 12-MAR-20                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+        40 JANVHI               NANDED          15000 09-FEB-23                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+        70 MUKESH               BANGLORE        13000 09-APR-23                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+
+8 rows selected.
+
+SQL> RETRIVE ONLY UNIQUE RECORDS.
+SP2-0734: unknown command beginning "RETRIVE ON..." - rest of line ignored.
+SQL> --- RETRIVE ONLY UNIQUE RECORDS.
+SQL> SELECT DISTINCT * FROM EMP;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        30 RUCHA                PUNE            80000 09-FEB-25                                                                                                                                         
+        50 YASH                 HYDRABAD         8000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          12000 28-JUN-17                                                                                                                                         
+        40 JANVHI               NANDED          15000 09-FEB-23                                                                                                                                         
+        20 RAMESH               MUMBAI         890000 12-MAR-20                                                                                                                                         
+        10 RAKESH               MUMBAI         120000 12-JAN-19                                                                                                                                         
+        70 MUKESH               BANGLORE        13000 09-APR-23                                                                                                                                         
+
+7 rows selected.
+
+SQL> --COUNT HOW MANY RECORDS IN THE EMP TABLE.
+SQL> SELCT COUNT(*) FROM EMP;
+SP2-0734: unknown command beginning "SELCT COUN..." - rest of line ignored.
+SQL> SELECT COUNT(*) FROM EMP;
+
+  COUNT(*)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         8                                                                                                                                                                                              
+
+SQL> -- SALARY DISCOUN 10% UPDATE AND SHO.
+SQL> UPDATE EMP SET ESAL = ESAL+(ESAL*10/100);
+
+8 rows updated.
+
+SQL> SELECT * FROM EMP;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        10 RAKESH               MUMBAI         132000 12-JAN-19                                                                                                                                         
+        20 RAMESH               MUMBAI         979000 12-MAR-20                                                                                                                                         
+        30 RUCHA                PUNE            88000 09-FEB-25                                                                                                                                         
+        40 JANVHI               NANDED          16500 09-FEB-23                                                                                                                                         
+        50 YASH                 HYDRABAD         8800 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          13200 28-JUN-17                                                                                                                                         
+        70 MUKESH               BANGLORE        14300 09-APR-23                                                                                                                                         
+        50 YASH                 HYDRABAD         8800 22-JUL-22                                                                                                                                         
+
+8 rows selected.
+
+SQL> -- UPDATE MULTIPLE COLUMNS IN ONE TIME.
+SQL> 
+SQL> UPDATE EMP SET ENAME = 'MUNAVAR', ESAL= 50000, EADD = 'RAYPUR' WHERE EID=50;
+
+2 rows updated.
+
+SQL> SELECT * FROM EMP;
+
+       EID ENAME                EADD             ESAL DOJ                                                                                                                                               
+---------- -------------------- ---------- ---------- ---------                                                                                                                                         
+        10 RAKESH               MUMBAI         132000 12-JAN-19                                                                                                                                         
+        20 RAMESH               MUMBAI         979000 12-MAR-20                                                                                                                                         
+        30 RUCHA                PUNE            88000 09-FEB-25                                                                                                                                         
+        40 JANVHI               NANDED          16500 09-FEB-23                                                                                                                                         
+        50 MUNAVAR              RAYPUR          50000 22-JUL-22                                                                                                                                         
+        60 CHETAN               RANCHI          13200 28-JUN-17                                                                                                                                         
+        70 MUKESH               BANGLORE        14300 09-APR-23                                                                                                                                         
+        50 MUNAVAR              RAYPUR          50000 22-JUL-22                                                                                                                                         
+
+8 rows selected.
+
+SQL> SPOOL OFF

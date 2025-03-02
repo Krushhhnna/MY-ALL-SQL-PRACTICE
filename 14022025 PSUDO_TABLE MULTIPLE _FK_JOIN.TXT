@@ -1,0 +1,541 @@
+SQL> SHO USER
+USER is "KRUSHNA"
+SQL> SELECT *FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+DEPT                 TABLE                                                                                                                                                                              
+EMPLOYEES            TABLE                                                                                                                                                                              
+CUSTOMER             TABLE                                                                                                                                                                              
+ORDERS               TABLE                                                                                                                                                                              
+SUB                  TABLE                                                                                                                                                                              
+O_BILL               TABLE                                                                                                                                                                              
+COURSE               TABLE                                                                                                                                                                              
+STUDENT              TABLE                                                                                                                                                                              
+PLACEMENT            TABLE                                                                                                                                                                              
+SUBJECTS             TABLE                                                                                                                                                                              
+COURSES              TABLE                                                                                                                                                                              
+
+14 rows selected.
+
+SQL> SELECT * FROM SUBJECTS;
+
+       SID SNMAE                                                                                                                                                                                        
+---------- --------------------                                                                                                                                                                         
+         1 SQL                                                                                                                                                                                          
+         2 PL_SQL                                                                                                                                                                                       
+         3 LINUX                                                                                                                                                                                        
+         4 DBA                                                                                                                                                                                          
+         5 RAC                                                                                                                                                                                          
+         6 DATA_GUARD                                                                                                                                                                                   
+         7 GOLDAN_GATE                                                                                                                                                                                  
+         8 PYTHON                                                                                                                                                                                       
+         9 JAVA                                                                                                                                                                                         
+        10 POWER BI                                                                                                                                                                                     
+        11 DEVOPS                                                                                                                                                                                       
+
+11 rows selected.
+
+SQL> SELECT *FROM COURSES;
+
+no rows selected
+
+SQL> DESC COURSES
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ CID                                                                                                               NOT NULL NUMBER(3)
+ CNAME                                                                                                                      VARCHAR2(20)
+ DURATION                                                                                                                   NUMBER(3)
+ FEES                                                                                                                       VARCHAR2(10)
+ SID1                                                                                                                       NUMBER(2)
+ SID2                                                                                                                       NUMBER(2)
+ SID3                                                                                                                       NUMBER(2)
+
+SQL> INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('&NAME',&COURSEID,'&FEE',&DAYS,&S3,&S2,&S1);
+Enter value for name: DB_BASICS
+Enter value for courseid: 101
+Enter value for fee: 5000
+Enter value for days: 20
+Enter value for s3: NULL
+Enter value for s2: ''
+Enter value for s1: 1
+old   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('&NAME',&COURSEID,'&FEE',&DAYS,&S3,&S2,&S1)
+new   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('DB_BASICS',101,'5000',20,NULL,'',1)
+
+1 row created.
+
+SQL> /
+Enter value for name: DB_DEV
+Enter value for courseid: 102
+Enter value for fee: 8000
+Enter value for days: 30
+Enter value for s3: NULL
+Enter value for s2: 2
+Enter value for s1: 1
+old   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('&NAME',&COURSEID,'&FEE',&DAYS,&S3,&S2,&S1)
+new   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('DB_DEV',102,'8000',30,NULL,2,1)
+
+1 row created.
+
+SQL> /
+Enter value for name: DBA
+Enter value for courseid: 103
+Enter value for fee: 15000
+Enter value for days: 60
+Enter value for s3: 4
+Enter value for s2: 3
+Enter value for s1: 1
+old   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('&NAME',&COURSEID,'&FEE',&DAYS,&S3,&S2,&S1)
+new   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('DBA',103,'15000',60,4,3,1)
+
+1 row created.
+
+SQL> /
+Enter value for name: ADV_DBA
+Enter value for courseid: 104
+Enter value for fee: 20000
+Enter value for days: 45
+Enter value for s3: 7
+Enter value for s2: 6
+Enter value for s1: 5
+old   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('&NAME',&COURSEID,'&FEE',&DAYS,&S3,&S2,&S1)
+new   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('ADV_DBA',104,'20000',45,7,6,5)
+
+1 row created.
+
+SQL> /
+Enter value for name: 
+Enter value for courseid: 
+Enter value for fee: 
+Enter value for days: 
+Enter value for s3: 
+Enter value for s2: 
+Enter value for s1: 
+old   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('&NAME',&COURSEID,'&FEE',&DAYS,&S3,&S2,&S1)
+new   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('',,'',,,,)
+INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('',,'',,,,)
+                                                                      *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> /
+Enter value for name: DATA_ANALYTICS
+Enter value for courseid: 105
+Enter value for fee: 40000
+Enter value for days: 180
+Enter value for s3: 10
+Enter value for s2: 8
+Enter value for s1: 1
+old   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('&NAME',&COURSEID,'&FEE',&DAYS,&S3,&S2,&S1)
+new   1: INSERT INTO COURSES(CNAME,CID,FEES,DURATION,SID3,SID2,SID1) VALUES('DATA_ANALYTICS',105,'40000',180,10,8,1)
+
+1 row created.
+
+SQL> COMMIT;\
+  2  
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CLEAR
+SQL> 
+SQL> CLEAR
+SQL> SELECT CID,CNAME,DURATION,FEES,SID1,SNAME FROM COURSES , SUBJECTS
+  2  WHERE SID1=SID ;
+SELECT CID,CNAME,DURATION,FEES,SID1,SNAME FROM COURSES , SUBJECTS
+                                    *
+ERROR at line 1:
+ORA-00904: "SNAME": invalid identifier 
+
+
+SQL> DESC SUBJECTS
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ SID                                                                                                               NOT NULL NUMBER(2)
+ SNMAE                                                                                                                      VARCHAR2(20)
+
+SQL> ALTER TABLE SUBJECTS RENAME SNMAE TO SNAME;
+ALTER TABLE SUBJECTS RENAME SNMAE TO SNAME
+                            *
+ERROR at line 1:
+ORA-14155: missing PARTITION, PARTITIONS, SUBPARTITION, or SUBPARTITIONS keyword 
+
+
+SQL> ALTER TABLE SUBJECTS RENAME COLUMN SNMAE TO SNAME;
+
+Table altered.
+
+SQL> DESC SUBJECTS
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ SID                                                                                                               NOT NULL NUMBER(2)
+ SNAME                                                                                                                      VARCHAR2(20)
+
+SQL> SELECT CID,CNAME,DURATION,FEES,SID1,SNAME FROM COURSES , SUBJECTS
+  2  WHERE SID1=SID ;
+
+       CID CNAME                  DURATION FEES             SID1 SNAME                                                                                                                                  
+---------- -------------------- ---------- ---------- ---------- --------------------                                                                                                                   
+       101 DB_BASICS                    20 5000                1 SQL                                                                                                                                    
+       102 DB_DEV                       30 8000                1 SQL                                                                                                                                    
+       103 DBA                          60 15000               1 SQL                                                                                                                                    
+       105 DATA_ANALYTICS              180 40000               1 SQL                                                                                                                                    
+       104 ADV_DBA                      45 20000               5 RAC                                                                                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,SID2,SNAME FROM COURSES , SUBJECTS
+  2* WHERE SID2=SID 
+SQL> /
+
+       CID CNAME                  DURATION FEES             SID2 SNAME                                                                                                                                  
+---------- -------------------- ---------- ---------- ---------- --------------------                                                                                                                   
+       102 DB_DEV                       30 8000                2 PL_SQL                                                                                                                                 
+       103 DBA                          60 15000               3 LINUX                                                                                                                                  
+       104 ADV_DBA                      45 20000               6 DATA_GUARD                                                                                                                             
+       105 DATA_ANALYTICS              180 40000               8 PYTHON                                                                                                                                 
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,SID2,SNAME FROM COURSES , SUBJECTS
+  2* WHERE SID2=SID(+)
+SQL> /
+
+       CID CNAME                  DURATION FEES             SID2 SNAME                                                                                                                                  
+---------- -------------------- ---------- ---------- ---------- --------------------                                                                                                                   
+       102 DB_DEV                       30 8000                2 PL_SQL                                                                                                                                 
+       103 DBA                          60 15000               3 LINUX                                                                                                                                  
+       104 ADV_DBA                      45 20000               6 DATA_GUARD                                                                                                                             
+       105 DATA_ANALYTICS              180 40000               8 PYTHON                                                                                                                                 
+       101 DB_BASICS                    20 5000                                                                                                                                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,SID3,SNAME SUBJECT3 FROM COURSES , SUBJECTS
+  2* WHERE SID3=SID
+SQL> /
+
+       CID CNAME                  DURATION FEES             SID3 SUBJECT3                                                                                                                               
+---------- -------------------- ---------- ---------- ---------- --------------------                                                                                                                   
+       103 DBA                          60 15000               4 DBA                                                                                                                                    
+       104 ADV_DBA                      45 20000               7 GOLDAN_GATE                                                                                                                            
+       105 DATA_ANALYTICS              180 40000              10 POWER BI                                                                                                                               
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,SID3,SNAME SUBJECT3 FROM COURSES , SUBJECTS
+  2* WHERE SID3=SID(+)
+SQL> /
+
+       CID CNAME                  DURATION FEES             SID3 SUBJECT3                                                                                                                               
+---------- -------------------- ---------- ---------- ---------- --------------------                                                                                                                   
+       101 DB_BASICS                    20 5000                                                                                                                                                         
+       102 DB_DEV                       30 8000                                                                                                                                                         
+       103 DBA                          60 15000               4 DBA                                                                                                                                    
+       104 ADV_DBA                      45 20000               7 GOLDAN_GATE                                                                                                                            
+       105 DATA_ANALYTICS              180 40000              10 POWER BI                                                                                                                               
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,SID3,NVL(SNAME,'NA') SUBJECT3 FROM COURSES , SUBJECTS
+  2* WHERE SID3=SID(+)
+SQL> /
+
+       CID CNAME                  DURATION FEES             SID3 SUBJECT3                                                                                                                               
+---------- -------------------- ---------- ---------- ---------- --------------------                                                                                                                   
+       101 DB_BASICS                    20 5000                  NA                                                                                                                                     
+       102 DB_DEV                       30 8000                  NA                                                                                                                                     
+       103 DBA                          60 15000               4 DBA                                                                                                                                    
+       104 ADV_DBA                      45 20000               7 GOLDAN_GATE                                                                                                                            
+       105 DATA_ANALYTICS              180 40000              10 POWER BI                                                                                                                               
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,TO_CHAR(SID3),NVL(SNAME,'NA') SUBJECT3 FROM COURSES , SUBJECTS
+  2* WHERE SID3=SID(+)
+SQL> /
+
+       CID CNAME                  DURATION FEES       TO_CHAR(SID3)                            SUBJECT3                                                                                                 
+---------- -------------------- ---------- ---------- ---------------------------------------- --------------------                                                                                     
+       101 DB_BASICS                    20 5000                                                NA                                                                                                       
+       102 DB_DEV                       30 8000                                                NA                                                                                                       
+       103 DBA                          60 15000      4                                        DBA                                                                                                      
+       104 ADV_DBA                      45 20000      7                                        GOLDAN_GATE                                                                                              
+       105 DATA_ANALYTICS              180 40000      10                                       POWER BI                                                                                                 
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,NVL(TO_CHAR(SID3),'NV') SID3,NVL(SNAME,'NA') SUBJECT3 FROM COURSES , SUBJECTS
+  2* WHERE SID3=SID(+)
+SQL> /
+
+       CID CNAME                  DURATION FEES       SID3                                     SUBJECT3                                                                                                 
+---------- -------------------- ---------- ---------- ---------------------------------------- --------------------                                                                                     
+       101 DB_BASICS                    20 5000       NV                                       NA                                                                                                       
+       102 DB_DEV                       30 8000       NV                                       NA                                                                                                       
+       103 DBA                          60 15000      4                                        DBA                                                                                                      
+       104 ADV_DBA                      45 20000      7                                        GOLDAN_GATE                                                                                              
+       105 DATA_ANALYTICS              180 40000      10                                       POWER BI                                                                                                 
+
+SQL> 
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,   NVL(TO_CHAR(SID1),'NV') SID1,NVL(SNAME,'NA') SUBJECT1,  NVL(TO_CHAR(SID2),'NV') SID2,NVL(SNAME,'NA') SUBJECT2,  NVL(TO_CHAR(SID3),'NV') SID3,  NVL(SNAME,'NA') SUBJECT3 
+  2  FROM COURSES , SUBJECTS
+  3* WHERE SID1=SID(+) AND SID2=SID(+) AND SID3=SID(+)
+SQL> /
+
+       CID CNAME                  DURATION FEES       SID1                                     SUBJECT1             SID2                                     SUBJECT2                                   
+---------- -------------------- ---------- ---------- ---------------------------------------- -------------------- ---------------------------------------- --------------------                       
+SID3                                     SUBJECT3                                                                                                                                                       
+---------------------------------------- --------------------                                                                                                                                           
+       101 DB_BASICS                    20 5000       1                                        NA                   NV                                       NA                                         
+NV                                       NA                                                                                                                                                             
+                                                                                                                                                                                                        
+       102 DB_DEV                       30 8000       1                                        NA                   2                                        NA                                         
+NV                                       NA                                                                                                                                                             
+                                                                                                                                                                                                        
+       103 DBA                          60 15000      1                                        NA                   3                                        NA                                         
+4                                        NA                                                                                                                                                             
+                                                                                                                                                                                                        
+       104 ADV_DBA                      45 20000      5                                        NA                   6                                        NA                                         
+7                                        NA                                                                                                                                                             
+                                                                                                                                                                                                        
+       105 DATA_ANALYTICS              180 40000      1                                        NA                   8                                        NA                                         
+10                                       NA                                                                                                                                                             
+                                                                                                                                                                                                        
+
+SQL> COLUMN CNAME FORMAT A10
+SQL> COLUMN SUBJECT1 FORMAT A10
+SQL> COLUMN SUBJECT2 FORMAT A10
+SQL> COLUMN SUBJECT3 FORMAT A10
+SQL> /
+
+       CID CNAME        DURATION FEES       SID1                                     SUBJECT1   SID2                                     SUBJECT2   SID3                                     SUBJECT3   
+---------- ---------- ---------- ---------- ---------------------------------------- ---------- ---------------------------------------- ---------- ---------------------------------------- ---------- 
+       101 DB_BASICS          20 5000       1                                        NA         NV                                       NA         NV                                       NA         
+       102 DB_DEV             30 8000       1                                        NA         2                                        NA         NV                                       NA         
+       103 DBA                60 15000      1                                        NA         3                                        NA         4                                        NA         
+       104 ADV_DBA            45 20000      5                                        NA         6                                        NA         7                                        NA         
+       105 DATA_ANALY        180 40000      1                                        NA         8                                        NA         10                                       NA         
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+
+SQL> COLUMN SID3 FORMAT A10
+SQL> COLUMN SID2 FORMAT A5
+SQL> COLUMN SID1 FORMAT A5
+SQL> COLUMN SID3 FORMAT A5
+SQL> /
+
+       CID CNAME        DURATION FEES       SID1  SUBJECT1   SID2  SUBJECT2   SID3  SUBJECT3                                                                                                            
+---------- ---------- ---------- ---------- ----- ---------- ----- ---------- ----- ----------                                                                                                          
+       101 DB_BASICS          20 5000       1     NA         NV    NA         NV    NA                                                                                                                  
+       102 DB_DEV             30 8000       1     NA         2     NA         NV    NA                                                                                                                  
+       103 DBA                60 15000      1     NA         3     NA         4     NA                                                                                                                  
+       104 ADV_DBA            45 20000      5     NA         6     NA         7     NA                                                                                                                  
+       105 DATA_ANALY        180 40000      1     NA         8     NA         10    NA                                                                                                                  
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,   NVL(TO_CHAR(SID1),'NV') SID1, NVL(SNAME,'NA') SUBJECT1,  NVL(TO_CHAR(SID2),'NV') SID2, NVL(SNAME,'NA') SUBJECT2,  NVL(TO_CHAR(SID3),'NV') SID3,  NVL(SNAME,'NA') SUBJECT3 
+  2  FROM COURSES , SUBJECTS
+  3* WHERE SID1=SID(+) AND SID2=SID(+) AND SID3=SID(+)
+SQL> /
+
+       CID CNAME        DURATION FEES       SID1  SUBJECT1   SID2  SUBJECT2   SID3  SUBJECT3                                                                                                            
+---------- ---------- ---------- ---------- ----- ---------- ----- ---------- ----- ----------                                                                                                          
+       101 DB_BASICS          20 5000       1     NA         NV    NA         NV    NA                                                                                                                  
+       102 DB_DEV             30 8000       1     NA         2     NA         NV    NA                                                                                                                  
+       103 DBA                60 15000      1     NA         3     NA         4     NA                                                                                                                  
+       104 ADV_DBA            45 20000      5     NA         6     NA         7     NA                                                                                                                  
+       105 DATA_ANALY        180 40000      1     NA         8     NA         10    NA                                                                                                                  
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,   NVL(TO_CHAR(SID1),'NV') SID1, NVL(SNAME,'NA') SUBJECT1,  NVL(TO_CHAR(SID2),'NV') SID2, NVL(SNAME,'NA') SUBJECT2,  NVL(TO_CHAR(SID3),'NV') SID3,  NVL(SNAME,'NA') SUBJECT3 
+  2  FROM COURSES , SUBJECTS
+  3* WHERE SID1=SID(+) OR SID2=SID(+) OR SID3=SID(+)
+SQL> /
+WHERE SID1=SID(+) OR SID2=SID(+) OR SID3=SID(+)
+                                        *
+ERROR at line 3:
+ORA-01719: outer join operator (+) not allowed in operand of OR or IN 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,   NVL(TO_CHAR(SID1),'NV') SID1, NVL(SNAME,'NA') SUBJECT1,  NVL(TO_CHAR(SID2),'NV') SID2, NVL(SNAME,'NA') SUBJECT2,  NVL(TO_CHAR(SID3),'NV') SID3,  NVL(SNAME,'NA') SUBJECT3 
+  2  FROM COURSES , SUBJECTS
+  3* WHERE SID1=SID OR SID2=SID OR SID3=SID
+SQL> /
+
+       CID CNAME        DURATION FEES       SID1  SUBJECT1   SID2  SUBJECT2   SID3  SUBJECT3                                                                                                            
+---------- ---------- ---------- ---------- ----- ---------- ----- ---------- ----- ----------                                                                                                          
+       101 DB_BASICS          20 5000       1     SQL        NV    SQL        NV    SQL                                                                                                                 
+       102 DB_DEV             30 8000       1     SQL        2     SQL        NV    SQL                                                                                                                 
+       102 DB_DEV             30 8000       1     PL_SQL     2     PL_SQL     NV    PL_SQL                                                                                                              
+       103 DBA                60 15000      1     SQL        3     SQL        4     SQL                                                                                                                 
+       103 DBA                60 15000      1     LINUX      3     LINUX      4     LINUX                                                                                                               
+       103 DBA                60 15000      1     DBA        3     DBA        4     DBA                                                                                                                 
+       104 ADV_DBA            45 20000      5     RAC        6     RAC        7     RAC                                                                                                                 
+       104 ADV_DBA            45 20000      5     DATA_GUARD 6     DATA_GUARD 7     DATA_GUARD                                                                                                          
+       104 ADV_DBA            45 20000      5     GOLDAN_GAT 6     GOLDAN_GAT 7     GOLDAN_GAT                                                                                                          
+                                                  E                E                E                                                                                                                   
+                                                                                                                                                                                                        
+       105 DATA_ANALY        180 40000      1     SQL        8     SQL        10    SQL                                                                                                                 
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+       105 DATA_ANALY        180 40000      1     PYTHON     8     PYTHON     10    PYTHON                                                                                                              
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+       105 DATA_ANALY        180 40000      1     POWER BI   8     POWER BI   10    POWER BI                                                                                                            
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+
+12 rows selected.
+
+SQL> 
+SQL> A  ORDER BY 1
+  3* WHERE SID1=SID OR SID2=SID OR SID3=SID ORDER BY 1
+SQL> /
+
+       CID CNAME        DURATION FEES       SID1  SUBJECT1   SID2  SUBJECT2   SID3  SUBJECT3                                                                                                            
+---------- ---------- ---------- ---------- ----- ---------- ----- ---------- ----- ----------                                                                                                          
+       101 DB_BASICS          20 5000       1     SQL        NV    SQL        NV    SQL                                                                                                                 
+       102 DB_DEV             30 8000       1     SQL        2     SQL        NV    SQL                                                                                                                 
+       102 DB_DEV             30 8000       1     PL_SQL     2     PL_SQL     NV    PL_SQL                                                                                                              
+       103 DBA                60 15000      1     LINUX      3     LINUX      4     LINUX                                                                                                               
+       103 DBA                60 15000      1     SQL        3     SQL        4     SQL                                                                                                                 
+       103 DBA                60 15000      1     DBA        3     DBA        4     DBA                                                                                                                 
+       104 ADV_DBA            45 20000      5     RAC        6     RAC        7     RAC                                                                                                                 
+       104 ADV_DBA            45 20000      5     DATA_GUARD 6     DATA_GUARD 7     DATA_GUARD                                                                                                          
+       104 ADV_DBA            45 20000      5     GOLDAN_GAT 6     GOLDAN_GAT 7     GOLDAN_GAT                                                                                                          
+                                                  E                E                E                                                                                                                   
+                                                                                                                                                                                                        
+       105 DATA_ANALY        180 40000      1     SQL        8     SQL        10    SQL                                                                                                                 
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+       105 DATA_ANALY        180 40000      1     PYTHON     8     PYTHON     10    PYTHON                                                                                                              
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+       105 DATA_ANALY        180 40000      1     POWER BI   8     POWER BI   10    POWER BI                                                                                                            
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+
+12 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,   NVL(TO_CHAR(SID1),'NV') SID1, NVL(SNAME,'NA') SUBJECT1,  NVL(TO_CHAR(SID2),'NV') SID2, NVL(SNAME,'NA') SUBJECT2,  NVL(TO_CHAR(SID3),'NV') SID3,  NVL(SNAME,'NA') SUBJECT3 
+  2  FROM COURSES , SUBJECTS
+  3  WHERE SID1=SID AND SID2=SID AND SID3=SID 
+  4* ORDER BY 1
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,   NVL(TO_CHAR(SID1),'NA') SID1, NVL(S1.SNAME,'NA') SUBJECT1,  NVL(TO_CHAR(SID2),'NV') SID2, NVL(S2.SNAME,'NA') SUBJECT2,  NVL(TO_CHAR(SID3),'NV') SID3,  NVL(S3.SNAME,'NA') SUBJECT3 
+  2  FROM COURSES C, SUBJECTS S1, SUBJECTS S2, SUBJECTS S3
+  3  WHERE SID1=S1.SID AND SID2=S2.SID AND S3.SID3=SID 
+  4* ORDER BY 1
+SQL> /
+WHERE SID1=S1.SID AND SID2=S2.SID AND S3.SID3=SID 
+                                              *
+ERROR at line 3:
+ORA-00918: column ambiguously defined 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,   NVL(TO_CHAR(SID1),'NA') SID1, NVL(S1.SNAME,'NA') SUBJECT1,  NVL(TO_CHAR(SID2),'NV') SID2, NVL(S2.SNAME,'NA') SUBJECT2,  NVL(TO_CHAR(SID3),'NV') SID3,  NVL(S3.SNAME,'NA') SUBJECT3 
+  2  FROM COURSES C, SUBJECTS S1, SUBJECTS S2, SUBJECTS S3
+  3  WHERE SID1=S1.SID AND SID2=S2.SID AND SID3=S3.SID 
+  4* ORDER BY 1
+SQL> /
+
+       CID CNAME        DURATION FEES       SID1  SUBJECT1   SID2  SUBJECT2   SID3  SUBJECT3                                                                                                            
+---------- ---------- ---------- ---------- ----- ---------- ----- ---------- ----- ----------                                                                                                          
+       103 DBA                60 15000      1     SQL        3     LINUX      4     DBA                                                                                                                 
+       104 ADV_DBA            45 20000      5     RAC        6     DATA_GUARD 7     GOLDAN_GAT                                                                                                          
+                                                                                    E                                                                                                                   
+                                                                                                                                                                                                        
+       105 DATA_ANALY        180 40000      1     SQL        8     PYTHON     10    POWER BI                                                                                                            
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+
+SQL> SET LINESIZE 200
+SQL> /
+
+       CID CNAME        DURATION FEES       SID1  SUBJECT1   SID2  SUBJECT2   SID3  SUBJECT3                                                                                                            
+---------- ---------- ---------- ---------- ----- ---------- ----- ---------- ----- ----------                                                                                                          
+       103 DBA                60 15000      1     SQL        3     LINUX      4     DBA                                                                                                                 
+       104 ADV_DBA            45 20000      5     RAC        6     DATA_GUARD 7     GOLDAN_GAT                                                                                                          
+                                                                                    E                                                                                                                   
+                                                                                                                                                                                                        
+       105 DATA_ANALY        180 40000      1     SQL        8     PYTHON     10    POWER BI                                                                                                            
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+
+SQL> COLUMN SUBJECT3 FORMAT A15
+SQL> /
+
+       CID CNAME        DURATION FEES       SID1  SUBJECT1   SID2  SUBJECT2   SID3  SUBJECT3                                                                                                            
+---------- ---------- ---------- ---------- ----- ---------- ----- ---------- ----- ---------------                                                                                                     
+       103 DBA                60 15000      1     SQL        3     LINUX      4     DBA                                                                                                                 
+       104 ADV_DBA            45 20000      5     RAC        6     DATA_GUARD 7     GOLDAN_GATE                                                                                                         
+       105 DATA_ANALY        180 40000      1     SQL        8     PYTHON     10    POWER BI                                                                                                            
+           TICS                                                                                                                                                                                         
+                                                                                                                                                                                                        
+
+SQL> COLUMN CNAME FORMAT A15
+SQL> /
+
+       CID CNAME             DURATION FEES       SID1  SUBJECT1   SID2  SUBJECT2   SID3  SUBJECT3                                                                                                       
+---------- --------------- ---------- ---------- ----- ---------- ----- ---------- ----- ---------------                                                                                                
+       103 DBA                     60 15000      1     SQL        3     LINUX      4     DBA                                                                                                            
+       104 ADV_DBA                 45 20000      5     RAC        6     DATA_GUARD 7     GOLDAN_GATE                                                                                                    
+       105 DATA_ANALYTICS         180 40000      1     SQL        8     PYTHON     10    POWER BI                                                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CID,CNAME,DURATION,FEES,   NVL(TO_CHAR(SID1),'NA') SID1, NVL(S1.SNAME,'NA') SUBJECT1,  NVL(TO_CHAR(SID2),'NV') SID2, NVL(S2.SNAME,'NA') SUBJECT2,  NVL(TO_CHAR(SID3),'NV') SID3,  NVL(S3.SNAME,'NA') SUBJECT3 
+  2  FROM COURSES C, SUBJECTS S1, SUBJECTS S2, SUBJECTS S3
+  3  WHERE SID1=S1.SID(+) AND SID2=S2.SID(+) AND SID3=S3.SID(+) 
+  4* ORDER BY 1
+SQL> /
+
+       CID CNAME             DURATION FEES       SID1  SUBJECT1   SID2  SUBJECT2   SID3  SUBJECT3                                                                                                       
+---------- --------------- ---------- ---------- ----- ---------- ----- ---------- ----- ---------------                                                                                                
+       101 DB_BASICS               20 5000       1     SQL        NV    NA         NV    NA                                                                                                             
+       102 DB_DEV                  30 8000       1     SQL        2     PL_SQL     NV    NA                                                                                                             
+       103 DBA                     60 15000      1     SQL        3     LINUX      4     DBA                                                                                                            
+       104 ADV_DBA                 45 20000      5     RAC        6     DATA_GUARD 7     GOLDAN_GATE                                                                                                    
+       105 DATA_ANALYTICS         180 40000      1     SQL        8     PYTHON     10    POWER BI                                                                                                       
+
+SQL> SPOOL OFF

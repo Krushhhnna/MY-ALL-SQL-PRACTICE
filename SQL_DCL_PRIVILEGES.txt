@@ -1,0 +1,72 @@
+CMD1**
+SQL> conn system
+Enter password:
+Connected.
+
+SQL> CREATE USER KS IDENTIFIED BY KRISH123;
+
+User created.
+
+#ACCESS FOR CONNECT USER TO DATABASE.
+SQL> GRANT CONNECT TO KS;
+
+Grant succeeded.
+
+#ACCESS REMOVE FOR CONNECT USER TO DATABASE.
+SQL> REVOKE CONNECT FROM KS;
+
+Revoke succeeded.
+
+
+#ACCESS FRO SEE TABLE ON USER. 
+SQL> GRANT SELECT ON TABLE_NAME TO KS;
+
+Grant succeeded.
+
+#ACCES FOR UPDATE TABLE INFO TO USER.
+SQL> GRANT UPDATE ON TABLE_NAME TO KS;
+
+Grant succeeded.
+
+# ACCESS TO ALL WORK ON TABLE TO USER.
+SQL> GRANT ALL ON TABLE_NAME TO KS;
+
+Grant succeeded.
+
+#ACCESS TO SEE 1USER TABLE TO OTHER USER. 
+SQL> GRANT SELECT ON krushna.EMP TO KS;
+
+Grant succeeded.
+
+#ACCESS REMOVE FOR  SEE 1USER TABLE TO OTHER USER.
+SQL> REVOKE SELECT ON krushna.EMP FROM KS;
+
+Revoke succeeded.
+
+
+SQL> REVOKE DELETE ON TABLE_NAME FROM KS;
+
+Revoke succeeded.
+
+# ACCESS REMOVE ALL WORK ON TABLE TO USER.
+SQL> REVOKE ALL ON TABLE_NAME FROM KS;
+
+Revoke succeeded.
+
+CMD2**
+Enter user-name: KS
+Enter password:
+ERROR:
+ORA-01045: user KS lacks CREATE SESSION privilege; logon denied
+
+
+
+
+#AFTER GRANT1 :
+
+Enter user-name: KS
+Enter password:
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0

@@ -1,0 +1,306 @@
+SQL> SHO USER
+USER is "KRISH"
+SQL> @SCREEN
+
+SQL> *****---GENERATE A REPORT DATA TO SHOW STUDENT_ID,STUDENTS_NAME, 
+        PHONE NUMBER ,COURSES NAME, COURSES FEES, AND SUBJECT NAME.*******
+
+
+SQL> SELECT * FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID
+-------------------- ------------- ----------
+PLACEMENTS           TABLE
+FACULTY              TABLE
+STUDENTS             TABLE
+SUBJECTS             TABLE
+COURSES              TABLE
+BATCHES              TABLE
+
+6 rows selected.
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  2  FROM STUDENTS S, COURSES C,SUBJECTS SB1,SUBJECTS SB2,SUBJECTS SB3 , BATCHES B
+  3  WHERE SB1.SID = C.SID1 AND SB2.SID = C.SID2 AND SB3.SID = C.SID3(+) AND B_ID= BID(+)
+  4  GROUP BY STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  5* ORDER BY 1.
+SQL> DESC BATCHES;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ BID                                                                                                               NOT NULL NUMBER(4)
+ BNAME                                                                                                                      VARCHAR2(20)
+ START_DATE                                                                                                                 DATE
+ END_DATE                                                                                                                   DATE
+ CID                                                                                                                        NUMBER(3)
+ FID1                                                                                                                       NUMBER(4)
+ FID2                                                                                                                       NUMBER(4)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  2  FROM STUDENTS S, COURSES C,SUBJECTS SB1,SUBJECTS SB2,SUBJECTS SB3 , BATCHES B
+  3  WHERE SB1.SID = C.SID1 AND SB2.SID = C.SID2 AND SB3.SID = C.SID3(+) AND B_ID= BID(+) AND C.BID = B.CID
+  4  GROUP BY STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  5* ORDER BY 1.
+SQL> /
+WHERE SB1.SID = C.SID1 AND SB2.SID = C.SID2 AND SB3.SID = C.SID3(+) AND B_ID= BID(+) AND C.BID = B.CID
+                                                                                         *
+ERROR at line 3:
+ORA-00904: "C"."BID": invalid identifier
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  2  FROM STUDENTS S, COURSES C,SUBJECTS SB1,SUBJECTS SB2,SUBJECTS SB3 , BATCHES B
+  3  WHERE SB1.SID = C.SID1 AND SB2.SID = C.SID2 AND SB3.SID = C.SID3(+) AND B_ID= BID(+) AND C.BID = B.CID
+  4  GROUP BY STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  5* ORDER BY 1.
+SQL> DESC COURSES;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ CID                                                                                                               NOT NULL NUMBER(3)
+ CNAME                                                                                                                      VARCHAR2(20)
+ DURATION                                                                                                                   NUMBER(3)
+ FEES                                                                                                                       NUMBER(10)
+ SID1                                                                                                                       NUMBER(2)
+ SID2                                                                                                                       NUMBER(2)
+ SID3                                                                                                                       NUMBER(2)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  2  FROM STUDENTS S, COURSES C,SUBJECTS SB1,SUBJECTS SB2,SUBJECTS SB3 , BATCHES B
+  3  WHERE SB1.SID = C.SID1 AND SB2.SID = C.SID2 AND SB3.SID = C.SID3 AND B_ID= BID AND C.CID = B.CID
+  4  GROUP BY STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  5* ORDER BY 1.
+SQL> /   
+
+    STU_ID NAME                 PHONE      CNAME                      FEES SNAME                SNAME                SNAME
+---------- -------------------- ---------- -------------------- ---------- -------------------- -------------------- --------------------
+         1 RAJEEV KADAM         9545346787 DEVOPS                    12000 AWS BASICS           JENKINS              KUBERNETES/DOCKER
+         3 SAKSHI KAKDE         9876564533 DBA                       15000 SQL                  LINUX                DBA
+         4 YASH                 9889877856 JAVA FULL STACK           24999 CORE JAVA            ADV JAVA             UI MODULE
+         6 SAKSHI LANGOTE       8845689867 JAVA FULL STACK           24999 CORE JAVA            ADV JAVA             UI MODULE
+         8 OM LAKARE            9632785466 ADV DBA                   20000 RAC                  DATA GUARD           GOLDEN GATE
+        11 SURYAJI GAVHANE      9534786798 DBA                       15000 SQL                  LINUX                DBA
+        12 TANYA AGHAV          9843256798 DBA                       15000 SQL                  LINUX                DBA
+        13 SHRUTI DESHMUKH      9837675422 DATA ANALYTICS            45000 SQL                  PYTHON               POWER BI
+        14 RATIKSHA JADHAV      9834121212 DEVOPS                    12000 AWS BASICS           JENKINS              KUBERNETES/DOCKER
+        16 CHITANY GAVHANE      8809676767 DBA                       15000 SQL                  LINUX                DBA
+        17 YASH GADBIL          9987132536 DEVOPS                    12000 AWS BASICS           JENKINS              KUBERNETES/DOCKER
+        18 GAYTRI PARATE        9512123434 ADV DBA                   20000 RAC                  DATA GUARD           GOLDEN GATE
+        19 SAKSHI BHUJANG       8809565612 ADV DBA                   20000 RAC                  DATA GUARD           GOLDEN GATE
+        22 SANIKA DAFAL         8809787867 DBA                       15000 SQL                  LINUX                DBA
+        23 SEJAL PATIL          9567878790 DEVOPS                    12000 AWS BASICS           JENKINS              KUBERNETES/DOCKER
+        24 ANIKET JIVNE         9908564523 DATA ANALYTICS            45000 SQL                  PYTHON               POWER BI
+        25 SANTOSH HINGDE       8806745356 JAVA FULL STACK           24999 CORE JAVA            ADV JAVA             UI MODULE
+        27 RUCHA TOSHNIWAL      9912456745 ADV DBA                   20000 RAC                  DATA GUARD           GOLDEN GATE
+        28 BHASKAR PAWAR        7599094533 DBA                       15000 SQL                  LINUX                DBA
+        30 PRATIK BANSODE       8212331343 DATA ANALYTICS            45000 SQL                  PYTHON               POWER BI
+
+20 rows selected.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,NAME, S.PHONE,CNAME ,FEES,SB1.SNAME SUBJECT1,SB2.SNAME SUBJECT2, SB3.SNAME SUBJECT3
+  2  FROM STUDENTS S, COURSES C,SUBJECTS SB1,SUBJECTS SB2,SUBJECTS SB3 , BATCHES B
+  3  WHERE SB1.SID = C.SID1 AND SB2.SID = C.SID2 AND SB3.SID = C.SID3 AND B_ID= BID AND C.CID = B.CID
+  4  GROUP BY STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  5* ORDER BY 1.
+SQL> /
+
+    STU_ID NAME                 PHONE      CNAME                      FEES SUBJECT1             SUBJECT2             SUBJECT3
+---------- -------------------- ---------- -------------------- ---------- -------------------- -------------------- --------------------
+         1 RAJEEV KADAM         9545346787 DEVOPS                    12000 AWS BASICS           JENKINS              KUBERNETES/DOCKER
+         3 SAKSHI KAKDE         9876564533 DBA                       15000 SQL                  LINUX                DBA
+         4 YASH                 9889877856 JAVA FULL STACK           24999 CORE JAVA            ADV JAVA             UI MODULE
+         6 SAKSHI LANGOTE       8845689867 JAVA FULL STACK           24999 CORE JAVA            ADV JAVA             UI MODULE
+         8 OM LAKARE            9632785466 ADV DBA                   20000 RAC                  DATA GUARD           GOLDEN GATE
+        11 SURYAJI GAVHANE      9534786798 DBA                       15000 SQL                  LINUX                DBA
+        12 TANYA AGHAV          9843256798 DBA                       15000 SQL                  LINUX                DBA
+        13 SHRUTI DESHMUKH      9837675422 DATA ANALYTICS            45000 SQL                  PYTHON               POWER BI
+        14 RATIKSHA JADHAV      9834121212 DEVOPS                    12000 AWS BASICS           JENKINS              KUBERNETES/DOCKER
+        16 CHITANY GAVHANE      8809676767 DBA                       15000 SQL                  LINUX                DBA
+        17 YASH GADBIL          9987132536 DEVOPS                    12000 AWS BASICS           JENKINS              KUBERNETES/DOCKER
+        18 GAYTRI PARATE        9512123434 ADV DBA                   20000 RAC                  DATA GUARD           GOLDEN GATE
+        19 SAKSHI BHUJANG       8809565612 ADV DBA                   20000 RAC                  DATA GUARD           GOLDEN GATE
+        22 SANIKA DAFAL         8809787867 DBA                       15000 SQL                  LINUX                DBA
+        23 SEJAL PATIL          9567878790 DEVOPS                    12000 AWS BASICS           JENKINS              KUBERNETES/DOCKER
+        24 ANIKET JIVNE         9908564523 DATA ANALYTICS            45000 SQL                  PYTHON               POWER BI
+        25 SANTOSH HINGDE       8806745356 JAVA FULL STACK           24999 CORE JAVA            ADV JAVA             UI MODULE
+        27 RUCHA TOSHNIWAL      9912456745 ADV DBA                   20000 RAC                  DATA GUARD           GOLDEN GATE
+        28 BHASKAR PAWAR        7599094533 DBA                       15000 SQL                  LINUX                DBA
+        30 PRATIK BANSODE       8212331343 DATA ANALYTICS            45000 SQL                  PYTHON               POWER BI
+
+20 rows selected.
+
+SQL> COL STU_ID FORMAT 99
+SQL> COL SUBJECT1 FORMAT A15
+SQL> COL SUBJECT2 FORMAT A15
+SQL> COL SUBJECT3 FORMAT A20
+SQL> /
+
+STU_ID NAME                 PHONE      CNAME                      FEES SUBJECT1        SUBJECT2        SUBJECT3
+------ -------------------- ---------- -------------------- ---------- --------------- --------------- --------------------
+     1 RAJEEV KADAM         9545346787 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+     3 SAKSHI KAKDE         9876564533 DBA                       15000 SQL             LINUX           DBA
+     4 YASH                 9889877856 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+     6 SAKSHI LANGOTE       8845689867 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+     8 OM LAKARE            9632785466 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    11 SURYAJI GAVHANE      9534786798 DBA                       15000 SQL             LINUX           DBA
+    12 TANYA AGHAV          9843256798 DBA                       15000 SQL             LINUX           DBA
+    13 SHRUTI DESHMUKH      9837675422 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+    14 RATIKSHA JADHAV      9834121212 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    16 CHITANY GAVHANE      8809676767 DBA                       15000 SQL             LINUX           DBA
+    17 YASH GADBIL          9987132536 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    18 GAYTRI PARATE        9512123434 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    19 SAKSHI BHUJANG       8809565612 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    22 SANIKA DAFAL         8809787867 DBA                       15000 SQL             LINUX           DBA
+    23 SEJAL PATIL          9567878790 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    24 ANIKET JIVNE         9908564523 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+    25 SANTOSH HINGDE       8806745356 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+    27 RUCHA TOSHNIWAL      9912456745 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    28 BHASKAR PAWAR        7599094533 DBA                       15000 SQL             LINUX           DBA
+    30 PRATIK BANSODE       8212331343 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+
+20 rows selected.
+
+SQL>
+SQL>
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,NAME, S.PHONE,CNAME COURSES_NAME ,FEES,SB1.SNAME SUBJECT1,SB2.SNAME SUBJECT2, SB3.SNAME SUBJECT3
+  2  FROM STUDENTS S, COURSES C,SUBJECTS SB1,SUBJECTS SB2,SUBJECTS SB3 , BATCHES B
+  3  WHERE SB1.SID = C.SID1 AND SB2.SID = C.SID2 AND SB3.SID = C.SID3 AND B_ID= BID AND C.CID = B.CID
+  4  GROUP BY STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  5* ORDER BY 1.
+SQL> /
+
+STU_ID NAME                 PHONE      COURSES_NAME               FEES SUBJECT1        SUBJECT2        SUBJECT3
+------ -------------------- ---------- -------------------- ---------- --------------- --------------- --------------------
+     1 RAJEEV KADAM         9545346787 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+     3 SAKSHI KAKDE         9876564533 DBA                       15000 SQL             LINUX           DBA
+     4 YASH                 9889877856 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+     6 SAKSHI LANGOTE       8845689867 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+     8 OM LAKARE            9632785466 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    11 SURYAJI GAVHANE      9534786798 DBA                       15000 SQL             LINUX           DBA
+    12 TANYA AGHAV          9843256798 DBA                       15000 SQL             LINUX           DBA
+    13 SHRUTI DESHMUKH      9837675422 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+    14 RATIKSHA JADHAV      9834121212 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    16 CHITANY GAVHANE      8809676767 DBA                       15000 SQL             LINUX           DBA
+    17 YASH GADBIL          9987132536 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    18 GAYTRI PARATE        9512123434 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    19 SAKSHI BHUJANG       8809565612 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    22 SANIKA DAFAL         8809787867 DBA                       15000 SQL             LINUX           DBA
+    23 SEJAL PATIL          9567878790 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    24 ANIKET JIVNE         9908564523 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+    25 SANTOSH HINGDE       8806745356 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+    27 RUCHA TOSHNIWAL      9912456745 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    28 BHASKAR PAWAR        7599094533 DBA                       15000 SQL             LINUX           DBA
+    30 PRATIK BANSODE       8212331343 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+
+20 rows selected.
+
+SQL>
+SQL>
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,NAME, S.PHONE,CNAME COURSES_NAME ,FEES,SB1.SNAME SUBJECT1,SB2.SNAME SUBJECT2, SB3.SNAME SUBJECT3
+  2  FROM STUDENTS S, COURSES C,SUBJECTS SB1,SUBJECTS SB2,SUBJECTS SB3 , BATCHES B
+  3  WHERE SB1.SID(+) = C.SID1 AND SB2.SID(+) = C.SID2 AND SB3.SID(+) = C.SID3 AND B_ID= BID AND C.CID = B.CID
+  4  GROUP BY STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  5* ORDER BY 1.
+SQL> /
+
+STU_ID NAME                 PHONE      COURSES_NAME               FEES SUBJECT1        SUBJECT2        SUBJECT3
+------ -------------------- ---------- -------------------- ---------- --------------- --------------- --------------------
+     1 RAJEEV KADAM         9545346787 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+     2 KRUSHNA SONALKAR     8806766413 DB BASICS                  5000 SQL
+     3 SAKSHI KAKDE         9876564533 DBA                       15000 SQL             LINUX           DBA
+     4 YASH                 9889877856 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+     5 YOGIRAJ SWAMI        8512345676 DB BASICS                  5000 SQL
+     6 SAKSHI LANGOTE       8845689867 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+     7 OM LAHAMGE           9846789034 DB DEVLOPMENT              8000 SQL             PL SQL
+     8 OM LAKARE            9632785466 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+     9 DHANSHREE BUJBAL     9523676666 DB BASICS                  5000 SQL
+    10 SIDHII PATIL         9635679856 DB DEVLOPMENT              8000 SQL             PL SQL
+    11 SURYAJI GAVHANE      9534786798 DBA                       15000 SQL             LINUX           DBA
+    12 TANYA AGHAV          9843256798 DBA                       15000 SQL             LINUX           DBA
+    13 SHRUTI DESHMUKH      9837675422 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+    14 RATIKSHA JADHAV      9834121212 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    15 RUSHIKESH DURGE      8080710082 DB BASICS                  5000 SQL
+    16 CHITANY GAVHANE      8809676767 DBA                       15000 SQL             LINUX           DBA
+    17 YASH GADBIL          9987132536 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    18 GAYTRI PARATE        9512123434 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    19 SAKSHI BHUJANG       8809565612 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    20 SIDDHESH NANAWARE    9524141414 DB DEVLOPMENT              8000 SQL             PL SQL
+    21 UTKARSH KADAM        8798676767 DB BASICS                  5000 SQL
+    22 SANIKA DAFAL         8809787867 DBA                       15000 SQL             LINUX           DBA
+    23 SEJAL PATIL          9567878790 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    24 ANIKET JIVNE         9908564523 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+    25 SANTOSH HINGDE       8806745356 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+    26 JAYSHREE KARVE       9512131111 DB BASICS                  5000 SQL
+    27 RUCHA TOSHNIWAL      9912456745 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    28 BHASKAR PAWAR        7599094533 DBA                       15000 SQL             LINUX           DBA
+    29 DHIRAJ GANGASAGER    8080710082 DB BASICS                  5000 SQL
+    30 PRATIK BANSODE       8212331343 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+
+30 rows selected.
+
+SQL>
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT STU_ID,NAME, S.PHONE,CNAME COURSES_NAME ,FEES,SB1.SNAME SUBJECT1,NVL(SB2.SNAME,'--') SUBJECT2, NVL(SB3.SNAME,'--') SUBJECT3
+  2  FROM STUDENTS S, COURSES C,SUBJECTS SB1,SUBJECTS SB2,SUBJECTS SB3 , BATCHES B
+  3  WHERE SB1.SID(+) = C.SID1 AND SB2.SID(+) = C.SID2 AND SB3.SID(+) = C.SID3 AND B_ID= BID AND C.CID = B.CID
+  4  GROUP BY STU_ID,NAME, S.PHONE,CNAME,FEES,SB1.SNAME,SB2.SNAME, SB3.SNAME
+  5* ORDER BY 1.
+SQL> /
+
+STU_ID NAME                 PHONE      COURSES_NAME               FEES SUBJECT1        SUBJECT2        SUBJECT3
+------ -------------------- ---------- -------------------- ---------- --------------- --------------- --------------------
+     1 RAJEEV KADAM         9545346787 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+     2 KRUSHNA SONALKAR     8806766413 DB BASICS                  5000 SQL             --              --
+     3 SAKSHI KAKDE         9876564533 DBA                       15000 SQL             LINUX           DBA
+     4 YASH                 9889877856 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+     5 YOGIRAJ SWAMI        8512345676 DB BASICS                  5000 SQL             --              --
+     6 SAKSHI LANGOTE       8845689867 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+     7 OM LAHAMGE           9846789034 DB DEVLOPMENT              8000 SQL             PL SQL          --
+     8 OM LAKARE            9632785466 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+     9 DHANSHREE BUJBAL     9523676666 DB BASICS                  5000 SQL             --              --
+    10 SIDHII PATIL         9635679856 DB DEVLOPMENT              8000 SQL             PL SQL          --
+    11 SURYAJI GAVHANE      9534786798 DBA                       15000 SQL             LINUX           DBA
+    12 TANYA AGHAV          9843256798 DBA                       15000 SQL             LINUX           DBA
+    13 SHRUTI DESHMUKH      9837675422 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+    14 RATIKSHA JADHAV      9834121212 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    15 RUSHIKESH DURGE      8080710082 DB BASICS                  5000 SQL             --              --
+    16 CHITANY GAVHANE      8809676767 DBA                       15000 SQL             LINUX           DBA
+    17 YASH GADBIL          9987132536 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    18 GAYTRI PARATE        9512123434 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    19 SAKSHI BHUJANG       8809565612 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    20 SIDDHESH NANAWARE    9524141414 DB DEVLOPMENT              8000 SQL             PL SQL          --
+    21 UTKARSH KADAM        8798676767 DB BASICS                  5000 SQL             --              --
+    22 SANIKA DAFAL         8809787867 DBA                       15000 SQL             LINUX           DBA
+    23 SEJAL PATIL          9567878790 DEVOPS                    12000 AWS BASICS      JENKINS         KUBERNETES/DOCKER
+    24 ANIKET JIVNE         9908564523 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+    25 SANTOSH HINGDE       8806745356 JAVA FULL STACK           24999 CORE JAVA       ADV JAVA        UI MODULE
+    26 JAYSHREE KARVE       9512131111 DB BASICS                  5000 SQL             --              --
+    27 RUCHA TOSHNIWAL      9912456745 ADV DBA                   20000 RAC             DATA GUARD      GOLDEN GATE
+    28 BHASKAR PAWAR        7599094533 DBA                       15000 SQL             LINUX           DBA
+    29 DHIRAJ GANGASAGER    8080710082 DB BASICS                  5000 SQL             --              --
+    30 PRATIK BANSODE       8212331343 DATA ANALYTICS            45000 SQL             PYTHON          POWER BI
+
+30 rows selected.
+
+SQL>

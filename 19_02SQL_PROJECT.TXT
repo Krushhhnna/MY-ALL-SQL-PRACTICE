@@ -1,0 +1,747 @@
+SQL> SHO USER
+USER is "KRISH"
+SQL> @SCREEN;
+SQL> SELECT * FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+PLACEMENTS           TABLE                                                                                                                                                                              
+STUDENTS             TABLE                                                                                                                                                                              
+SUBJECTS             TABLE                                                                                                                                                                              
+COURSES              TABLE                                                                                                                                                                              
+BATCHES              TABLE                                                                                                                                                                              
+
+SQL> SELECT * FROM STUDENTS;
+
+    STU_ID NAME                 GENDER  DOB       PHONE      EMAIL                      B_ID QUELIFICAT                                                                                                 
+---------- -------------------- ------- --------- ---------- -------------------- ---------- ----------                                                                                                 
+         1 RAJEEV KADAM         MALE    12-FEB-00 9545346787 rajeev123@gmail.com          80 BSC(CS)                                                                                                    
+         2 KRUSHNA SONALKAR     MALE    06-APR-03 8806766413 krushna88@gmail.com          10 BCA                                                                                                        
+         3 SAKSHI KAKDE         FEMALE  13-OCT-03 9876564533 sakshii@gmail.com            30 B.TECH                                                                                                     
+         4 YASH                 MALE    09-DEC-02 9889877856 yashdeore@gmail.com          60 MCA                                                                                                        
+         5 YOGIRAJ SWAMI        MALE    07-APR-03 8512345676 yogi99@gmail.com            100 MSC(CS)                                                                                                    
+         6 SAKSHI LANGOTE       FEMALE  23-NOV-04 8845689867 langotes@gmail.com           60 B.TECH                                                                                                     
+         7 OM LAHAMGE           MALE    17-JAN-01 9846789034 om17@gmail.com               20 BCA                                                                                                        
+         8 OM LAKARE            MALE    02-JUN-01 9632785466 lakareom@gmail.com           40 MBA                                                                                                        
+         9 DHANSHREE BUJBAL     FEMALE  24-JAN-03 9523676666 dhanu0604@gmail.com          10 BCA                                                                                                        
+        10 SIDHII PATIL         FEMALE  12-OCT-04 9635679856 patilsidhi@gmail.com         20 BSC(CS)                                                                                                    
+        11 SURYAJI GAVHANE      MALE    27-DEC-02 9534786798 surya@gmail.com              50 BSC(CS)                                                                                                    
+        12 TANYA AGHAV          FEMALE  29-DEC-03 9843256798 tanuu12@gmail.com            50 BCA                                                                                                        
+        13 SHRUTI DESHMUKH      FEMALE  30-MAY-04 9837675422 shruuti123@gamil.com         70 MCA                                                                                                        
+        14 RATIKSHA JADHAV      FEMALE  06-SEP-02 9834121212 pratuu@gmail.com             90 B.TECH                                                                                                     
+        15 RUSHIKESH DURGE      MALE    09-JUL-00 8080710082 rushid@gmail.com            100 BCA                                                                                                        
+        16 CHITANY GAVHANE      MALE    15-JAN-06 8809676767 chitany@gmail.com            30 B.TECH                                                                                                     
+        17 YASH GADBIL          MALE    22-OCT-04 9987132536 yash@gmail.com               90 BCA                                                                                                        
+        18 GAYTRI PARATE        FEMALE  06-MAR-08 9512123434 gayatri@gmail.com            40 MSC(CS)                                                                                                    
+        19 SAKSHI BHUJANG       FEMALE  26-NOV-04 8809565612 sakshibhu@gami.com           40 BSC(CS)                                                                                                    
+        20 SIDDHESH NANAWARE    MALE    19-JUN-01 9524141414 sidd96@gmail.com             20 B.TECH                                                                                                     
+        21 UTKARSH KADAM        MALE    12-JUL-04 8798676767 utt@gmail.com                10 BSC(CS)                                                                                                    
+        22 SANIKA DAFAL         FEMALE  03-JAN-03 8809787867 sanika12@gmail.com           30 MCA                                                                                                        
+        23 SEJAL PATIL          FEMALE  29-DEC-02 9567878790 patil99@gmail.com            90 MSC(CS)                                                                                                    
+        24 ANIKET JIVNE         MALE    19-OCT-05 9908564523 aniket45@gmail.com           70 B.COM                                                                                                      
+        25 SANTOSH HINGDE       MALE    23-MAR-03 8806745356 santu07@gmail.com            60 BSC(MATH)                                                                                                  
+        26 JAYSHREE KARVE       FEMALE  02-NOV-03 9512131111 karvejayu@gmail.com;         10 B.TECH(CS)                                                                                                 
+        27 RUCHA TOSHNIWAL      FEMALE  13-APR-02 9912456745 rucha1212@gmail.com          40 B.TECH(CS)                                                                                                 
+        28 BHASKAR PAWAR        MALE    31-OCT-06 7599094533 patilbask@gmail.com          50 BCA                                                                                                        
+        29 DHIRAJ GANGASAGER    MALE    09-SEP-01 8080710082 dhiraj80@gmail.com          100 BA                                                                                                         
+        30 PRATIK BANSODE       MALE    27-NOV-02 8212331343 bansodep@gmail.com           70 MCA                                                                                                        
+
+30 rows selected.
+
+SQL> CREATE TABLE FACULTY(FID NUMBER(4),FNAME VARCHAR2(15), PHONE VARCHAR2(15),QUELIFICATION VARCHAR2(15),SID1 NUMBER(2),SID2 NUMBER(2),
+  2  CONSTRAINT PK_FACULTY PRIMARY KEY(FID), CONSTRAINT FK_SID1 FOREIGN KEY(SID1) REFERENCES SUBJECTS(SID),CONSTRAINT FK_SID2 FOREIGN KEY(SID2) REFERENCES SUBJECTS(SID),.
+  3  .
+SQL> CREATE TABLE FACULTY(FID NUMBER(4),FNAME VARCHAR2(15), PHONE VARCHAR2(15),QUELIFICATION VARCHAR2(15),SID1 NUMBER(2),SID2 NUMBER(2),
+  2  CONSTRAINT PK_FACULTY PRIMARY KEY(FID), U_PHONE UNIQUE(PHONE),
+  3  CONSTRAINT FK_SID1 FOREIGN KEY(SID1) REFERENCES SUBJECTS(SID), CONSTRAINT FK_SID2 FOREIGN KEY(SID2) REFERENCES SUBJECTS(SID) );
+CONSTRAINT PK_FACULTY PRIMARY KEY(FID), U_PHONE UNIQUE(PHONE),
+                                                      *
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE FACULTY(FID NUMBER(4),FNAME VARCHAR2(15), PHONE VARCHAR2(15), QUELIFICATION VARCHAR2(15), SID1 NUMBER(2), SID2 NUMBER(2),
+  2  CONSTRAINT PK_FACULTY PRIMARY KEY(FID), UNIQUE_PHONE UNIQUE(PHONE),
+  3* CONSTRAINT FK_SID1 FOREIGN KEY(SID1) REFERENCES SUBJECTS(SID), CONSTRAINT FK_SID2 FOREIGN KEY(SID2) REFERENCES SUBJECTS(SID) )
+SQL> /
+CONSTRAINT PK_FACULTY PRIMARY KEY(FID), UNIQUE_PHONE UNIQUE(PHONE),
+                                                           *
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE FACULTY(FID NUMBER(4),FNAME VARCHAR2(15), PHONE VARCHAR2(15), QUELIFICATION VARCHAR2(15), SID1 NUMBER(2), SID2 NUMBER(2),
+  2  CONSTRAINT PK_FACULTY PRIMARY KEY(FID), CONSTRAINT UNIQUE_PHONE UNIQUE(PHONE),
+  3* CONSTRAINT FK_SID1 FOREIGN KEY(SID1) REFERENCES SUBJECTS(SID), CONSTRAINT FK_SID2 FOREIGN KEY(SID2) REFERENCES SUBJECTS(SID) )
+SQL> /
+CONSTRAINT FK_SID1 FOREIGN KEY(SID1) REFERENCES SUBJECTS(SID), CONSTRAINT FK_SID2 FOREIGN KEY(SID2) REFERENCES SUBJECTS(SID) )
+           *
+ERROR at line 3:
+ORA-02264: name already used by an existing constraint 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE FACULTY(FID NUMBER(4),FNAME VARCHAR2(15), PHONE VARCHAR2(15), QUELIFICATION VARCHAR2(15), FSID1 NUMBER(2), FSID2 NUMBER(2),
+  2  CONSTRAINT PK_FACULTY PRIMARY KEY(FID), CONSTRAINT UNIQUE_PHONE UNIQUE(PHONE),
+  3* CONSTRAINT FK_FSID1 FOREIGN KEY(FSID1) REFERENCES SUBJECTS(SID), CONSTRAINT FK_FSID2 FOREIGN KEY(FSID2) REFERENCES SUBJECTS(SID) )
+SQL> /
+
+Table created.
+
+SQL> SELECT * FROM FACULTY;
+
+no rows selected
+
+SQL> INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2);
+Enter value for fid: 1111
+Enter value for fname: RAMAKRISHNA SIR
+Enter value for phone: 9806781212
+Enter value for que: M.TECH(CS)
+Enter value for id1: 1
+Enter value for id2: 4
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(1111,'RAMAKRISHNA SIR','9806781212','M.TECH(CS)',1,4)
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM FACULTY;
+
+       FID FNAME           PHONE           QUELIFICATION        FSID1      FSID2                                                                                                                        
+---------- --------------- --------------- --------------- ---------- ----------                                                                                                                        
+      1111 RAMAKRISHNA SIR 9806781212      M.TECH(CS)               1          4                                                                                                                        
+
+SQL> INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2);
+Enter value for fid: 2222
+Enter value for fname: KULKARNI SIR
+Enter value for phone: 9933456565
+Enter value for que: PHD(CS)
+Enter value for id1: 2
+Enter value for id2: 
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(2222,'KULKARNI SIR','9933456565','PHD(CS)',2,)
+INSERT INTO FACULTY VALUES(2222,'KULKARNI SIR','9933456565','PHD(CS)',2,)
+                                                                        *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT * FROM SUBJECTS;
+
+       SID SNAME                                                                                                                                                                                        
+---------- --------------------                                                                                                                                                                         
+         1 SQL                                                                                                                                                                                          
+         2 PL SQL                                                                                                                                                                                       
+         3 LINUX                                                                                                                                                                                        
+         4 DBA                                                                                                                                                                                          
+         5 RAC                                                                                                                                                                                          
+         6 DATA GUARD                                                                                                                                                                                   
+         7 GOLDEN GATE                                                                                                                                                                                  
+         8 PYTHON                                                                                                                                                                                       
+         9 POWER BI                                                                                                                                                                                     
+        10 CORE JAVA                                                                                                                                                                                    
+        11 ADV JAVA                                                                                                                                                                                     
+        12 UI MODULE                                                                                                                                                                                    
+        13 AWS BASICS                                                                                                                                                                                   
+        14 JENKINS                                                                                                                                                                                      
+        15 KUBERNETES/DOCKER                                                                                                                                                                            
+
+15 rows selected.
+
+SQL> INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2);
+Enter value for fid: 2222
+Enter value for fname: KULKARNI SIR
+Enter value for phone: 9933456565
+Enter value for que: PHD(CS)
+Enter value for id1: 8
+Enter value for id2: 13
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(2222,'KULKARNI SIR','9933456565','PHD(CS)',8,13)
+
+1 row created.
+
+SQL> /
+Enter value for fid: 3333
+Enter value for fname: M.S DESHMUKH MAM  
+Enter value for phone: 88067666641
+Enter value for que: MSC(CS)
+Enter value for id1: 2
+Enter value for id2: ''
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(3333,'M.S DESHMUKH MAM  ','88067666641','MSC(CS)',2,'')
+INSERT INTO FACULTY VALUES(3333,'M.S DESHMUKH MAM  ','88067666641','MSC(CS)',2,'')
+                                *
+ERROR at line 1:
+ORA-12899: value too large for column "KRISH"."FACULTY"."FNAME" (actual: 18, maximum: 15) 
+
+
+SQL> ALTER TEBALE FACULTY
+  2  MODIFY COLUMN FNAME (VARCHAR2(20));
+ALTER TEBALE FACULTY
+      *
+ERROR at line 1:
+ORA-00940: invalid ALTER command 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE FACULTY
+  2* MODIFY COLUMN FNAME (VARCHAR2(20))
+SQL> /
+MODIFY COLUMN FNAME (VARCHAR2(20))
+                     *
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE FACULTY
+  2* MODIFY COLUMN FNAME VARCHAR2(20)
+SQL> /
+MODIFY COLUMN FNAME VARCHAR2(20)
+                    *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE FACULTY
+  2* MODIFY COLUMN FNAME VARCHAR(20)
+SQL> /
+MODIFY COLUMN FNAME VARCHAR(20)
+                    *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE FACULTY
+  2* MODIFY FNAME VARCHAR(20)
+SQL> /
+
+Table altered.
+
+SQL> INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2);
+Enter value for fid: 3333
+Enter value for fname: M.S DESHMUKH MAM  
+Enter value for phone: 88067666641
+Enter value for que: MSC(CS)
+Enter value for id1: 2
+Enter value for id2: ''
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(3333,'M.S DESHMUKH MAM  ','88067666641','MSC(CS)',2,'')
+
+1 row created.
+
+SQL> /
+Enter value for fid: 4444
+Enter value for fname: R.K KADAM SIR
+Enter value for phone: 7612567689
+Enter value for que: M.TECH(CS)
+Enter value for id1: 10
+Enter value for id2: 11
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(4444,'R.K KADAM SIR','7612567689','M.TECH(CS)',10,11)
+
+1 row created.
+
+SQL> /
+Enter value for fid: 5555
+Enter value for fname: SHALAKA GUJAR MAM
+Enter value for phone: 9723440506
+Enter value for que: MSC(CS)
+Enter value for id1: ''
+Enter value for id2: 12
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(5555,'SHALAKA GUJAR MAM','9723440506','MSC(CS)','',12)
+
+1 row created.
+
+SQL> /
+Enter value for fid: 666
+Enter value for fname: PRATIK SIR
+Enter value for phone: 9522010113
+Enter value for que: B.TECH(CS)
+Enter value for id1: 14
+Enter value for id2: 15
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(666,'PRATIK SIR','9522010113','B.TECH(CS)',14,15)
+
+1 row created.
+
+SQL> /
+Enter value for fid: 7777
+Enter value for fname: S.N JOSHI SIR
+Enter value for phone: 9255567798
+Enter value for que: PHD(IT)
+Enter value for id1: 6
+Enter value for id2: 7
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(7777,'S.N JOSHI SIR','9255567798','PHD(IT)',6,7)
+
+1 row created.
+
+SQL> /
+Enter value for fid: 8888
+Enter value for fname: RAMAKRISHNA SIR
+Enter value for phone: ''
+Enter value for que: M.TECH9(CS)
+Enter value for id1: ''
+Enter value for id2: 5
+old   1: INSERT INTO FACULTY VALUES(&FID,'&FNAME','&PHONE','&QUE',&ID1,&ID2)
+new   1: INSERT INTO FACULTY VALUES(8888,'RAMAKRISHNA SIR','''','M.TECH9(CS)','',5)
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM FACULTY;
+
+       FID FNAME                PHONE           QUELIFICATION        FSID1      FSID2                                                                                                                   
+---------- -------------------- --------------- --------------- ---------- ----------                                                                                                                   
+      1111 RAMAKRISHNA SIR      9806781212      M.TECH(CS)               1          4                                                                                                                   
+      2222 KULKARNI SIR         9933456565      PHD(CS)                  8         13                                                                                                                   
+      3333 M.S DESHMUKH MAM     88067666641     MSC(CS)                  2                                                                                                                              
+      4444 R.K KADAM SIR        7612567689      M.TECH(CS)              10         11                                                                                                                   
+      5555 SHALAKA GUJAR MAM    9723440506      MSC(CS)                            12                                                                                                                   
+       666 PRATIK SIR           9522010113      B.TECH(CS)              14         15                                                                                                                   
+      7777 S.N JOSHI SIR        9255567798      PHD(IT)                  6          7                                                                                                                   
+      8888 RAMAKRISHNA SIR      '               M.TECH9(CS)                         5                                                                                                                   
+
+8 rows selected.
+
+SQL> 
+SQL> ALTER TABLE FAULTY
+  2  ADD EXP/YEAR NUMBER(2);
+ADD EXP/YEAR NUMBER(2)
+       *
+ERROR at line 2:
+ORA-00902: invalid datatype 
+
+
+SQL> ALTER TABLE FAULTY
+  2  ADD EXP NUMBER(2);
+ALTER TABLE FAULTY
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> ALTER TABLE FACULTY
+  2  ADD EXP NUMBER(2);
+
+Table altered.
+
+SQL> UPDATE FACULTY SET EXP= 20 WHERE FID IN(1111,8888);
+
+2 rows updated.
+
+SQL> UPDATE FACULTY SET EXP= 9 WHERE FID= 7777;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET EXP= 12 WHERE FID= 2222;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET EXP= 6 WHERE FID= 3333;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET EXP= 14 WHERE FID= 4444;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET EXP= 11 WHERE FID= 5555;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET EXP= 4 WHERE FID= 666;
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM FACULTY;
+
+       FID FNAME                PHONE           QUELIFICATION        FSID1      FSID2        EXP                                                                                                        
+---------- -------------------- --------------- --------------- ---------- ---------- ----------                                                                                                        
+      1111 RAMAKRISHNA SIR      9806781212      M.TECH(CS)               1          4         20                                                                                                        
+      2222 KULKARNI SIR         9933456565      PHD(CS)                  8         13         12                                                                                                        
+      3333 M.S DESHMUKH MAM     88067666641     MSC(CS)                  2                     6                                                                                                        
+      4444 R.K KADAM SIR        7612567689      M.TECH(CS)              10         11         14                                                                                                        
+      5555 SHALAKA GUJAR MAM    9723440506      MSC(CS)                            12         11                                                                                                        
+       666 PRATIK SIR           9522010113      B.TECH(CS)              14         15          4                                                                                                        
+      7777 S.N JOSHI SIR        9255567798      PHD(IT)                  6          7          9                                                                                                        
+      8888 RAMAKRISHNA SIR      '               M.TECH9(CS)                         5         20                                                                                                        
+
+8 rows selected.
+
+SQL> UPDATE FACULTY SET PHONE= 'NULL' WHERE FID= 8888;
+
+1 row updated.
+
+SQL> UPDATE FACULTY SET FID= 6666 WHERE FID= 666;
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM FACULTY;
+
+       FID FNAME                PHONE           QUELIFICATION        FSID1      FSID2        EXP                                                                                                        
+---------- -------------------- --------------- --------------- ---------- ---------- ----------                                                                                                        
+      1111 RAMAKRISHNA SIR      9806781212      M.TECH(CS)               1          4         20                                                                                                        
+      2222 KULKARNI SIR         9933456565      PHD(CS)                  8         13         12                                                                                                        
+      3333 M.S DESHMUKH MAM     88067666641     MSC(CS)                  2                     6                                                                                                        
+      4444 R.K KADAM SIR        7612567689      M.TECH(CS)              10         11         14                                                                                                        
+      5555 SHALAKA GUJAR MAM    9723440506      MSC(CS)                            12         11                                                                                                        
+      6666 PRATIK SIR           9522010113      B.TECH(CS)              14         15          4                                                                                                        
+      7777 S.N JOSHI SIR        9255567798      PHD(IT)                  6          7          9                                                                                                        
+      8888 RAMAKRISHNA SIR      NULL            M.TECH9(CS)                         5         20                                                                                                        
+
+8 rows selected.
+
+SQL> SPOOL OFF
+SQL> SELECT * FROM SUBJECTS;
+
+       SID SNAME                                                                                                                                                                                        
+---------- --------------------                                                                                                                                                                         
+         1 SQL                                                                                                                                                                                          
+         2 PL SQL                                                                                                                                                                                       
+         3 LINUX                                                                                                                                                                                        
+         4 DBA                                                                                                                                                                                          
+         5 RAC                                                                                                                                                                                          
+         6 DATA GUARD                                                                                                                                                                                   
+         7 GOLDEN GATE                                                                                                                                                                                  
+         8 PYTHON                                                                                                                                                                                       
+         9 POWER BI                                                                                                                                                                                     
+        10 CORE JAVA                                                                                                                                                                                    
+        11 ADV JAVA                                                                                                                                                                                     
+        12 UI MODULE                                                                                                                                                                                    
+        13 AWS BASICS                                                                                                                                                                                   
+        14 JENKINS                                                                                                                                                                                      
+        15 KUBERNETES/DOCKER                                                                                                                                                                            
+
+15 rows selected.
+
+SQL> SELECT * FROM BATCHES;
+
+       BID BNAME                START_DAT END_DATE         CID                                                                                                                                          
+---------- -------------------- --------- --------- ----------                                                                                                                                          
+        10 DB_BASICS 1          10-JAN-25 05-FEB-25        101                                                                                                                                          
+        20 DB_DEV               15-FEB-25 20-MAR-25        102                                                                                                                                          
+        30 DBA 1                20-JAN-25 30-APR-25        103                                                                                                                                          
+        40 ADV_DBA 1            15-FEB-25 05-APR-25        104                                                                                                                                          
+        50 DBA 2                28-FEB-25 07-JUN-25        103                                                                                                                                          
+        60 JAVA_FULL STACK 1    25-FEB-25 30-MAY-25        106                                                                                                                                          
+        70 DATA ANALYTICS 1     01-JAN-25 08-JUL-25        105                                                                                                                                          
+        80 DEVOPS 1             01-FEB-25 30-MAY-25        107                                                                                                                                          
+        90 DEVOPS 2             01-MAR-25 30-JUN-25        107                                                                                                                                          
+       100 DB_BASICS 2          10-FEB-25 05-MAR-25        101                                                                                                                                          
+
+10 rows selected.
+
+SQL> ALTER TABLE BATCHES
+  2  ADD FID1 NUMBER(4), CONSTRAINT FK_FID1 FOREIGN KEY(FID1) REFERENCES FACULTY(FID);
+ADD FID1 NUMBER(4), CONSTRAINT FK_FID1 FOREIGN KEY(FID1) REFERENCES FACULTY(FID)
+                  *
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE BATCHES
+  2* ADD FID1 NUMBER(4) AND CONSTRAINT FK_FID1 FOREIGN KEY(FID1) REFERENCES FACULTY(FID)
+SQL> /
+ADD FID1 NUMBER(4) AND CONSTRAINT FK_FID1 FOREIGN KEY(FID1) REFERENCES FACULTY(FID)
+                   *
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE BATCHES
+  2* ADD FID1 NUMBER(4) CONSTRAINT FK_FID1 FOREIGN KEY(FID1) REFERENCES FACULTY(FID)
+SQL> /
+ADD FID1 NUMBER(4) CONSTRAINT FK_FID1 FOREIGN KEY(FID1) REFERENCES FACULTY(FID)
+                   *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE BATCHES
+  2* ADD FID1 NUMBER(4) 
+SQL> /
+
+Table altered.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE BATCHES
+  2* ADD FID2 NUMBER(4) 
+SQL> /
+
+Table altered.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE BATCHES
+  2* ADD CONSTRAINT FK_FID1 FOREIGN KEY(FID1) REFERENCES FACULTY(FID)
+SQL> /
+
+Table altered.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE BATCHES
+  2* ADD CONSTRAINT FK_FID2 FOREIGN KEY(FID2) REFERENCES FACULTY(FID)
+SQL> /
+
+Table altered.
+
+SQL> SELECT * FROM FACULTY;
+
+       FID FNAME                PHONE           QUELIFICATION        FSID1      FSID2        EXP                                                                                                        
+---------- -------------------- --------------- --------------- ---------- ---------- ----------                                                                                                        
+      1111 RAMAKRISHNA SIR      9806781212      M.TECH(CS)               1          4         20                                                                                                        
+      2222 KULKARNI SIR         9933456565      PHD(CS)                  8         13         12                                                                                                        
+      3333 M.S DESHMUKH MAM     88067666641     MSC(CS)                  2                     6                                                                                                        
+      4444 R.K KADAM SIR        7612567689      M.TECH(CS)              10         11         14                                                                                                        
+      5555 SHALAKA GUJAR MAM    9723440506      MSC(CS)                            12         11                                                                                                        
+      6666 PRATIK SIR           9522010113      B.TECH(CS)              14         15          4                                                                                                        
+      7777 S.N JOSHI SIR        9255567798      PHD(IT)                  6          7          9                                                                                                        
+      8888 RAMAKRISHNA SIR      NULL            M.TECH9(CS)                         5         20                                                                                                        
+
+8 rows selected.
+
+SQL> SELECT * FROM BATCHES;
+
+       BID BNAME                START_DAT END_DATE         CID       FID1       FID2                                                                                                                    
+---------- -------------------- --------- --------- ---------- ---------- ----------                                                                                                                    
+        10 DB_BASICS 1          10-JAN-25 05-FEB-25        101                                                                                                                                          
+        20 DB_DEV               15-FEB-25 20-MAR-25        102                                                                                                                                          
+        30 DBA 1                20-JAN-25 30-APR-25        103                                                                                                                                          
+        40 ADV_DBA 1            15-FEB-25 05-APR-25        104                                                                                                                                          
+        50 DBA 2                28-FEB-25 07-JUN-25        103                                                                                                                                          
+        60 JAVA_FULL STACK 1    25-FEB-25 30-MAY-25        106                                                                                                                                          
+        70 DATA ANALYTICS 1     01-JAN-25 08-JUL-25        105                                                                                                                                          
+        80 DEVOPS 1             01-FEB-25 30-MAY-25        107                                                                                                                                          
+        90 DEVOPS 2             01-MAR-25 30-JUN-25        107                                                                                                                                          
+       100 DB_BASICS 2          10-FEB-25 05-MAR-25        101                                                                                                                                          
+
+10 rows selected.
+
+SQL> SELECT * FROM SUBJECTS;
+
+       SID SNAME                                                                                                                                                                                        
+---------- --------------------                                                                                                                                                                         
+         1 SQL                                                                                                                                                                                          
+         2 PL SQL                                                                                                                                                                                       
+         3 LINUX                                                                                                                                                                                        
+         4 DBA                                                                                                                                                                                          
+         5 RAC                                                                                                                                                                                          
+         6 DATA GUARD                                                                                                                                                                                   
+         7 GOLDEN GATE                                                                                                                                                                                  
+         8 PYTHON                                                                                                                                                                                       
+         9 POWER BI                                                                                                                                                                                     
+        10 CORE JAVA                                                                                                                                                                                    
+        11 ADV JAVA                                                                                                                                                                                     
+        12 UI MODULE                                                                                                                                                                                    
+        13 AWS BASICS                                                                                                                                                                                   
+        14 JENKINS                                                                                                                                                                                      
+        15 KUBERNETES/DOCKER                                                                                                                                                                            
+
+15 rows selected.
+
+SQL> UPDATE BATCHES SET FID1 = 1111 WHERE BID IN(1O,40);
+UPDATE BATCHES SET FID1 = 1111 WHERE BID IN(1O,40)
+                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> UPDATE BATCHES SET FID1 = 1111 WHERE BID= 10;
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID1 = 1111 WHERE BID= 40;
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID2 =1111  WHERE BID= 30;
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID1 =2222  WHERE BID IN(80 , 90) ;
+
+2 rows updated.
+
+SQL> UPDATE BATCHES SET FID2 =6666  WHERE BID IN(80 , 90) ;
+
+2 rows updated.
+
+SQL> UPDATE BATCHES SET FID1 =1111 WHERE BID IN(100) ;
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID1 =2222 WHERE BID IN(70);
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID1 =4444 WHERE BID IN(60);
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID2 =5555 WHERE BID IN(60);
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID1 =1111 WHERE BID IN(50);
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID1 =3333 WHERE BID IN(20);
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM BATCHES;
+
+       BID BNAME                START_DAT END_DATE         CID       FID1       FID2                                                                                                                    
+---------- -------------------- --------- --------- ---------- ---------- ----------                                                                                                                    
+        10 DB_BASICS 1          10-JAN-25 05-FEB-25        101       1111                                                                                                                               
+        20 DB_DEV               15-FEB-25 20-MAR-25        102       3333                                                                                                                               
+        30 DBA 1                20-JAN-25 30-APR-25        103                  1111                                                                                                                    
+        40 ADV_DBA 1            15-FEB-25 05-APR-25        104       1111                                                                                                                               
+        50 DBA 2                28-FEB-25 07-JUN-25        103       1111                                                                                                                               
+        60 JAVA_FULL STACK 1    25-FEB-25 30-MAY-25        106       4444       5555                                                                                                                    
+        70 DATA ANALYTICS 1     01-JAN-25 08-JUL-25        105       2222                                                                                                                               
+        80 DEVOPS 1             01-FEB-25 30-MAY-25        107       2222       6666                                                                                                                    
+        90 DEVOPS 2             01-MAR-25 30-JUN-25        107       2222       6666                                                                                                                    
+       100 DB_BASICS 2          10-FEB-25 05-MAR-25        101       1111                                                                                                                               
+
+10 rows selected.
+
+SQL> UPDATE BATCHES SET FID1 =7777 WHERE BID IN(40);
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID2 =8888 WHERE BID IN(40);
+
+1 row updated.
+
+SQL> SELECT * FROM BATCHES;
+
+       BID BNAME                START_DAT END_DATE         CID       FID1       FID2                                                                                                                    
+---------- -------------------- --------- --------- ---------- ---------- ----------                                                                                                                    
+        10 DB_BASICS 1          10-JAN-25 05-FEB-25        101       1111                                                                                                                               
+        20 DB_DEV               15-FEB-25 20-MAR-25        102       3333                                                                                                                               
+        30 DBA 1                20-JAN-25 30-APR-25        103                  1111                                                                                                                    
+        40 ADV_DBA 1            15-FEB-25 05-APR-25        104       7777       8888                                                                                                                    
+        50 DBA 2                28-FEB-25 07-JUN-25        103       1111                                                                                                                               
+        60 JAVA_FULL STACK 1    25-FEB-25 30-MAY-25        106       4444       5555                                                                                                                    
+        70 DATA ANALYTICS 1     01-JAN-25 08-JUL-25        105       2222                                                                                                                               
+        80 DEVOPS 1             01-FEB-25 30-MAY-25        107       2222       6666                                                                                                                    
+        90 DEVOPS 2             01-MAR-25 30-JUN-25        107       2222       6666                                                                                                                    
+       100 DB_BASICS 2          10-FEB-25 05-MAR-25        101       1111                                                                                                                               
+
+10 rows selected.
+
+SQL> SELECT * FROM FACULTY;
+
+       FID FNAME                PHONE           QUELIFICATION        FSID1      FSID2        EXP                                                                                                        
+---------- -------------------- --------------- --------------- ---------- ---------- ----------                                                                                                        
+      1111 RAMAKRISHNA SIR      9806781212      M.TECH(CS)               1          4         20                                                                                                        
+      2222 KULKARNI SIR         9933456565      PHD(CS)                  8         13         12                                                                                                        
+      3333 M.S DESHMUKH MAM     88067666641     MSC(CS)                  2                     6                                                                                                        
+      4444 R.K KADAM SIR        7612567689      M.TECH(CS)              10         11         14                                                                                                        
+      5555 SHALAKA GUJAR MAM    9723440506      MSC(CS)                            12         11                                                                                                        
+      6666 PRATIK SIR           9522010113      B.TECH(CS)              14         15          4                                                                                                        
+      7777 S.N JOSHI SIR        9255567798      PHD(IT)                  6          7          9                                                                                                        
+      8888 RAMAKRISHNA SIR      NULL            M.TECH9(CS)                         5         20                                                                                                        
+
+8 rows selected.
+
+SQL> UPDATE BATCHES SET FSID1 =3 WHERE FID IN(8888);
+UPDATE BATCHES SET FSID1 =3 WHERE FID IN(8888)
+                                  *
+ERROR at line 1:
+ORA-00904: "FID": invalid identifier 
+
+
+SQL> UPDATE FACULTY SET FSID1 =3 WHERE FID IN(8888);
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> UPDATE BATCHES SET FID2 =8888 WHERE BID IN(50);
+
+1 row updated.
+
+SQL> UPDATE BATCHES SET FID2 =8888 WHERE BID IN(30);
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM BATCHES;
+
+       BID BNAME                START_DAT END_DATE         CID       FID1       FID2                                                                                                                    
+---------- -------------------- --------- --------- ---------- ---------- ----------                                                                                                                    
+        10 DB_BASICS 1          10-JAN-25 05-FEB-25        101       1111                                                                                                                               
+        20 DB_DEV               15-FEB-25 20-MAR-25        102       3333                                                                                                                               
+        30 DBA 1                20-JAN-25 30-APR-25        103                  8888                                                                                                                    
+        40 ADV_DBA 1            15-FEB-25 05-APR-25        104       7777       8888                                                                                                                    
+        50 DBA 2                28-FEB-25 07-JUN-25        103       1111       8888                                                                                                                    
+        60 JAVA_FULL STACK 1    25-FEB-25 30-MAY-25        106       4444       5555                                                                                                                    
+        70 DATA ANALYTICS 1     01-JAN-25 08-JUL-25        105       2222                                                                                                                               
+        80 DEVOPS 1             01-FEB-25 30-MAY-25        107       2222       6666                                                                                                                    
+        90 DEVOPS 2             01-MAR-25 30-JUN-25        107       2222       6666                                                                                                                    
+       100 DB_BASICS 2          10-FEB-25 05-MAR-25        101       1111                                                                                                                               
+
+10 rows selected.
+
+SQL> SPOOL OFF

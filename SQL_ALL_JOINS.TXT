@@ -1,0 +1,326 @@
+SQL> SHO USER
+USER is "KRUSHNA"
+SQL> @SCREEN
+SQL> SELECT * FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+DEPT                 TABLE                                                                                                                                                                              
+EMPLOYEES            TABLE                                                                                                                                                                              
+CUSTOMER             TABLE                                                                                                                                                                              
+ORDERS               TABLE                                                                                                                                                                              
+SUB                  TABLE                                                                                                                                                                              
+O_BILL               TABLE                                                                                                                                                                              
+COURSE               TABLE                                                                                                                                                                              
+STUDENT              TABLE                                                                                                                                                                              
+PLACEMENT            TABLE                                                                                                                                                                              
+SUBJECTS             TABLE                                                                                                                                                                              
+COURSES              TABLE                                                                                                                                                                              
+
+14 rows selected.
+
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME                LOCATION        PHONE                                                                                                                                                   
+---------- -------------------- --------------- ---------------                                                                                                                                         
+        10 ACCOUNTS             HYDERABAD       555555555                                                                                                                                               
+        20 HR                   NEW DELHI       666666666666                                                                                                                                            
+        30 SALES                MUMBAI          777777777                                                                                                                                               
+        40 MARKETING            CHENNAI         4444444444444                                                                                                                                           
+        50 MANUFACTURING        NANDED          3333333333                                                                                                                                              
+
+SQL> SELECT * FROM EMPLOYEES;
+
+     EMPNO ENAME                DOB       HIREDATE  PHONE               DID                                                                                                                             
+---------- -------------------- --------- --------- ------------ ----------                                                                                                                             
+         1 SURESH               01-JAN-00 31-DEC-24                      20                                                                                                                             
+         2 RAKESH               12-JAN-01 31-JAN-25 88879000             30                                                                                                                             
+         3 RAJUU                21-FEB-03 12-MAR-24 824842084            40                                                                                                                             
+         5 MONIKA               23-APR-03 22-SEP-00 831123131            50                                                                                                                             
+         4 SANJU                12-MAR-02 28-FEB-23 83274837             20                                                                                                                             
+
+
+****************************************************************************************
+
+SQL> --1) EQUI JOIN **
+     -- EQUI JOINS IT MINS USE '= 'SYMBOL IN WHERE CLAUSE
+
+SQL> SELECT ENAME ,DNAME ,LOCATION
+  2  FROM DEPT , EMPLOYEES
+  3  WHERE DID = DID
+  4  .
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME ,DNAME ,LOCATION
+  2  FROM DEPT D , EMPLOYEES E
+  3* WHERE D.DID = E.DID
+SQL> /
+
+ENAME                DNAME                LOCATION                                                                                                                                                      
+-------------------- -------------------- ---------------                                                                                                                                               
+SURESH               HR                   NEW DELHI                                                                                                                                                     
+SANJU                HR                   NEW DELHI                                                                                                                                                     
+RAKESH               SALES                MUMBAI                                                                                                                                                        
+RAJUU                MARKETING            CHENNAI                                                                                                                                                       
+MONIKA               MANUFACTURING        NANDED                                                                                                                                                        
+
+
+SQL> 
+SQL>
+
+************************************************************************************** 
+SQL> --2) NON-EQUI JOINS : ITS JOINS WHITHOUT USING "=" THIS SYMBOL.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME ,DNAME ,LOCATION
+  2  FROM DEPT D , EMPLOYEES E
+  3* WHERE D.DID > E.DID
+SQL> /
+
+ENAME                DNAME                LOCATION                                                                                                                                                      
+-------------------- -------------------- ---------------                                                                                                                                               
+RAJUU                MANUFACTURING        NANDED                                                                                                                                                        
+RAKESH               MANUFACTURING        NANDED                                                                                                                                                        
+SANJU                MANUFACTURING        NANDED                                                                                                                                                        
+SURESH               MANUFACTURING        NANDED                                                                                                                                                        
+RAKESH               MARKETING            CHENNAI                                                                                                                                                       
+SANJU                MARKETING            CHENNAI                                                                                                                                                       
+SURESH               MARKETING            CHENNAI                                                                                                                                                       
+SANJU                SALES                MUMBAI                                                                                                                                                        
+SURESH               SALES                MUMBAI                                                                                                                                                        
+
+9 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME ,DNAME ,LOCATION
+  2  FROM DEPT D , EMPLOYEES E
+  3* WHERE D.DID < E.DID
+SQL> /
+
+ENAME                DNAME                LOCATION                                                                                                                                                      
+-------------------- -------------------- ---------------                                                                                                                                               
+SURESH               ACCOUNTS             HYDERABAD                                                                                                                                                     
+SANJU                ACCOUNTS             HYDERABAD                                                                                                                                                     
+RAKESH               ACCOUNTS             HYDERABAD                                                                                                                                                     
+RAJUU                ACCOUNTS             HYDERABAD                                                                                                                                                     
+MONIKA               ACCOUNTS             HYDERABAD                                                                                                                                                     
+RAKESH               HR                   NEW DELHI                                                                                                                                                     
+RAJUU                HR                   NEW DELHI                                                                                                                                                     
+MONIKA               HR                   NEW DELHI                                                                                                                                                     
+RAJUU                SALES                MUMBAI                                                                                                                                                        
+MONIKA               SALES                MUMBAI                                                                                                                                                        
+MONIKA               MARKETING            CHENNAI                                                                                                                                                       
+
+11 rows selected.
+
+*************************************************************************************
+
+
+SQL> --3) NATURAL JOIN : IT IS SIMILAR TO EQUI JOIN .(ONLY WRITEN WAY ARE DIFFERENT.)
+SQL> -- ITS WRITE IN FROM STATMANT
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID , FIRST_NAME ,PRODUCT,TOTAL_ORDER
+  2  FROM  CUSTOMER NATURAL JOIN ORDERS
+  3* WHERE ID = CUSTOMER_ID
+SQL> /
+
+        ID FIRST_NAME PRODUCT    TOTAL_ORDER
+---------- ---------- ---------- -----------
+        22 KALVIN     NOTBOOK            556
+        22 KALVIN     PETI BOX           100
+        33 JORDEN     PEN                999
+        33 JORDEN     202                202
+        44 MOHITO     ERESOR             465
+        55 REMO       BAG                676
+        55 REMO       PENCILE            356
+
+7 rows selected.
+
+SQL>
+*****************************************************************************************
+
+4) INEER JOIN : INEER JOIN SIMILAR WORK AS NATURAL & EQUI JOIN 
+   (ONLY WRITTEN WAY ARE DIFFERNT )ITS WRITE IN FROM STATEMANT
+ INEER JOIN USE " ON " CLAUSE. NOT WHERE
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ID , FIRST_NAME ,PRODUCT,TOTAL_ORDER
+  2  FROM  CUSTOMER INEER JOIN ORDERS
+  3* ON ID = CUSTOMER_ID
+SQL> /
+
+        ID FIRST_NAME PRODUCT    TOTAL_ORDER
+---------- ---------- ---------- -----------
+        22 KALVIN     NOTBOOK            556
+        22 KALVIN     PETI BOX           100
+        33 JORDEN     PEN                999
+        33 JORDEN     202                202
+        44 MOHITO     ERESOR             465
+        55 REMO       BAG                676
+        55 REMO       PENCILE            356
+
+7 rows selected.
+
+*****************************************************************************************
+
+5) CROSS JOIN : IT IS WORK IN (1 * ALL REORDS) WRITE IN FROM STETMENT.
+ END AFTER FROM STATEMENT ;
+ 
+
+Wrote file afiedt.buf
+
+  1  SELECT ID , FIRST_NAME ,PRODUCT,TOTAL_ORDER
+  2* FROM  CUSTOMER CROSS JOIN ORDERS
+  3  /
+
+        ID FIRST_NAME PRODUCT    TOTAL_ORDER
+---------- ---------- ---------- -----------
+        11 JOHN       NOTBOOK            556
+        11 JOHN       PEN                999
+        11 JOHN       PENCILE            356
+        11 JOHN       ERESOR             465
+        11 JOHN       PETI BOX           100
+        11 JOHN       BAG                676
+        11 JOHN       202                202
+        22 KALVIN     NOTBOOK            556
+        22 KALVIN     PEN                999
+        22 KALVIN     PENCILE            356
+        22 KALVIN     ERESOR             465
+        22 KALVIN     PETI BOX           100
+        22 KALVIN     BAG                676
+        22 KALVIN     202                202
+        33 JORDEN     NOTBOOK            556
+        33 JORDEN     PEN                999
+        33 JORDEN     PENCILE            356
+        33 JORDEN     ERESOR             465
+        33 JORDEN     PETI BOX           100
+        33 JORDEN     BAG                676
+        33 JORDEN     202                202
+        44 MOHITO     NOTBOOK            556
+        44 MOHITO     PEN                999
+        44 MOHITO     PENCILE            356
+        44 MOHITO     ERESOR             465
+        44 MOHITO     PETI BOX           100
+        44 MOHITO     BAG                676
+        44 MOHITO     202                202
+        55 REMO       NOTBOOK            556
+        55 REMO       PEN                999
+        55 REMO       PENCILE            356
+        55 REMO       ERESOR             465
+        55 REMO       PETI BOX           100
+        55 REMO       BAG                676
+        55 REMO       202                202
+
+35 rows selected.
+
+
+*************************************************************************************
+
+5) LEFT OUTER JOIN : PARENT TABLE ALL RECORDS SHOWING AND PARENT TABLE RECORD 
+MACHING TO CHAILD THIS RECORDS ARE ALSO SHOWING.
+ 
+ITS WRITE IN FROM STATEMANT
+ LEFT OUTER JOIN USE  " ON " CLAUSE. (NOT WHERE)
+
+SQL> SELECT FIRST_NAME , LAST_NAME, AGE, PRODUCT
+  2  FROM  CUSTOMER LEFT OUTER JOIN ORDERS
+  3  ON ID = CUSTOMER_ID;
+
+FIRST_NAME LAST_NAME         AGE PRODUCT
+---------- ---------- ---------- ----------
+JOHN       DISUZA             22
+KALVIN     KELIN              34 NOTBOOK
+KALVIN     KELIN              34 PETI BOX
+JORDEN     SHO                22 PEN
+JORDEN     SHO                22 202
+MOHITO     SHFLI              67 ERESOR
+REMO       DISUZA             55 BAG
+REMO       DISUZA             55 PENCILE
+
+8 rows selected.
+
+**************************************************************************************
+
+6) RIGHT OUTER JOIN : CHAILD TABLE ALL RECORDS SHOWING AND CHAILD TABLE RECORD 
+MACHING TO PARENTS THIS RECORDS ARE ALSO SHOWING.
+ 
+ITS WRITE IN FROM STATEMANT
+ RIGHT OUTER JOIN USE  " ON " CLAUSE. (NOT WHERE)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT FIRST_NAME , LAST_NAME, AGE, PRODUCT
+  2  FROM  CUSTOMER RIGHT OUTER JOIN ORDERS
+  3* ON ID = CUSTOMER_ID
+SQL> /
+
+FIRST_NAME LAST_NAME         AGE PRODUCT
+---------- ---------- ---------- ----------
+KALVIN     KELIN              34 NOTBOOK
+KALVIN     KELIN              34 PETI BOX
+JORDEN     SHO                22 PEN
+JORDEN     SHO                22 202
+MOHITO     SHFLI              67 ERESOR
+REMO       DISUZA             55 PENCILE
+REMO       DISUZA             55 BAG
+
+7 rows selected.
+
+
+***************************************************************************************
+8) FULL OUTER JOIN : ALL RECORDS ARE SHOING IN PARENTS AND CHILD TABLE.
+
+ITS WRITE IN FROM STATEMANT
+ RIGHT OUTER JOIN USE  " ON " CLAUSE. (NOT WHERE)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT FIRST_NAME , LAST_NAME, AGE, PRODUCT
+  2  FROM  CUSTOMER FULL OUTER JOIN ORDERS
+  3* ON ID = CUSTOMER_ID
+SQL> /
+
+FIRST_NAME LAST_NAME         AGE PRODUCT
+---------- ---------- ---------- ----------
+KALVIN     KELIN              34 NOTBOOK
+JORDEN     SHO                22 PEN
+REMO       DISUZA             55 PENCILE
+MOHITO     SHFLI              67 ERESOR
+KALVIN     KELIN              34 PETI BOX
+REMO       DISUZA             55 BAG
+JORDEN     SHO                22 202
+JOHN       DISUZA             22
+
+8 rows selected.
+
+SQL>
+*****************************************************************************************
+
+9) SELF JOIN : SELF JOIN IS WORKS IN ONE TABLE.
+(IN ONE TABLE 2 COLUMN ARE SIMILAR VALUES) THEN ITS WORK.
+ 
+
+SQL> SELECT C1.ID, C1.FIRST_NAME , C2.LAST_NAME
+  2  FROM CUSTOMER C1, CUSTOMER C2
+  3  WHERE C1.ID = C2.AGE
+  4  ;
+
+        ID FIRST_NAME LAST_NAME
+---------- ---------- ----------
+        22 KALVIN     DISUZA
+        22 KALVIN     SHO
+        55 REMO       DISUZA

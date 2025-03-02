@@ -1,0 +1,431 @@
+SQL> CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR(10), CONSTRANT PK_COUSTOMER PRIMARY KEY (ID), CONSTRANT UNIQUE (FIRST_NAME);
+CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR(10), CONSTRANT PK_COUSTOMER PRIMARY KEY (ID), CONSTRANT UNIQUE (FIRST_NAME)
+                                                                                                                                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR(10), CONSTRANT PK_COUSTOMER PRIMARY KEY (ID), CONSTRANT UNIQUE (FIRST_NAME));
+CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR(10), CONSTRANT PK_COUSTOMER PRIMARY KEY (ID), CONSTRANT UNIQUE (FIRST_NAME))
+                                                                                                                                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR2(10), CONSTRANT PK_COUSTOMER PRIMARY KEY (ID), CONSTRANT U_FIRST_NAME UNIQUE (FIRST_NAME));
+CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR2(10), CONSTRANT PK_COUSTOMER PRIMARY KEY (ID), CONSTRANT U_FIRST_NAME UNIQUE (FIRST_NAME))
+                                                                                                                                                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR2(10), CONSTRANT PK_COUSTOMER PRIMARY KEY(ID), CONSTRANT U_FIRST_NAME UNIQUE(FIRST_NAME));
+CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR2(10), CONSTRANT PK_COUSTOMER PRIMARY KEY(ID), CONSTRANT U_FIRST_NAME UNIQUE(FIRST_NAME))
+                                                                                                                                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CLS
+SP2-0042: unknown command "CLS" - rest of line ignored.
+SQL> CL
+SQL> CL S
+SP2-0158: unknown CLEAR option "S"
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CL
+SQL> CL SCR
+
+SQL> CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR2(10), CONSTRANT PK_COUSTOMER PRIMARY KEY(ID), CONSTRANT U_FIRST_NAME UNIQUE(FIRST_NAME) );
+CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONTRY VARCHAR2(10), CONSTRANT PK_COUSTOMER PRIMARY KEY(ID), CONSTRANT U_FIRST_NAME UNIQUE(FIRST_NAME) )
+                                                                                                                                                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONSTRANT PK_COUSTOMER PRIMARY KEY(ID), CONSTRANT U_FIRST_NAME UNIQUE(FIRST_NAME) );
+CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4), CONSTRANT PK_COUSTOMER PRIMARY KEY(ID), CONSTRANT U_FIRST_NAME UNIQUE(FIRST_NAME) )
+                                                                                                                                        *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL>  CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4),
+  2   CONSTRANT PK_COUSTOMER PRIMARY KEY(ID), CONSTRANT U_FIRST_NAME UNIQUE(FIRST_NAME) );
+ CONSTRANT PK_COUSTOMER PRIMARY KEY(ID), CONSTRANT U_FIRST_NAME UNIQUE(FIRST_NAME) )
+                                   *
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CONSTRAINT
+SP2-0042: unknown command "CONSTRAINT" - rest of line ignored.
+SQL>  CREATE TABLE COUSTOMER (ID NUMBER(2), FIRST_NAME VARCHAR2(10), LAST_NAME VARCHAR2(10), AGE NUMBER(4),
+  2   CONSTRAINT PK_COUSTOMER PRIMARY KEY(ID), CONSTRAINT U_FIRST_NAME UNIQUE(FIRST_NAME) );
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> DESC COUSTOMER;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ ID                                                                                                                NOT NULL NUMBER(2)
+ FIRST_NAME                                                                                                                 VARCHAR2(10)
+ LAST_NAME                                                                                                                  VARCHAR2(10)
+ AGE                                                                                                                        NUMBER(4)
+
+SQL> @SCREEN
+SQL> DESC COUSTOMER;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ ID                                                                                                                NOT NULL NUMBER(2)
+ FIRST_NAME                                                                                                                 VARCHAR2(10)
+ LAST_NAME                                                                                                                  VARCHAR2(10)
+ AGE                                                                                                                        NUMBER(4)
+
+SQL> INSERT INTO COUSTOMER VALUES (11,'JOHN','DISUZA', 22);
+
+1 row created.
+
+SQL> INSERT INTO COUSTOMER VALUES (&ID ,('&FIRST_NAME'), ('&LAST_NAME'), &AGE);
+Enter value for id: 22
+Enter value for first_name: KALVIN
+Enter value for last_name: KELIN
+Enter value for age: 34
+old   1: INSERT INTO COUSTOMER VALUES (&ID ,('&FIRST_NAME'), ('&LAST_NAME'), &AGE)
+new   1: INSERT INTO COUSTOMER VALUES (22 ,('KALVIN'), ('KELIN'), 34)
+
+1 row created.
+
+SQL> INSERT INTO COUSTOMER VALUES (&ID ,('&FIRST_NAME'), ('&LAST_NAME'), &AGE);
+Enter value for id: 33
+Enter value for first_name: JORDEN
+Enter value for last_name: SHO
+Enter value for age: 22
+old   1: INSERT INTO COUSTOMER VALUES (&ID ,('&FIRST_NAME'), ('&LAST_NAME'), &AGE)
+new   1: INSERT INTO COUSTOMER VALUES (33 ,('JORDEN'), ('SHO'), 22)
+
+1 row created.
+
+SQL> /
+Enter value for id: 44
+Enter value for first_name: MOHITO
+Enter value for last_name: SHFLI
+Enter value for age: 67
+old   1: INSERT INTO COUSTOMER VALUES (&ID ,('&FIRST_NAME'), ('&LAST_NAME'), &AGE)
+new   1: INSERT INTO COUSTOMER VALUES (44 ,('MOHITO'), ('SHFLI'), 67)
+
+1 row created.
+
+SQL> /
+Enter value for id: 55
+Enter value for first_name: REMO
+Enter value for last_name: DISUZA
+Enter value for age: 55
+old   1: INSERT INTO COUSTOMER VALUES (&ID ,('&FIRST_NAME'), ('&LAST_NAME'), &AGE)
+new   1: INSERT INTO COUSTOMER VALUES (55 ,('REMO'), ('DISUZA'), 55)
+
+1 row created.
+
+SQL> SELECT * FROM COUSTOMER;
+
+        ID FIRST_NAME LAST_NAME         AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+        11 JOHN       DISUZA             22                                                                                                                                                             
+        22 KALVIN     KELIN              34                                                                                                                                                             
+        33 JORDEN     SHO                22                                                                                                                                                             
+        44 MOHITO     SHFLI              67                                                                                                                                                             
+        55 REMO       DISUZA             55                                                                                                                                                             
+
+SQL> CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+  2  CONSTRAINT PK_ORDER PRIMARY KEY(O_ID), CONSTRAINT FK_ORDER FOREIGN KEY(CUSTOMER_ID) REFRANCES COUSTOMER(ID));
+CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+             *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+  2  CONSTRAINT PK_ORDER PRIMARY KEY(O_ID), CONSTRAINT FK_ORDER FOREIGN KEY(CUSTOMER_ID) REFRANCES COUSTOMER(ID));
+CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+             *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> 
+SQL> CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+  2  CONSTRAINT PK_ORDER PRIMARY KEY(O_ID), CONSTRAINT FK_ORDER FOREIGN KEY(CUSTOMER_ID) REFRANCES COUSTOMER(ID) );
+CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+             *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> CREATE TABLE ORDE(O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+  2  CONSTRAINT PK_ORDER PRIMARY KEY(O_ID), CONSTRAINT FK_ORDER FOREIGN KEY(CUSTOMER_ID) REFRANCES COUSTOMER(ID) );
+CONSTRAINT PK_ORDER PRIMARY KEY(O_ID), CONSTRAINT FK_ORDER FOREIGN KEY(CUSTOMER_ID) REFRANCES COUSTOMER(ID) )
+                                                                                    *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+  2  CONSTRAINT PK_ORDER PRIMARY KEY(O_ID), CONSTRAINT FK_ORDER FOREIGN KEY(CUSTOMER_ID) REFERENCES COUSTOMER(ID) );
+CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+             *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+  2  CONSTRAINT PK_ORDER PRIMARY KEY(O_ID), CONSTRAINT FK_ORDER FOREIGN KEY(CUSTOMER_ID) REFERENCES COUSTOMER(ID) );
+CREATE TABLE ORDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+             *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> CREATE TABLE RDER (O_ID NUMBER(2),PRODUCT VARCHAR2(10), TOTAL_ORDER NUMBER(8), CUSTOMER_ID NUMBER(2),
+  2  CONSTRAINT PK_ORDER PRIMARY KEY(O_ID), CONSTRAINT FK_ORDER FOREIGN KEY(CUSTOMER_ID) REFERENCES COUSTOMER(ID) );
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO COUSTOMER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') );
+Enter value for o_id: 11
+Enter value for product: NOTEBOOK
+Enter value for total_order: 556
+Enter value for customer_id: 
+old   1: INSERT INTO COUSTOMER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') )
+new   1: INSERT INTO COUSTOMER VALUES (11,('NOTEBOOK'), ('556'),('') )
+INSERT INTO COUSTOMER VALUES (11,('NOTEBOOK'), ('556'),('') )
+*
+ERROR at line 1:
+ORA-00001: unique constraint (KRUSHNA.PK_COUSTOMER) violated 
+
+
+SQL> /
+Enter value for o_id: 11
+Enter value for product: NOTBOOK
+Enter value for total_order: 556
+Enter value for customer_id: 22
+old   1: INSERT INTO COUSTOMER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') )
+new   1: INSERT INTO COUSTOMER VALUES (11,('NOTBOOK'), ('556'),('22') )
+INSERT INTO COUSTOMER VALUES (11,('NOTBOOK'), ('556'),('22') )
+*
+ERROR at line 1:
+ORA-00001: unique constraint (KRUSHNA.PK_COUSTOMER) violated 
+
+
+SQL> INSERT INTO RDER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') );
+Enter value for o_id: 11
+Enter value for product: NOTBOOK
+Enter value for total_order: 556
+Enter value for customer_id: 22
+old   1: INSERT INTO RDER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') )
+new   1: INSERT INTO RDER VALUES (11,('NOTBOOK'), ('556'),('22') )
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 12
+Enter value for product: PEN
+Enter value for total_order: 999
+Enter value for customer_id: 33
+old   1: INSERT INTO RDER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') )
+new   1: INSERT INTO RDER VALUES (12,('PEN'), ('999'),('33') )
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 13
+Enter value for product: PENCILE
+Enter value for total_order: 356
+Enter value for customer_id: 55
+old   1: INSERT INTO RDER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') )
+new   1: INSERT INTO RDER VALUES (13,('PENCILE'), ('356'),('55') )
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 14
+Enter value for product: ERESOR
+Enter value for total_order: 465
+Enter value for customer_id: 44
+old   1: INSERT INTO RDER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') )
+new   1: INSERT INTO RDER VALUES (14,('ERESOR'), ('465'),('44') )
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 15
+Enter value for product: PETI BOX
+Enter value for total_order: 100
+Enter value for customer_id: 22
+old   1: INSERT INTO RDER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') )
+new   1: INSERT INTO RDER VALUES (15,('PETI BOX'), ('100'),('22') )
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 16
+Enter value for product: BAG
+Enter value for total_order: 676
+Enter value for customer_id: 55
+old   1: INSERT INTO RDER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') )
+new   1: INSERT INTO RDER VALUES (16,('BAG'), ('676'),('55') )
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 17
+Enter value for product: 202
+Enter value for total_order: 202
+Enter value for customer_id: 33
+old   1: INSERT INTO RDER VALUES (&O_ID,('&PRODUCT'), ('&TOTAL_ORDER'),('&CUSTOMER_ID') )
+new   1: INSERT INTO RDER VALUES (17,('202'), ('202'),('33') )
+
+1 row created.
+
+SQL> SELECT * FROM RDER;
+
+      O_ID PRODUCT    TOTAL_ORDER CUSTOMER_ID                                                                                                                                                           
+---------- ---------- ----------- -----------                                                                                                                                                           
+        11 NOTBOOK            556          22                                                                                                                                                           
+        12 PEN                999          33                                                                                                                                                           
+        13 PENCILE            356          55                                                                                                                                                           
+        14 ERESOR             465          44                                                                                                                                                           
+        15 PETI BOX           100          22                                                                                                                                                           
+        16 BAG                676          55                                                                                                                                                           
+        17 202                202          33                                                                                                                                                           
+
+7 rows selected.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT PRODUCT , TOTAL_ORDER, CUSTOMER_ID FROM RDER, COUSTOMER;
+
+PRODUCT    TOTAL_ORDER CUSTOMER_ID                                                                                                                                                                      
+---------- ----------- -----------                                                                                                                                                                      
+NOTBOOK            556          22                                                                                                                                                                      
+PEN                999          33                                                                                                                                                                      
+PENCILE            356          55                                                                                                                                                                      
+ERESOR             465          44                                                                                                                                                                      
+PETI BOX           100          22                                                                                                                                                                      
+BAG                676          55                                                                                                                                                                      
+202                202          33                                                                                                                                                                      
+NOTBOOK            556          22                                                                                                                                                                      
+PEN                999          33                                                                                                                                                                      
+PENCILE            356          55                                                                                                                                                                      
+ERESOR             465          44                                                                                                                                                                      
+PETI BOX           100          22                                                                                                                                                                      
+BAG                676          55                                                                                                                                                                      
+202                202          33                                                                                                                                                                      
+NOTBOOK            556          22                                                                                                                                                                      
+PEN                999          33                                                                                                                                                                      
+PENCILE            356          55                                                                                                                                                                      
+
+PRODUCT    TOTAL_ORDER CUSTOMER_ID                                                                                                                                                                      
+---------- ----------- -----------                                                                                                                                                                      
+ERESOR             465          44                                                                                                                                                                      
+PETI BOX           100          22                                                                                                                                                                      
+BAG                676          55                                                                                                                                                                      
+202                202          33                                                                                                                                                                      
+NOTBOOK            556          22                                                                                                                                                                      
+PEN                999          33                                                                                                                                                                      
+PENCILE            356          55                                                                                                                                                                      
+ERESOR             465          44                                                                                                                                                                      
+PETI BOX           100          22                                                                                                                                                                      
+BAG                676          55                                                                                                                                                                      
+202                202          33                                                                                                                                                                      
+NOTBOOK            556          22                                                                                                                                                                      
+PEN                999          33                                                                                                                                                                      
+PENCILE            356          55                                                                                                                                                                      
+ERESOR             465          44                                                                                                                                                                      
+PETI BOX           100          22                                                                                                                                                                      
+BAG                676          55                                                                                                                                                                      
+
+PRODUCT    TOTAL_ORDER CUSTOMER_ID                                                                                                                                                                      
+---------- ----------- -----------                                                                                                                                                                      
+202                202          33                                                                                                                                                                      
+
+35 rows selected.
+
+SQL> SELECT PRODUCT , TOTAL_ORDER, CUSTOMER_ID ,CUSTOMERFROM RDER, COUSTOMER;
+SELECT PRODUCT , TOTAL_ORDER, CUSTOMER_ID ,CUSTOMERFROM RDER, COUSTOMER
+                                                                      *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT PRODUCT , TOTAL_ORDER, CUSTOMER_ID ,FIRST_NAME FROM RDER, COUSTOMER;
+
+PRODUCT    TOTAL_ORDER CUSTOMER_ID FIRST_NAME                                                                                                                                                           
+---------- ----------- ----------- ----------                                                                                                                                                           
+NOTBOOK            556          22 JOHN                                                                                                                                                                 
+PEN                999          33 JOHN                                                                                                                                                                 
+PENCILE            356          55 JOHN                                                                                                                                                                 
+ERESOR             465          44 JOHN                                                                                                                                                                 
+PETI BOX           100          22 JOHN                                                                                                                                                                 
+BAG                676          55 JOHN                                                                                                                                                                 
+202                202          33 JOHN                                                                                                                                                                 
+NOTBOOK            556          22 KALVIN                                                                                                                                                               
+PEN                999          33 KALVIN                                                                                                                                                               
+PENCILE            356          55 KALVIN                                                                                                                                                               
+ERESOR             465          44 KALVIN                                                                                                                                                               
+PETI BOX           100          22 KALVIN                                                                                                                                                               
+BAG                676          55 KALVIN                                                                                                                                                               
+202                202          33 KALVIN                                                                                                                                                               
+NOTBOOK            556          22 JORDEN                                                                                                                                                               
+PEN                999          33 JORDEN                                                                                                                                                               
+PENCILE            356          55 JORDEN                                                                                                                                                               
+
+PRODUCT    TOTAL_ORDER CUSTOMER_ID FIRST_NAME                                                                                                                                                           
+---------- ----------- ----------- ----------                                                                                                                                                           
+ERESOR             465          44 JORDEN                                                                                                                                                               
+PETI BOX           100          22 JORDEN                                                                                                                                                               
+BAG                676          55 JORDEN                                                                                                                                                               
+202                202          33 JORDEN                                                                                                                                                               
+NOTBOOK            556          22 MOHITO                                                                                                                                                               
+PEN                999          33 MOHITO                                                                                                                                                               
+PENCILE            356          55 MOHITO                                                                                                                                                               
+ERESOR             465          44 MOHITO                                                                                                                                                               
+PETI BOX           100          22 MOHITO                                                                                                                                                               
+BAG                676          55 MOHITO                                                                                                                                                               
+202                202          33 MOHITO                                                                                                                                                               
+NOTBOOK            556          22 REMO                                                                                                                                                                 
+PEN                999          33 REMO                                                                                                                                                                 
+PENCILE            356          55 REMO                                                                                                                                                                 
+ERESOR             465          44 REMO                                                                                                                                                                 
+PETI BOX           100          22 REMO                                                                                                                                                                 
+BAG                676          55 REMO                                                                                                                                                                 
+
+PRODUCT    TOTAL_ORDER CUSTOMER_ID FIRST_NAME                                                                                                                                                           
+---------- ----------- ----------- ----------                                                                                                                                                           
+202                202          33 REMO                                                                                                                                                                 
+
+35 rows selected.
+
+SQL> 
+SQL> SELECT PRODUCT , TOTAL_ORDER, CUSTOMER_ID ,FIRST_NAME FROM RDER O, COUSTOMER C WHERE O.O_ID=C.ID;
+
+PRODUCT    TOTAL_ORDER CUSTOMER_ID FIRST_NAME                                                                                                                                                           
+---------- ----------- ----------- ----------                                                                                                                                                           
+NOTBOOK            556          22 JOHN                                                                                                                                                                 
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF

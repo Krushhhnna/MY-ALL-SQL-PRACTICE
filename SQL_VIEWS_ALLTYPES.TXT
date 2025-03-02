@@ -1,0 +1,109 @@
+SQL> @SCREEN
+SQL> SHO USER
+USER is "KRUSHNA"
+SQL> SELECT * FROM TAB;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                                                           
+-------------------- ------------- ----------                                                                                                                                                           
+SINGER               TABLE                                                                                                                                                                              
+EMP                  TABLE                                                                                                                                                                              
+BICKS                TABLE                                                                                                                                                                              
+DEPT                 TABLE                                                                                                                                                                              
+EMPLOYEES            TABLE                                                                                                                                                                              
+CUSTOMER             TABLE                                                                                                                                                                              
+ORDERS               TABLE                                                                                                                                                                              
+SUB                  TABLE                                                                                                                                                                              
+O_BILL               TABLE                                                                                                                                                                              
+COURSE               TABLE                                                                                                                                                                              
+STUDENT              TABLE                                                                                                                                                                              
+PLACEMENT            TABLE                                                                                                                                                                              
+SUBJECTS             TABLE                                                                                                                                                                              
+COURSES              TABLE                                                                                                                                                                              
+
+14 rows selected.
+
+
+SQL> CREATE VIEW emp_view AS SELECT * FROM EMP2;
+CREATE VIEW emp_view AS SELECT * FROM EMP2
+            *
+ERROR at line 1:
+ORA-01031: insufficient privileges 
+
+Warning: You are no longer connected to ORACLE.
+SQL> CONN SYSTEM
+Connected.
+SQL> sho user
+USER is "SYSTEM"
+SQL> grant all privileges to krushna;
+
+Grant succeeded.
+
+SQL> CONN KRUSHNA
+Connected.
+SQL> SHO USER
+USER is "KRUSHNA"
+
+
+1) SIMPLE VIEW : JO OPRATIONS VIEW MAI KARENGE VAHI REAL TABLE TABLE MAI BHI 
+                 WORK HOGA.
+
+
+ SELECT * FROM EMP;
+
+       EID NAME                 DEPT
+---------- -------------------- ----------
+         9 TEJU                 MANEGER
+         1 RAKESH               ACCOUNT
+         2 MINA                 HR
+         3 RAJ                  SALES
+
+SQL> CREATE VIEW EMP_VIEW AS SELECT * FROM EMP;
+
+View created.
+
+SELECT * FROM EMP_VIEW;
+
+       EID NAME                 DEPT
+---------- -------------------- ----------
+         9 TEJU                 MANEGER
+         1 RAKESH               ACCOUNT
+         2 MINA                 HR
+         3 RAJ                  SALES
+
+
+SQL> INSERT INTO EMP_VIEW VALUES(4,'RAJN','CEO'); #EMP_VIEW TABLE MAI INSERT KIYA 
+                                                    PAR  REAL MAI BHI DATA INSERT HUA.
+
+1 row created.
+
+SQL> SELECT * FROM EMP;
+
+       EID NAME                 DEPT
+---------- -------------------- ----------
+         9 TEJU                 MANEGER
+         4 RAJN                 CEO
+         1 RAKESH               ACCOUNT
+         2 MINA                 HR
+         3 RAJ                  SALES
+
+SQL> CREATE OR REPLACE VIEW EMP_VIEW AS SELECT * FROM EMP WHERE DEPT ='HR';
+         
+# OR REPLACE KARNESE OLREDY CREATED TABLE MAI UPGRADE KARTA HAI.
+
+View created.
+
+
+
+SQL> SELECT * FROM EMP_VIEW;
+
+       EID NAME                 DEPT
+---------- -------------------- ----------
+         2 MINA                 HR
+
+***************************************************************************************
+
+2) COMPLEX VIEW :
+
+
+
+

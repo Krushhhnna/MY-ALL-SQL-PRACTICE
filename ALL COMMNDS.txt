@@ -1,0 +1,284 @@
+***SQLPLUS COMMANDS***
+
+SPOOL FILE_NAME.TXT  #SCRIPT BANEKE LIYE
+SPOOL OFF #AFTER COMPLECT WORK
+
+HOST NOTEPAD FILE_NAME.TXT  #FILE OPEN OR CREATE NEW FILE
+EXIT
+
+ED   #EDIT 
+
+
+SQL> COLUMN SUBJECT2 FORMAT A10   #TEXT COL FORMAT CHANGE.
+SQL> COLUMN DURATION FORMAT 99999  #NUMBER COL FORMAT CHANGE.
+
+
+SQL> SET LINESIZE 200
+SQL> A  ORDER BY 1  #AUTOMATIC INSER IN PROGRAM LAST LINE.
+
+
+ 
+
+********************************************************************************************************************
+
+#IN ONE DATABASE MORE USERS ARE THER SO THAT WHY I WANT TO CREATE IN KRUSHNA 
+TABLESPACE KRUSHNA;
+
+CREATE TABLE TABLE_NAME(ID NUMBER(4), NAME VARCHAR2(10),DOB DATE) TABLESPACE USER_NAME;
+
+# INSERT VALUE TYPE: 
+1)INSERT INTO TABLE_NAME VALUES ();
+2)INSERT INTO COURSES(CNAME,CID,FEES) VALUES('&NAME',&COURSEID,'&FEE');
+3)INSERT INTO TABLE_NAME VALUES (&ID , ('&NAME'), ('&DOB'), &PHONE);
+
+COMMIT;    #SAVE DATA
+ROLLBACK;  # ONE STEP BACK
+
+#DESCRIBE TABLE INFO  MATADATA.
+DESC TABLE_NAME; 
+
+#SHOWING ALL TABLES
+SELECT * FROM TABLE_NAME;
+
+#SHOWING ALL TABLES IN USER/DB
+SELECT * FROM TAB; 
+
+#FOR TABLE WITH TABLE_RECORDS ALSO DELETE PARMANTLY.
+DROP TABLE TABLE_NAME;   
+
+#USE FOR ONLY RECORD DELETE
+TRUNCATE TABLE TABLE_NAME; 
+
+#FOR SPCIFICK ROW DELETE.
+DELETE FROM table_name WHERE condition; 
+
+# DROPTABLE CLEAN.
+PURGE RECYCLEBIN; 
+
+
+
+
+#USE TO CREATE TABLE AS SAME TO SAME ANOTER TABLE  
+CREATE TABLE T2 AS SELECT * FROM T1; 
+
+#ANOTER TABLE INFO INSRT IN NOW TABLE.
+INSERT INTO T2 SELECT * FROM T1 WHERE ID!=1;
+
+
+PRIMARY KEY:
+
+CREATE TABLE TABLE_NAME(ID NUMBER(5) PRIMARY KEY, NAME VARCHAR2(10), DOB DATE, PHONE NUMBER(10));
+
+PRIMARY KEY & UNIQUE CONSTRAINT:
+CREATE TABLE TABLE_NAME(ID NUMBER(5) NAME VARCHAR2(10), DOB DATE, PHONE NUMBER(10)
+CONSTRAINT PK_TABLE_NAME PRIMARY KEY(ID), CONSTRAINT UNIQUE_PHONE UNIQUE(PHONE) );
+
+
+DELETE CLAUSE :
+
+#PARENT AND CHILD TABLE IS THERE THEN I WANT TO DELETE PARENT TABLE SOME RECORDS.(IT NOT POSIBLE)
+IT POSIBLE AFER USE DELETE CLAUSE
+1)ON DELETE CASCADE.
+2)ON DELETE SET NULL.
+
+#METHOD:CREATE PARENT TABLE NORMALY. THEN CREATING CHILD TABLE USE COMMAND.
+CREATE TABLE TABLE_NAME(ID NUMBER(5) NAME VARCHAR2(10), DOB DATE, PHONE NUMBER(10)
+CONSTRAINT PK_TABLE_NAME PRIMARY KEY(ID), 
+CONSTRAINT FK_TABLE_NAME FOREIGN KEY(ID) REFERENCS PARENT_TABLE_NAME(COL_NAME) ON DELETE CASCADE) ;
+
+
+FOREIGN KEY:
+
+CREATE TABLE TABLE_NAME(ID NUMBER(5) NAME VARCHAR2(10), DOB DATE, PHONE NUMBER(10)
+CONSTRAINT PK_TABLE_NAME PRIMARY KEY(ID), 
+CONSTRAINT FK_TABLE_NAME FOREIGN KEY(ID) REFERENCS PARENT_TABLE_NAME(COL_NAME)) ;
+
+CHECK CONSTRAINT:
+CREATE TABLE PLACEMENT  (PID NUMBER(2),STID  NUMBER(3), COMPANY VARCHAR2(20),CTC NUMBER(7),CITY VARCHAR2(20),
+CONSTRAINT PK_PID PRIMARY KEY(PID), CONSTRAINT FK_STID FOREIGN KEY(STID) REFERENCES STUDENT(STU_ID), CONSTRAINT
+NN_COMPANY CHECK(COMPANY IS NOT NULL));
+
+CHECK(TRNSCTION_TYPE IN('D','C'));
+
+
+ALTER COMMAND:
+
+ADD COLUMN
+ALTER TABLE TABLE_NAME ADD NEW_COL_NAME DATATTYPE();
+
+ADD COLUMNS MORE THAN  1 COLUMN
+ALTER TABLE TABLE_NAME ADD (COL_NAME DATATYPE(),COL_NAME DATATYPE() );
+
+DROP COLUMN
+ALTER TABLE TABLE_NAME DROP COLUMN COL_NAME;
+
+RENME COLUMN
+ALTER TABLE TABLE_NAME RENAME COLUMN OLD_COL_NAME TO NEW_COL_NAME;
+
+RENAME TABLE
+1) RENAME SUBJECT TO SUB;
+2) ALTER TABLE SUBJECT RENAME TO SUB;
+
+MODIFY 
+ALTER TABLE TABLE_NAME MODIFY COL_NAME DATATYPE();
+
+
+# HOW TO ADD CONSTRAINT IN OLREDY EXISTING TABLE.
+ALTER TABLE STUDENTS
+ADD CONSTRAINT FK_BID FOREIGN KEY(B_ID) REFERENCES BATCHES(BID);
+
+#DROP CONSTRAINT:
+ALTER TABLE STUDENTS
+DROP CONSTRAINT FK_BID;
+
+
+UPDATE COMMAND:
+
+1)UPDATE TABLE_NAME SET ID = 2 WHERE ID =1;
+
+2)UPDATE TABLE_NAME SET ID = 2 WHERE ID IN(1,2,5,9);
+
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+
+#TEMPRORY COL NAME CHENGE TO SHOING REPORT GOOD
+THAT METHOD NAME  (ALIAS):
+
+SQL> SELECT CTC AS SALARY FROM PLACEMENTS;
+
+    SALARY
+----------
+   1200000
+  
+
+10 rows selected.
+#TWO COL_INFO IN ONE FRAME (||' '||).
+
+SELECT ID,FIRST_NAME||' '||LAST_NAME FULL_NAME ,COUNT(PRODUCT),SUM(TOTAL_ORDER),TRUNC(AVG(TOTAL_ORDER)) 
+FROM RDER R, COUSTOMER C
+WHERE CUSTOMER_ID=ID AND ID IN (11,22,55)
+GROUP BY ID, FIRST_NAME,LAST_NAME
+ORDER BY ID
+
+
+
+TRUNC(600.9) #600 DECIMLE NOT SHOWING HOGA
+ROUND(600.5) #601 DECIMAL NOT SHOING BUT .5+ VALUE HOGA TO VALU +1 SHOWING 
+
+
+
+SELECT STID, NAME, SEX, COMPANY, CTC SALARY
+FROM PLACEMENT , STUDENT
+WHERE STU_ID = STID(+)                      # TWO TABLE DADTA SHOWING OTHER WICE NO '(+)'
+ORDER BY STID DESC ;
+
+
+
+#NOT NULL ARE THERE VALUE IN TABLE  IT Means to handle NULL values effectively
+USEING NVL FUNCTION.
+ 
+SELECT STu_ID,NAME,PHONE,NVL(CITY,'NA') CITY ,NVL(COMPANY, 'NOT HIRED YET') COMPANY,SEX ,NVL(TO_CHAR(CTC),'---')  SALARY
+FROM PLACEMENT, STUDENT
+WHERE STID(+)=STU_ID
+ORDER BY STID DESC ;
+
+
+
+
+#SQL_SUBQUERY 
+
+SELECT * FROM STUDENT WHERE STU_ID NOT IN (SELECT STID FROM PLACEMENT)  ORDER BY STU_ID
+  2  /
+
+
+
+# THREE JOINS  WHERE CONDITION:
+
+SELECT STU_ID, NAME STUDENT_NAME, PHONE, TO_CHAR(DOB,'MM-DD-YYYY HH24:MI:SS') DT_OF_BIRTH  , B_ID
+  2  FROM STUDENT
+  3  WHERE STU_ID NOT IN (SELECT STID FROM PLACEMENT) AND STU_ID BETWEEN 3 AND 6
+  4* ORDER BY 1
+
+# PSUDO TABLES USE TO JOIN MULTIPLE FK:
+
+SELECT CID , CNAME ,NVL(TO_CHAR(SID1),'-') SID1,  NVL(S1.SNAME,'NA') SUBJECT1 , NVL(TO_CHAR(SID2),'-') SID2 , NVL(S2.SNAME,'NA') SUBJECT2, NVL(TO_CHAR(SID3),'-') SID3,NVL(S3.SNAME,'NA') SUBJECT3 , DURATION DAYS, FEES
+FROM COURSES C , SUBJECTS S1, SUBJECTS S2, SUBJECTS S3
+WHERE SID1=S1.SID(+) AND SID2 =S2.SID(+) AND SID3 = S3.SID(+) 
+ORDER BY 1
+/
+ (+)OUTER JOIN
+
+
+
+# DUAL COMMANDS
+SQL> SELECT SYSTIMESTAMP FROM DUAL;
+
+SYSTIMESTAMP                                                                                                                                                                                            
+---------------------------------------------------------------------------                                                                                                                             
+12-FEB-25 01.24.27.194000 PM +05:30                                                                                                                                                                     
+
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE                                                                                                                                                                                                 
+---------                                                                                                                                                                                               
+12-FEB-25                                                                                                                                                                                               
+
+SQL> SELECT TO_CHAR(SYSDATE,'YYYY-MONTH-DD: HH:MI:SS AM' )  FROM DUAL;
+
+TO_CHAR(SYSDATE,'YYYY-MONTH-DD:HH:MI:SSAM')                                                                                                                                                             
+---------------------------------------------------------                                                                                                                                               
+2025-FEBRUARY -12: 01:26:07 PM                                                                                                                                                                          
+
+SQL> SELECT TO_CHAR(SYSDATE,'YYYY-MONTH-DD: HH:MI:SS AM' )  FROM DUAL;
+
+TO_CHAR(SYSDATE,'YYYY-MONTH-DD:HH:MI:SSAM')                                                                                                                                                             
+---------------------------------------------------------                                                                                                                                               
+2025-FEBRUARY -12: 01:26:48 PM                                                                                                                                                                          
+
+SQL> SELECT TO_CHAR(SYSDATE,'YYYY-MONTH-DD: HH:MI:SS AM' )  FROM PLACEMENT;
+
+                                                                                                                                                                 
+
+SQL> SELECT TO_CHAR(SYSDATE,'YYYY-MONTH-DD: HH:MI:SS AM' )  FROM STUDENT;
+
+
+
+SQL> SELECT 1000 FROM DUAL;
+
+      1000                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+      1000                                                                                                                                                                                              
+
+SQL> SELECT 1000 FROM PLACEMENT;
+
+      1000                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+      1000                                                                                                                                                                                              
+      1000                                                                                                                                                                                              
+      1000                                                                                                                                                                                              
+      1000                                                                                                                                                                                              
+      1000                                                                                                                                                                                              
+
+
+
+
+
+**********************************************************************
+
+# **1ST USER 2ND USER KO ACCSES KAISE KAREGA.**    #KRISH = 1st USER
+LOGIN IN 2ND USER THEN                             #KRUSHNA =2nd USER
+
+
+SQL> GRANT SELECT,UPDATE ON COURSES TO KRISH;      # ACCESING DATA   
+SQL> REVOKE SELECT,UPDATE ON COURSES FROM KRISH;    #NOT ACCESING DATA 
+
+#SHOWING DATA IN 1ST USER CMD:
+SELECT * FROM 2ND_USERNAME.TABLE_NAME;
+
+EX:   SQL> SELECT * FROM KRUSHNA.COURSES ;
+      SQL> UPDATE KRUSHNA.COURSES SET DURATION=80 WHERE CID=107;
+
+
+sql> grant all privileges to krushna;
